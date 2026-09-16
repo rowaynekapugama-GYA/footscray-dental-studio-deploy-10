@@ -1,0 +1,2176 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/teeth-straightening-for-adults",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/teeth-straightening-for-adults/",
+      "permanent": true
+    },
+    {
+      "source": "/teeth-straightening-for-adults",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/teeth-straightening-for-adults/",
+      "permanent": true
+    },
+    {
+      "source": "/tooth-pain-relief",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/tooth-pain-relief/",
+      "permanent": true
+    },
+    {
+      "source": "/tooth-pain-relief",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/tooth-pain-relief/",
+      "permanent": true
+    },
+    {
+      "source": "/how-long-do-veneers-last",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/how-long-do-veneers-last/",
+      "permanent": true
+    },
+    {
+      "source": "/how-long-do-veneers-last",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/how-long-do-veneers-last/",
+      "permanent": true
+    },
+    {
+      "source": "/poor-oral-hygiene",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/poor-oral-hygiene/",
+      "permanent": true
+    },
+    {
+      "source": "/poor-oral-hygiene",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/poor-oral-hygiene/",
+      "permanent": true
+    },
+    {
+      "source": "/dental-plaque",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/dental-plaque/",
+      "permanent": true
+    },
+    {
+      "source": "/dental-plaque",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/dental-plaque/",
+      "permanent": true
+    },
+    {
+      "source": "/preventing-gum-recession-effective-daily-habits-to-adopt",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/preventing-gum-recession-effective-daily-habits-to-adopt/",
+      "permanent": true
+    },
+    {
+      "source": "/preventing-gum-recession-effective-daily-habits-to-adopt",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/preventing-gum-recession-effective-daily-habits-to-adopt/",
+      "permanent": true
+    },
+    {
+      "source": "/is-it-possible-to-kill-the-tooth-pain-nerve-in-3-seconds",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/is-it-possible-to-kill-the-tooth-pain-nerve-in-3-seconds/",
+      "permanent": true
+    },
+    {
+      "source": "/is-it-possible-to-kill-the-tooth-pain-nerve-in-3-seconds",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/is-it-possible-to-kill-the-tooth-pain-nerve-in-3-seconds/",
+      "permanent": true
+    },
+    {
+      "source": "/is-gum-recession-reversible-what-orthodontics-say",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/is-gum-recession-reversible-what-orthodontics-say/",
+      "permanent": true
+    },
+    {
+      "source": "/is-gum-recession-reversible-what-orthodontics-say",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/is-gum-recession-reversible-what-orthodontics-say/",
+      "permanent": true
+    },
+    {
+      "source": "/gum-recession-treatment-cost-in-australia",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/gum-recession-treatment-cost-in-australia/",
+      "permanent": true
+    },
+    {
+      "source": "/gum-recession-treatment-cost-in-australia",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/gum-recession-treatment-cost-in-australia/",
+      "permanent": true
+    },
+    {
+      "source": "/does-invisalign-hurt-a-complete-guide-for-patients-in-footscray",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/does-invisalign-hurt-a-complete-guide-for-patients-in-footscray/",
+      "permanent": true
+    },
+    {
+      "source": "/does-invisalign-hurt-a-complete-guide-for-patients-in-footscray",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/does-invisalign-hurt-a-complete-guide-for-patients-in-footscray/",
+      "permanent": true
+    },
+    {
+      "source": "/cost-of-dental-cleaning-in-australia-2026-price-guide",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/cost-of-dental-cleaning-in-australia-2026-price-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/cost-of-dental-cleaning-in-australia-2026-price-guide",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/cost-of-dental-cleaning-in-australia-2026-price-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/wisdom-tooth-pain-treatment-costs-in-australia",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/wisdom-tooth-pain-treatment-costs-in-australia/",
+      "permanent": true
+    },
+    {
+      "source": "/wisdom-tooth-pain-treatment-costs-in-australia",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/wisdom-tooth-pain-treatment-costs-in-australia/",
+      "permanent": true
+    },
+    {
+      "source": "/wisdom-tooth-decay-causes-symptoms-and-treatment-options",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/wisdom-tooth-decay-causes-symptoms-and-treatment-options/",
+      "permanent": true
+    },
+    {
+      "source": "/wisdom-tooth-decay-causes-symptoms-and-treatment-options",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/wisdom-tooth-decay-causes-symptoms-and-treatment-options/",
+      "permanent": true
+    },
+    {
+      "source": "/what-do-rotten-teeth-look-like",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/what-do-rotten-teeth-look-like/",
+      "permanent": true
+    },
+    {
+      "source": "/what-do-rotten-teeth-look-like",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/what-do-rotten-teeth-look-like/",
+      "permanent": true
+    },
+    {
+      "source": "/top-10-reasons-for-yellow-coloured-teeth-and-their-easy-fixes",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/top-10-reasons-for-yellow-coloured-teeth-and-their-easy-fixes/",
+      "permanent": true
+    },
+    {
+      "source": "/top-10-reasons-for-yellow-coloured-teeth-and-their-easy-fixes",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/top-10-reasons-for-yellow-coloured-teeth-and-their-easy-fixes/",
+      "permanent": true
+    },
+    {
+      "source": "/tooth-decay-smell",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/tooth-decay-smell/",
+      "permanent": true
+    },
+    {
+      "source": "/tooth-decay-smell",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/tooth-decay-smell/",
+      "permanent": true
+    },
+    {
+      "source": "/tooth-cavities-symptoms-causes-prevention",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/tooth-cavities-symptoms-causes-prevention/",
+      "permanent": true
+    },
+    {
+      "source": "/tooth-cavities-symptoms-causes-prevention",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/tooth-cavities-symptoms-causes-prevention/",
+      "permanent": true
+    },
+    {
+      "source": "/how-to-fix-rotten-teeth",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/how-to-fix-rotten-teeth/",
+      "permanent": true
+    },
+    {
+      "source": "/how-to-fix-rotten-teeth",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/how-to-fix-rotten-teeth/",
+      "permanent": true
+    },
+    {
+      "source": "/gum-recession-natural-treatments-to-manage-symptoms-at-home",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/gum-recession-natural-treatments-to-manage-symptoms-at-home/",
+      "permanent": true
+    },
+    {
+      "source": "/gum-recession-natural-treatments-to-manage-symptoms-at-home",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/gum-recession-natural-treatments-to-manage-symptoms-at-home/",
+      "permanent": true
+    },
+    {
+      "source": "/difference-between-custom-and-chemist-or-sports-mouthguards",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/difference-between-custom-and-chemist-or-sports-mouthguards/",
+      "permanent": true
+    },
+    {
+      "source": "/difference-between-custom-and-chemist-or-sports-mouthguards",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/difference-between-custom-and-chemist-or-sports-mouthguards/",
+      "permanent": true
+    },
+    {
+      "source": "/dental-tooth-decay-symptoms-causes-treatment-methods",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/dental-tooth-decay-symptoms-causes-treatment-methods/",
+      "permanent": true
+    },
+    {
+      "source": "/dental-tooth-decay-symptoms-causes-treatment-methods",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/dental-tooth-decay-symptoms-causes-treatment-methods/",
+      "permanent": true
+    },
+    {
+      "source": "/aesthetic-and-appearance-issues-caused-by-gum-recession",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/aesthetic-and-appearance-issues-caused-by-gum-recession/",
+      "permanent": true
+    },
+    {
+      "source": "/aesthetic-and-appearance-issues-caused-by-gum-recession",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/aesthetic-and-appearance-issues-caused-by-gum-recession/",
+      "permanent": true
+    },
+    {
+      "source": "/a-go-to-guide-on-gum-line-recession-causes-and-remedies",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/a-go-to-guide-on-gum-line-recession-causes-and-remedies/",
+      "permanent": true
+    },
+    {
+      "source": "/a-go-to-guide-on-gum-line-recession-causes-and-remedies",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/a-go-to-guide-on-gum-line-recession-causes-and-remedies/",
+      "permanent": true
+    },
+    {
+      "source": "/a-dental-protection-guide-for-athletes-in-australia",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/a-dental-protection-guide-for-athletes-in-australia/",
+      "permanent": true
+    },
+    {
+      "source": "/a-dental-protection-guide-for-athletes-in-australia",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/a-dental-protection-guide-for-athletes-in-australia/",
+      "permanent": true
+    },
+    {
+      "source": "/a-definitive-guide-on-cracked-tooth-you-need-to-go-through",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/a-definitive-guide-on-cracked-tooth-you-need-to-go-through/",
+      "permanent": true
+    },
+    {
+      "source": "/a-definitive-guide-on-cracked-tooth-you-need-to-go-through",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/a-definitive-guide-on-cracked-tooth-you-need-to-go-through/",
+      "permanent": true
+    },
+    {
+      "source": "/8-easy-steps-to-overcome-dental-anxiety-before-visiting-a-dentist",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/8-easy-steps-to-overcome-dental-anxiety-before-visiting-a-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/8-easy-steps-to-overcome-dental-anxiety-before-visiting-a-dentist",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/8-easy-steps-to-overcome-dental-anxiety-before-visiting-a-dentist/",
+      "permanent": true
+    },
+    {
+      "source": "/sensitive-teeth",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sensitive-teeth/",
+      "permanent": true
+    },
+    {
+      "source": "/sensitive-teeth",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sensitive-teeth/",
+      "permanent": true
+    },
+    {
+      "source": "/root-canal-cost-in-australia",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/root-canal-cost-in-australia/",
+      "permanent": true
+    },
+    {
+      "source": "/root-canal-cost-in-australia",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/root-canal-cost-in-australia/",
+      "permanent": true
+    },
+    {
+      "source": "/why-do-my-bottom-teeth-hurt",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/why-do-my-bottom-teeth-hurt/",
+      "permanent": true
+    },
+    {
+      "source": "/why-do-my-bottom-teeth-hurt",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/why-do-my-bottom-teeth-hurt/",
+      "permanent": true
+    },
+    {
+      "source": "/bone-graft-for-tooth-implant",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/bone-graft-for-tooth-implant/",
+      "permanent": true
+    },
+    {
+      "source": "/bone-graft-for-tooth-implant",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/bone-graft-for-tooth-implant/",
+      "permanent": true
+    },
+    {
+      "source": "/professional-teeth-whitening",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/professional-teeth-whitening/",
+      "permanent": true
+    },
+    {
+      "source": "/professional-teeth-whitening",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/professional-teeth-whitening/",
+      "permanent": true
+    },
+    {
+      "source": "/dental-implant-procedure",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/dental-implant-procedure/",
+      "permanent": true
+    },
+    {
+      "source": "/dental-implant-procedure",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/dental-implant-procedure/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/2",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/2",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/2",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/2",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/3",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/3",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/3",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/3",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/4",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/4",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/4",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/4",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/5",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/5",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/5",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/5",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/6",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/6",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/6",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/6",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/7",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/7",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/7",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/7",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/about/",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/about/",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/book-appointment",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/patient-info/",
+      "permanent": true
+    },
+    {
+      "source": "/book-appointment",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/patient-info/",
+      "permanent": true
+    },
+    {
+      "source": "/gallery",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/about/",
+      "permanent": true
+    },
+    {
+      "source": "/gallery",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/about/",
+      "permanent": true
+    },
+    {
+      "source": "/faqs",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/patient-info/",
+      "permanent": true
+    },
+    {
+      "source": "/faqs",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/patient-info/",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/",
+      "permanent": true
+    },
+    {
+      "source": "/team",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/team",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/services/teeth-whitening",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/cosmetic/teeth-whitening/",
+      "permanent": true
+    },
+    {
+      "source": "/services/teeth-whitening",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/cosmetic/teeth-whitening/",
+      "permanent": true
+    },
+    {
+      "source": "/services/dental-veneers",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/cosmetic/veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/services/dental-veneers",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/cosmetic/veneers/",
+      "permanent": true
+    },
+    {
+      "source": "/services/dental-implants",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/restorative/dental-implants/",
+      "permanent": true
+    },
+    {
+      "source": "/services/dental-implants",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/restorative/dental-implants/",
+      "permanent": true
+    },
+    {
+      "source": "/services/crown-bridge",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/restorative/crowns-bridges/",
+      "permanent": true
+    },
+    {
+      "source": "/services/crown-bridge",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/restorative/crowns-bridges/",
+      "permanent": true
+    },
+    {
+      "source": "/services/dental-fillings",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/restorative/fillings/",
+      "permanent": true
+    },
+    {
+      "source": "/services/dental-fillings",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/restorative/fillings/",
+      "permanent": true
+    },
+    {
+      "source": "/services/root-canal-treatment",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/restorative/root-canal/",
+      "permanent": true
+    },
+    {
+      "source": "/services/root-canal-treatment",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/restorative/root-canal/",
+      "permanent": true
+    },
+    {
+      "source": "/services/sport-mouth-guards",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/general-preventive/mouthguards/",
+      "permanent": true
+    },
+    {
+      "source": "/services/sport-mouth-guards",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/general-preventive/mouthguards/",
+      "permanent": true
+    },
+    {
+      "source": "/services/general-check-up",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/general-preventive/check-ups-cleans/",
+      "permanent": true
+    },
+    {
+      "source": "/services/general-check-up",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/general-preventive/check-ups-cleans/",
+      "permanent": true
+    },
+    {
+      "source": "/services/emergency-dentistry",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/emergency-dentistry/",
+      "permanent": true
+    },
+    {
+      "source": "/services/emergency-dentistry",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/emergency-dentistry/",
+      "permanent": true
+    },
+    {
+      "source": "/services/gummy-smile-treatment",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/cosmetic/",
+      "permanent": true
+    },
+    {
+      "source": "/services/gummy-smile-treatment",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/cosmetic/",
+      "permanent": true
+    },
+    {
+      "source": "/services/laser-dentistry",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/",
+      "permanent": true
+    },
+    {
+      "source": "/services/laser-dentistry",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/",
+      "permanent": true
+    },
+    {
+      "source": "/services/bone-grafting",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/restorative/dental-implants/",
+      "permanent": true
+    },
+    {
+      "source": "/services/bone-grafting",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/restorative/dental-implants/",
+      "permanent": true
+    },
+    {
+      "source": "/services/sinus-lift-procedure",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/restorative/dental-implants/",
+      "permanent": true
+    },
+    {
+      "source": "/services/sinus-lift-procedure",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/restorative/dental-implants/",
+      "permanent": true
+    },
+    {
+      "source": "/services/wisdom-tooth-removal",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/emergency-dentistry/",
+      "permanent": true
+    },
+    {
+      "source": "/services/wisdom-tooth-removal",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/emergency-dentistry/",
+      "permanent": true
+    },
+    {
+      "source": "/services/orthodontics",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/special-offers/",
+      "permanent": true
+    },
+    {
+      "source": "/services/orthodontics",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/special-offers/",
+      "permanent": true
+    },
+    {
+      "source": "/services/invisalign",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/special-offers/",
+      "permanent": true
+    },
+    {
+      "source": "/services/invisalign",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/special-offers/",
+      "permanent": true
+    },
+    {
+      "source": "/services/tmd-treatment",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/",
+      "permanent": true
+    },
+    {
+      "source": "/services/tmd-treatment",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/",
+      "permanent": true
+    },
+    {
+      "source": "/services/sleep-apnoea",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/",
+      "permanent": true
+    },
+    {
+      "source": "/services/sleep-apnoea",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/",
+      "permanent": true
+    },
+    {
+      "source": "/category/cosmetic-dentistry",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/cosmetic/",
+      "permanent": true
+    },
+    {
+      "source": "/category/cosmetic-dentistry",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/cosmetic/",
+      "permanent": true
+    },
+    {
+      "source": "/category/general-dentistry",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/general-preventive/",
+      "permanent": true
+    },
+    {
+      "source": "/category/general-dentistry",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/general-preventive/",
+      "permanent": true
+    },
+    {
+      "source": "/category/orthodontics",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/special-offers/",
+      "permanent": true
+    },
+    {
+      "source": "/category/orthodontics",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/special-offers/",
+      "permanent": true
+    },
+    {
+      "source": "/category/oral-surgery",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/restorative/dental-implants/",
+      "permanent": true
+    },
+    {
+      "source": "/category/oral-surgery",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/restorative/dental-implants/",
+      "permanent": true
+    },
+    {
+      "source": "/category/holistic-dentistry",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/general-preventive/",
+      "permanent": true
+    },
+    {
+      "source": "/category/holistic-dentistry",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/services/general-preventive/",
+      "permanent": true
+    },
+    {
+      "source": "/dentists/dr-duy",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/dentists/dr-duy",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/dentists/dr-zainab",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/dentists/dr-zainab",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/dentists/dr-alan-hwang",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/dentists/dr-alan-hwang",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/dentists/dr-manish-sethi",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/dentists/dr-manish-sethi",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/practice-manager/melinda-luff",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/practice-manager/melinda-luff",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/practice-manager/melinda-luff-2",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/practice-manager/melinda-luff-2",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/member",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/member",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/member/dr-alan-hwang",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/member/dr-alan-hwang",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/member/dr-manish-sethi",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/member/dr-manish-sethi",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/meet-the-team/",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap_index.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap_index.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/post-sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/post-sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/page-sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/page-sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/services-sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/services-sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/category-sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/category-sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/member-sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/member-sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/dentists-sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/dentists-sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/wp-sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/wp-sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ezydentalgroup.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "footscraydentalstudio.com.au"
+        }
+      ],
+      "destination": "https://www.footscraydentalstudio.com.au/:path*",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}
