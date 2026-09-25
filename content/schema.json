@@ -1,0 +1,189 @@
+{
+  "version": 1,
+  "notes": "Drives both the admin panel form and build/apply-content.js. Field keys are dotted paths into content/site.json. Types: text (one line, **bold** and [links](url) allowed), paragraphs (blank line between paragraphs), lines (one item per line), image (path under /assets/img/), url, checkbox, list (repeatable group).",
+
+  "globals": [
+    { "key": "practice.phone",   "original": "(03) 9000 0792",                   "tel_original": "tel:+61390000792" },
+    { "key": "practice.email",   "original": "info@footscraydentalstudio.com.au" },
+    { "key": "practice.address", "original": "289 Barkly St, Footscray VIC 3011" }
+  ],
+
+  "derived": [
+    { "key": "hours_line", "from": "hours", "rule": "hours_line" }
+  ],
+
+  "sections": [
+    {
+      "id": "practice",
+      "title": "Practice details",
+      "intro": "Phone, email and address appear on every page, including the Call buttons and the map cards. Social and review links are hidden on the site until you fill them in.",
+      "fields": [
+        { "key": "practice.phone",        "label": "Phone number",            "type": "text",  "required": true, "help": "Shown exactly as typed. Used for every Call button." },
+        { "key": "practice.email",        "label": "Email address",           "type": "text",  "required": true },
+        { "key": "practice.address",      "label": "Street address",          "type": "text",  "required": true },
+        { "key": "practice.maps_url",     "label": "Google Maps link",        "type": "url",   "help": "Where the Get Directions buttons go." },
+        { "key": "practice.review_url",   "label": "Google reviews link",     "type": "url",   "help": "Shows a rating badge on the homepage once set. Leave blank to hide it." },
+        { "key": "practice.review_label", "label": "Rating badge text",       "type": "text" },
+        { "key": "practice.facebook",     "label": "Facebook page URL",       "type": "url" },
+        { "key": "practice.instagram",    "label": "Instagram URL",           "type": "url" },
+        { "key": "practice.linkedin",     "label": "LinkedIn URL",            "type": "url" }
+      ]
+    },
+    {
+      "id": "hours",
+      "title": "Opening hours",
+      "intro": "Shown on the homepage, contact page, emergency page and in the footer. Also written into the structured data Google reads.",
+      "fields": [
+        { "key": "hours", "label": "Hours", "type": "list", "item_label": "Row", "fields": [
+          { "key": "days", "label": "Day or days", "type": "text", "placeholder": "Monday–Friday" },
+          { "key": "time", "label": "Hours",       "type": "text", "placeholder": "9:00am–5:00pm, or Closed" }
+        ]},
+        { "key": "hours_note", "label": "Note under the hours", "type": "text", "help": "Optional, e.g. public holiday closures. Leave blank to show nothing." }
+      ]
+    },
+    {
+      "id": "announcement",
+      "title": "Announcement bar",
+      "intro": "A gold strip across the top of every page. Useful for holiday closures or a new offer. Switch it off and it disappears.",
+      "fields": [
+        { "key": "announcement.enabled", "label": "Show the announcement bar", "type": "checkbox" },
+        { "key": "announcement.text",    "label": "Message",                   "type": "text", "placeholder": "We are closed on Friday 26 December. Emergencies: call (03) 9000 0792." },
+        { "key": "announcement.link",    "label": "Link (optional)",           "type": "url",  "help": "If set, the whole message links here." }
+      ]
+    },
+    {
+      "id": "home",
+      "title": "Homepage",
+      "fields": [
+        { "key": "home.h1",           "label": "Main headline",           "type": "text", "required": true },
+        { "key": "home.hero_intro",   "label": "Headline supporting line", "type": "text" },
+        { "key": "home.hero_image",   "label": "Hero photo",              "type": "image" },
+        { "key": "home.trust_line",   "label": "Trust line (above headline)", "type": "text" },
+        { "key": "home.stat_label",   "label": "Stat card: label",        "type": "text" },
+        { "key": "home.stat_number",  "label": "Stat card: number",       "type": "text" },
+        { "key": "home.stat_text",    "label": "Stat card: description",  "type": "text" },
+        { "key": "home.chips_title",  "label": "Technology card: title",  "type": "text" },
+        { "key": "home.chips", "label": "Technology card: chips", "type": "list", "item_label": "Chip", "fields": [
+          { "key": "label", "label": "Label", "type": "text" }
+        ]},
+        { "key": "home.funds_caption",     "label": "Health funds strip caption", "type": "text" },
+        { "key": "home.welcome_eyebrow",   "label": "Welcome section: eyebrow",   "type": "text" },
+        { "key": "home.welcome_lead",      "label": "Welcome section: lead line", "type": "text" },
+        { "key": "home.welcome_statement", "label": "Welcome section: statement", "type": "text" },
+        { "key": "home.float_image_1",     "label": "Welcome section: left photo",  "type": "image" },
+        { "key": "home.float_image_2",     "label": "Welcome section: right photo", "type": "image" },
+        { "key": "home.services_heading",  "label": "Services section: heading", "type": "text" },
+        { "key": "home.services_intro",    "label": "Services section: intro",   "type": "text" },
+        { "key": "home.service_1_title", "label": "Service card 1: title", "type": "text" },
+        { "key": "home.service_1_desc",  "label": "Service card 1: description", "type": "text" },
+        { "key": "home.service_2_title", "label": "Service card 2: title", "type": "text" },
+        { "key": "home.service_2_desc",  "label": "Service card 2: description", "type": "text" },
+        { "key": "home.service_3_title", "label": "Service card 3: title", "type": "text" },
+        { "key": "home.service_3_desc",  "label": "Service card 3: description", "type": "text" },
+        { "key": "home.service_4_title", "label": "Service card 4: title", "type": "text" },
+        { "key": "home.service_4_desc",  "label": "Service card 4: description", "type": "text" },
+        { "key": "home.service_5_title", "label": "Service card 5: title", "type": "text" },
+        { "key": "home.service_5_desc",  "label": "Service card 5: description", "type": "text" },
+        { "key": "home.service_6_title", "label": "Service card 6: title", "type": "text" },
+        { "key": "home.service_6_desc",  "label": "Service card 6: description", "type": "text" },
+        { "key": "home.why_heading", "label": "Why us: heading", "type": "text" },
+        { "key": "home.why_text",    "label": "Why us: text",    "type": "paragraphs" },
+        { "key": "home.features", "label": "Why us: feature list", "type": "list", "item_label": "Feature", "fields": [
+          { "key": "title", "label": "Title", "type": "text" },
+          { "key": "text",  "label": "Text",  "type": "text" }
+        ]},
+        { "key": "home.story_heading", "label": "Our story: heading", "type": "text" },
+        { "key": "home.story_text",    "label": "Our story: text",    "type": "paragraphs" },
+        { "key": "home.story_image",   "label": "Our story: photo",   "type": "image" },
+        { "key": "home.offers_heading", "label": "Offers section: heading", "type": "text", "help": "The offers themselves are edited under Special Offers." },
+        { "key": "home.visit_heading", "label": "Visiting us: heading", "type": "text" },
+        { "key": "home.visit_intro",   "label": "Visiting us: intro",   "type": "text" },
+        { "key": "home.faq", "label": "Homepage FAQ", "type": "list", "item_label": "Question", "fields": [
+          { "key": "q", "label": "Question", "type": "text" },
+          { "key": "a", "label": "Answer",   "type": "paragraphs" }
+        ]}
+      ]
+    },
+    {
+      "id": "about",
+      "title": "About Us",
+      "fields": [
+        { "key": "about.story_heading",      "label": "Our story: heading",        "type": "text" },
+        { "key": "about.story",              "label": "Our story: text",           "type": "paragraphs" },
+        { "key": "about.philosophy_heading", "label": "Philosophy: heading",       "type": "text" },
+        { "key": "about.philosophy_text",    "label": "Philosophy: text",          "type": "paragraphs" },
+        { "key": "about.philosophy_image",   "label": "Philosophy: photo",         "type": "image" },
+        { "key": "about.tech_heading",       "label": "Technology: heading",       "type": "text" },
+        { "key": "about.tech_intro",         "label": "Technology: intro",         "type": "text" },
+        { "key": "about.continuity_heading", "label": "Familiar faces: heading",   "type": "text" },
+        { "key": "about.continuity_text",    "label": "Familiar faces: text",      "type": "paragraphs" },
+        { "key": "about.continuity_image",   "label": "Familiar faces: photo",     "type": "image" },
+        { "key": "about.visit_heading",      "label": "Visit us: heading",         "type": "text" },
+        { "key": "about.visit_text",         "label": "Visit us: text",            "type": "text" },
+        { "key": "about.faq", "label": "About FAQ", "type": "list", "item_label": "Question", "fields": [
+          { "key": "q", "label": "Question", "type": "text" },
+          { "key": "a", "label": "Answer",   "type": "paragraphs" }
+        ]}
+      ]
+    },
+    {
+      "id": "team",
+      "title": "Meet the Team",
+      "intro": "Add, remove or reorder practitioners. Photos work best as a portrait crop around 800 x 1000 pixels.",
+      "fields": [
+        { "key": "team", "label": "Practitioners", "type": "list", "item_label": "Practitioner", "fields": [
+          { "key": "name",  "label": "Name",  "type": "text", "required": true },
+          { "key": "role",  "label": "Role",  "type": "text", "placeholder": "Dentist" },
+          { "key": "photo", "label": "Photo", "type": "image" },
+          { "key": "bio",   "label": "Bio",   "type": "paragraphs" }
+        ]}
+      ]
+    },
+    {
+      "id": "offers",
+      "title": "Special Offers",
+      "intro": "These cards appear on the Special Offers page. The homepage shows the title and price of each one automatically.",
+      "fields": [
+        { "key": "offers_page.intro_heading", "label": "Intro: heading", "type": "text" },
+        { "key": "offers_page.intro",         "label": "Intro: text",    "type": "paragraphs" },
+        { "key": "offers", "label": "Offers", "type": "list", "item_label": "Offer", "fields": [
+          { "key": "title",     "label": "Title",              "type": "text", "required": true },
+          { "key": "price",     "label": "Price or headline",  "type": "text", "placeholder": "$135, or Free" },
+          { "key": "note",      "label": "Small note under the title", "type": "text" },
+          { "key": "body",      "label": "Description",        "type": "paragraphs" },
+          { "key": "bullets",   "label": "What's included (one per line)", "type": "lines" },
+          { "key": "cta_label", "label": "Button text",        "type": "text", "placeholder": "Book Now" }
+        ]},
+        { "key": "offers_page.footnote", "label": "Footnote under the offers", "type": "text" },
+        { "key": "offers_page.faq", "label": "Offers FAQ", "type": "list", "item_label": "Question", "fields": [
+          { "key": "q", "label": "Question", "type": "text" },
+          { "key": "a", "label": "Answer",   "type": "paragraphs" }
+        ]}
+      ]
+    },
+    {
+      "id": "contact",
+      "title": "Contact page",
+      "fields": [
+        { "key": "contact.find_text",       "label": "Text under the map",      "type": "text" },
+        { "key": "contact.message_heading", "label": "Message form: heading",   "type": "text" },
+        { "key": "contact.message_text",    "label": "Message form: intro",     "type": "text" },
+        { "key": "contact.faq", "label": "Contact FAQ", "type": "list", "item_label": "Question", "fields": [
+          { "key": "q", "label": "Question", "type": "text" },
+          { "key": "a", "label": "Answer",   "type": "paragraphs" }
+        ]}
+      ]
+    },
+    {
+      "id": "pages",
+      "title": "Page headings",
+      "intro": "The headline, intro line and hero photo at the top of each inner page.",
+      "dynamic": "pages",
+      "item_fields": [
+        { "key": "h1",         "label": "Headline",   "type": "text", "required": true },
+        { "key": "intro",      "label": "Intro line", "type": "text" },
+        { "key": "hero_image", "label": "Hero photo", "type": "image" }
+      ]
+    }
+  ]
+}

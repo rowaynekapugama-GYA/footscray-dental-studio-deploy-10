@@ -1,0 +1,14 @@
+{
+  "name": "footscray-dental-studio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Footscray Dental Studio website: static pages, contact form API and admin panel",
+  "scripts": {
+    "build": "node build/apply-content.js",
+    "extract": "node build/apply-content.js extract",
+    "dev": "node build/apply-content.js && node dev-server.js",
+    "test": "node test/run.js",
+    "make-password": "node build/make-password.js"
+  },
+  "engines": { "node": ">=18" }
+}

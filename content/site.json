@@ -1,0 +1,445 @@
+{
+  "home": {
+    "chips": [
+      {
+        "label": "Intraoral cameras"
+      },
+      {
+        "label": "Digital X-rays"
+      },
+      {
+        "label": "3D digital scanner"
+      },
+      {
+        "label": "OPG imaging"
+      }
+    ],
+    "features": [
+      {
+        "title": "Intraoral cameras",
+        "text": "for detailed, real-time views of your teeth and gums"
+      },
+      {
+        "title": "Digital X-rays",
+        "text": "for efficient, high-quality diagnostic imaging"
+      },
+      {
+        "title": "A digital dental scanner",
+        "text": "for accurate, comfortable impressions without traditional putty moulds"
+      },
+      {
+        "title": "OPG (panoramic) imaging",
+        "text": "for a full view of teeth, jaws and surrounding structures"
+      },
+      {
+        "title": "Advanced root canal treatment technology",
+        "text": "to support precise, efficient endodontic care"
+      },
+      {
+        "title": "Smile photography and digital documentation",
+        "text": ", including a dedicated studio-style setup to track treatment progress"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Where is Footscray Dental Studio located?",
+        "a": "We're located at 289 Barkly St, Footscray VIC 3011, within walking distance of local buses, trams and the train network."
+      },
+      {
+        "q": "What services do you offer?",
+        "a": "We provide general and preventive dentistry, cosmetic dentistry, restorative dentistry, All-on-X dental implants, and emergency dentistry."
+      },
+      {
+        "q": "Do you accept new patients?",
+        "a": "Yes, we welcome new patients and offer a New Patient Exam & Clean — see our current offers for details."
+      },
+      {
+        "q": "What health funds do you accept?",
+        "a": "We accept all major health funds, with on-the-spot claiming available through HICAPS."
+      },
+      {
+        "q": "Is parking available?",
+        "a": "Yes — convenient 1-hour street parking is available nearby, plus dedicated on-site parking for longer appointments."
+      },
+      {
+        "q": "How do I book an appointment?",
+        "a": "You can book online or call us on (03) 9000 0792. Our team is happy to help find a time that suits you."
+      }
+    ],
+    "trust_line": "Trusted by the Footscray community",
+    "h1": "Modern Dentistry. Personalised Care. Confident Smiles.",
+    "hero_intro": "Welcome to Footscray Dental Studio — a fresh, modern dental practice built on a strong foundation in the local community.",
+    "stat_label": "Experienced hands",
+    "stat_number": "20+",
+    "stat_text": "Years of combined experience across general and comprehensive dental care",
+    "chips_title": "A modern, technology-led studio",
+    "funds_caption": "We accept all major health funds, with on-the-spot claiming available through HICAPS",
+    "welcome_eyebrow": "Welcome to Footscray Dental Studio",
+    "welcome_lead": "Located on Barkly St, our experienced team provides comprehensive dental care in a comfortable, contemporary setting, using modern technology to support accurate diagnosis and quality treatment.",
+    "welcome_statement": "Whether you're due for a routine check-up, exploring cosmetic options, or need more comprehensive restorative work, our team takes the time to understand your individual needs and guide you through your options clearly, so you always feel informed and comfortable with your care.",
+    "services_heading": "Our Services",
+    "services_intro": "Comprehensive dental care for you and your family, all under one roof.",
+    "service_1_title": "General & Preventive Dentistry",
+    "service_1_desc": "check-ups, cleans, X-rays and preventive care to maintain healthy teeth and gums",
+    "service_2_title": "Cosmetic Dentistry",
+    "service_2_desc": "whitening, veneers and smile enhancement tailored to your goals",
+    "service_3_title": "Clear Aligners",
+    "service_3_desc": "discreet, removable aligners that straighten teeth gradually",
+    "service_4_title": "Restorative Dentistry",
+    "service_4_desc": "fillings, crowns, implants and dentures to repair and restore your smile",
+    "service_5_title": "All-on-X Dental Implants",
+    "service_5_desc": "full-arch implant solutions for patients missing most or all of their teeth",
+    "service_6_title": "Emergency Dentistry",
+    "service_6_desc": "prompt care when you need it most",
+    "why_heading": "Why Choose Footscray Dental Studio",
+    "why_text": "Our team brings more than 20 years of combined experience across general and comprehensive dental care. As part of our commitment to modern, patient-focused dentistry, our studio is equipped with:\n\nWe take the time to listen, explain your options clearly, and help you make informed decisions about your care — with a warm, approachable team you can build a long-term relationship with.",
+    "story_heading": "A Practice Built on Community",
+    "story_text": "Footscray Dental Studio continues a long-standing local presence, now under new leadership with a renewed focus on modern, personalised care. Several of our existing team members continue to care for familiar faces, while additional experienced practitioners have joined to broaden the range of services we can offer. It's a combination designed to bring you the best of both continuity and fresh clinical expertise.",
+    "offers_heading": "Current Offers",
+    "visit_heading": "Visiting Us",
+    "visit_intro": "Footscray Dental Studio is located at 289 Barkly St, Footscray VIC 3011 — within walking distance of local buses, trams and the train network. On-site parking is available for longer appointments, with convenient 1-hour street parking nearby.",
+    "hero_image": "assets/img/hero-home.jpg",
+    "float_image_1": "https://i.imgur.com/rpvh8db.png",
+    "float_image_2": "https://i.imgur.com/I35SuUK.png",
+    "story_image": "https://i.imgur.com/GoJBoEA.png"
+  },
+  "offers": [
+    {
+      "title": "New Patient Exam & Clean",
+      "note": "",
+      "price": "$135",
+      "body": "A comprehensive introduction to care at Footscray Dental Studio, including:\n\nThis offer is designed to give new patients a thorough, up-to-date picture of their oral health from their very first visit.",
+      "bullets": "Comprehensive examination\nClinical photos\nIntraoral digital scan\nIntraoral X-rays\nFull mouth scale and clean\nFluoride application\nA personalised treatment plan",
+      "cta_label": "Book This Offer"
+    },
+    {
+      "title": "Teeth Whitening",
+      "note": "",
+      "price": "from $450",
+      "body": "Professional teeth whitening, tailored to your individual needs following a consultation to assess your suitability and discuss the options available to you.",
+      "bullets": "",
+      "cta_label": "Enquire Now"
+    },
+    {
+      "title": "Dental Implant Consultation",
+      "note": "",
+      "price": "complimentary",
+      "body": "A complimentary consultation to assess your suitability for dental implants, including [All-on-X](../services/restorative/all-on-x-implants/index.html) full-arch options for patients missing most or all of their teeth. Your dentist will discuss your individual situation, answer your questions, and outline a recommended path forward if implants are a suitable option for you.",
+      "bullets": "",
+      "cta_label": "Book a Consultation"
+    },
+    {
+      "title": "Clear Aligner Consultation (Invisalign, SPARK, Angel)",
+      "note": "(Invisalign, SPARK, Angel)",
+      "price": "complimentary",
+      "body": "A complimentary consultation to discuss clear aligner options and assess your suitability for treatment, helping you understand what's involved before committing to a treatment plan.",
+      "bullets": "",
+      "cta_label": "Book a Consultation"
+    },
+    {
+      "title": "Child Dental Benefits Schedule",
+      "note": "",
+      "price": "bulk billed for eligible patients",
+      "body": "Eligible children may be entitled to bulk-billed dental services under the Child Dental Benefits Schedule, a government program supporting access to essential dental care. Contact us to check your child's eligibility and book an appointment.",
+      "bullets": "",
+      "cta_label": "Check Eligibility / Book"
+    },
+    {
+      "title": "Bride & Groom / Couples Whitening Package",
+      "note": "",
+      "price": "",
+      "body": "Getting married? Ask our team about our whitening package for couples ahead of your big day — a simple way to feel confident for your photos and celebrations.",
+      "bullets": "",
+      "cta_label": "Enquire Now"
+    }
+  ],
+  "hours": [
+    {
+      "days": "Monday–Friday",
+      "time": "9:00am–5:00pm"
+    },
+    {
+      "days": "Saturday",
+      "time": "9:00am–3:00pm"
+    },
+    {
+      "days": "Sunday",
+      "time": "By appointment only"
+    }
+  ],
+  "practice": {
+    "phone": "(03) 9000 0792",
+    "email": "info@footscraydentalstudio.com.au",
+    "address": "289 Barkly St, Footscray VIC 3011",
+    "maps_url": "https://www.google.com/maps/place/Ezy+Dental+Group+-+Dentist+Footscray/data=!4m2!3m1!1s0x0:0xc3d2cca966430256",
+    "review_url": "",
+    "review_label": "Read our Google reviews",
+    "facebook": "",
+    "instagram": "",
+    "linkedin": ""
+  },
+  "hours_note": "",
+  "about": {
+    "faq": [
+      {
+        "q": "Is Footscray Dental Studio the same practice as EZY Dental Group?",
+        "a": "Footscray Dental Studio is the same practice under new management, continuing to serve the local community at the same location with fresh leadership and expanded services."
+      },
+      {
+        "q": "Have you kept the same dental team?",
+        "a": "Several existing practitioners and support staff continue with the practice, alongside additional experienced practitioners who have joined the team to broaden our range of services."
+      },
+      {
+        "q": "What new technology has been introduced?",
+        "a": "We've introduced intraoral cameras, digital X-rays, a digital dental scanner, OPG imaging, and advanced root canal treatment technology, among other upgrades."
+      },
+      {
+        "q": "Do I need to be an existing patient to visit?",
+        "a": "No — we welcome new patients as well as those who previously visited the practice under its former name."
+      },
+      {
+        "q": "What is the practice's approach to patient care?",
+        "a": "We focus on personalised, preventive care, taking time to listen to each patient and provide clear, honest advice about their options, without pressure."
+      },
+      {
+        "q": "How do I find out more about a specific practitioner?",
+        "a": "Practitioner profiles are listed above, including qualifications and areas of clinical interest. Feel free to ask our team directly if you'd like more information before booking."
+      }
+    ],
+    "story_heading": "Our Story",
+    "story": "Welcome to Footscray Dental Studio — a fresh, modern chapter for a practice with a strong foundation in the local community. The practice is now under new management, building on the foundations of EZY Dental Group while bringing fresh leadership, experience and a genuine commitment to making every patient's dental experience comfortable, personalised and positive.\n\nOur team has been providing dental services to the local community for many years, with a strong focus on quality care, patient relationships and positive dental experiences. Together, our practitioners bring more than 20 years of combined experience across general and comprehensive dental services.\n\nWe believe great dentistry is about more than treating teeth — it's about getting to know our patients, understanding their individual needs, and helping them feel comfortable and confident in their care. As your local dental studio, we're proud to be part of the Footscray community and look forward to caring for generations of patients and families.\n\nWhether you're visiting for a routine check-up, preventive care, or more comprehensive treatment, our team is here to provide professional care with a warm, personalised approach.\n\n**Formerly Ezy Dental Group.** Footscray Dental Studio is the same practice, at the same address on Barkly St, with many of the same familiar faces. The name and leadership have changed; our commitment to the Footscray community has not.",
+    "philosophy_heading": "Our Philosophy",
+    "philosophy_text": "Our philosophy is simple — we want every patient to feel comfortable, respected and genuinely cared for. We take the time to listen, understand each patient's needs, and provide clear, honest advice so they can make informed decisions about their dental health.\n\nWe believe dentistry should be personal, preventive and focused on long-term wellbeing. Our approach combines clinical experience and modern dentistry with a warm, approachable environment where patients feel at ease.\n\nWe're committed to building lasting relationships with our patients and families, rather than simply providing treatment. For us, success is seeing our patients leave feeling confident about their oral health, knowing they have a dental team they can trust. As a local practice, we're proud to be part of the Footscray community and look forward to caring for our patients for many years to come.",
+    "tech_heading": "A Modern, Technology-Led Studio",
+    "tech_intro": "As part of the transition to Footscray Dental Studio, we've introduced a range of modern dental equipment and digital technologies to enhance patient care, diagnostic accuracy and overall experience, including:",
+    "continuity_heading": "Continuity, With Fresh Expertise",
+    "continuity_text": "We highly value the contribution and experience of every member of our existing team. As part of the transition to new leadership, several of our existing practitioners and support staff continue with the practice, providing continuity and familiarity for our patients.\n\nAt the same time, we've welcomed additional experienced practitioners to the team, strengthening our clinical capabilities and broadening the range of services available — so we can better support the diverse dental needs of the local community. Our focus is on retaining the strengths and relationships that already exist within the practice, while introducing new expertise, ideas and capabilities under new leadership.",
+    "visit_heading": "Visit Us",
+    "visit_text": "Footscray Dental Studio is proud to be part of the Footscray community. We look forward to welcoming you.",
+    "philosophy_image": "https://i.imgur.com/uqOPyDL.jpeg",
+    "continuity_image": "https://i.imgur.com/imJX0zw.jpeg"
+  },
+  "pages": {
+    "about": {
+      "h1": "A Fresh New Chapter. Experienced Hands. A Familiar Commitment to the Community.",
+      "hero_image": "https://i.imgur.com/P8h1gcy.png"
+    },
+    "contact": {
+      "h1": "Contact Us",
+      "intro": "We'd love to hear from you. Whether you're booking an appointment, have a question about treatment, or need to reach us urgently, our team is here to help — by phone, email, or in person.",
+      "hero_image": "../assets/img/contact-hero.jpg"
+    },
+    "meet-the-team": {
+      "h1": "Meet Our Team",
+      "intro": "The practitioners behind Footscray Dental Studio, and the experience each of them brings to your care.",
+      "hero_image": "https://i.imgur.com/ppKoZRB.png"
+    },
+    "patient-info": {
+      "h1": "Book an Appointment",
+      "intro": "Booking your visit with Footscray Dental Studio is simple.",
+      "hero_image": "https://i.imgur.com/UTdvjTy.png"
+    },
+    "childrens-dentistry": {
+      "h1": "Children's Dentistry",
+      "intro": "Establishing good dental habits early helps set children up for a lifetime of healthy teeth and gums.",
+      "hero_image": "https://i.imgur.com/aMnL62E.png"
+    },
+    "composite-bonding": {
+      "h1": "Composite Bonding",
+      "intro": "Composite bonding uses a tooth-coloured resin material, carefully applied and shaped to address minor cosmetic concerns such as small chips, gaps, or irregularly shaped teeth.",
+      "hero_image": "https://i.imgur.com/3J1MPP3.png"
+    },
+    "cosmetic": {
+      "h1": "Cosmetic Dentistry",
+      "intro": "Cosmetic dentistry covers a range of treatments designed to improve the appearance of your teeth and smile.",
+      "hero_image": "https://i.imgur.com/MmVFR3N.jpeg"
+    },
+    "smile-makeovers": {
+      "h1": "Smile Makeovers / Full Mouth Planning",
+      "intro": "For patients considering more than one cosmetic or restorative treatment, a smile makeover approach allows everything to be planned together, rather than addressed one treatment at a time.",
+      "hero_image": "https://i.imgur.com/VBDfYZu.png"
+    },
+    "teeth-whitening": {
+      "h1": "Teeth Whitening",
+      "intro": "Over time, teeth can become discoloured due to factors such as food and drink, smoking, ageing, or certain medications.",
+      "hero_image": "https://i.imgur.com/PI253TK.png"
+    },
+    "veneers": {
+      "h1": "Porcelain Veneers",
+      "intro": "Porcelain veneers are thin, custom-made shells designed to be bonded to the front surface of your teeth.",
+      "hero_image": "https://i.imgur.com/ox4jP2y.png"
+    },
+    "emergency-dentistry": {
+      "h1": "Emergency Dentistry",
+      "intro": "Dental emergencies can happen without warning — a sudden toothache, a knocked-out tooth from a fall, or a broken filling that leaves a tooth exposed and sensitive.",
+      "hero_image": "https://i.imgur.com/AutD0RT.png"
+    },
+    "check-ups-cleans": {
+      "h1": "Check-ups & Cleans",
+      "intro": "Regular dental check-ups and professional cleans form the foundation of good oral health.",
+      "hero_image": "https://i.imgur.com/OcmqYpW.png"
+    },
+    "digital-xrays": {
+      "h1": "Digital X-Rays / Diagnostics",
+      "intro": "Accurate diagnosis is one of the most important parts of effective dental care — and much of what affects your oral health isn't visible to the naked eye.",
+      "hero_image": "https://i.imgur.com/vGISnCN.png"
+    },
+    "fissure-sealants": {
+      "h1": "Fissure Sealants",
+      "intro": "The chewing surfaces of your back teeth (molars and premolars) contain natural grooves and pits, known as fissures.",
+      "hero_image": "https://i.imgur.com/1rfMV54.png"
+    },
+    "fluoride-treatments": {
+      "h1": "Fluoride Treatments",
+      "intro": "Fluoride is a naturally occurring mineral that helps strengthen tooth enamel and supports resistance to acid attacks from plaque bacteria and sugars — one of the main contributors to tooth decay.",
+      "hero_image": "https://i.imgur.com/evaoQ4b.png"
+    },
+    "gum-disease-care": {
+      "h1": "Gum Disease / Periodontal Care",
+      "intro": "Healthy gums are just as important as healthy teeth, providing the foundation that supports your teeth in place.",
+      "hero_image": "https://i.imgur.com/6d4uk2O.png"
+    },
+    "general-preventive": {
+      "h1": "General & Preventive Dentistry",
+      "intro": "Good oral health starts with prevention. Our general dentistry services are focused on maintaining healthy teeth and gums, identifying potential issues early, and helping you avoid more complex — and often more costly — treatment down the track.",
+      "hero_image": "https://i.imgur.com/Jpg4mWJ.jpeg"
+    },
+    "mouthguards": {
+      "h1": "Mouthguards (Sport & Night Guards)",
+      "intro": "Off-the-shelf mouthguards can feel bulky, ill-fitting, and are often left in a sports bag rather than worn when they're needed most.",
+      "hero_image": "https://i.imgur.com/5ML2kXJ.png"
+    },
+    "services": {
+      "h1": "Our Dental Services",
+      "intro": "Footscray Dental Studio provides comprehensive dental care for you and your family, combining modern technology with a warm, personalised approach.",
+      "hero_image": "https://i.imgur.com/GmRdQzW.png"
+    },
+    "all-on-x-implants": {
+      "h1": "All-on-X Dental Implants",
+      "intro": "For patients missing most or all of their teeth in an upper or lower jaw, All-on-X is a full-arch implant solution that uses a small number of strategically placed implants — typically four or more, hence \"All-on-X\" — to support a complete arch of replacement teeth.",
+      "hero_image": "https://i.imgur.com/bC6995a.png"
+    },
+    "crowns-bridges": {
+      "h1": "Crowns & Bridges",
+      "intro": "Crowns and bridges are custom-made restorations used to protect, strengthen or replace teeth. A crown covers and protects a damaged or weakened tooth, while a bridge replaces one or more missing teeth by anchoring to the surrounding teeth.",
+      "hero_image": "https://i.imgur.com/yaR6KOg.png"
+    },
+    "dental-implants": {
+      "h1": "Dental Implants",
+      "intro": "Dental implants are a long-term option for replacing missing teeth, consisting of a titanium post surgically placed into the jawbone, which acts as an artificial tooth root.",
+      "hero_image": "https://i.imgur.com/bYePiBn.png"
+    },
+    "dentures": {
+      "h1": "Dentures (Full & Partial)",
+      "intro": "Dentures are removable appliances used to replace missing teeth, restoring function for eating and speaking, as well as supporting facial structure and appearance.",
+      "hero_image": "https://i.imgur.com/W3SohjW.png"
+    },
+    "fillings": {
+      "h1": "Fillings",
+      "intro": "When a tooth is affected by decay, a filling is one of the most common ways to restore it — removing the decayed portion of the tooth and replacing it with a durable material to restore shape, function and appearance.",
+      "hero_image": "https://i.imgur.com/tzgYvhl.png"
+    },
+    "restorative": {
+      "h1": "Restorative Dentistry",
+      "intro": "Restorative dentistry focuses on repairing damaged, decayed or missing teeth to restore comfort, function and confidence.",
+      "hero_image": "https://i.imgur.com/5GKmK90.jpeg"
+    },
+    "root-canal": {
+      "h1": "Root Canal Therapy",
+      "intro": "Root canal therapy is a treatment used to address infection or damage to the pulp — the soft tissue inside a tooth containing nerves and blood vessels.",
+      "hero_image": "https://i.imgur.com/Wr0gYZz.png"
+    },
+    "special-offers": {
+      "h1": "Current Offers",
+      "intro": "At Footscray Dental Studio, we want quality dental care to be accessible for as many members of our community as possible.",
+      "hero_image": "https://i.imgur.com/jbw7Nc9.jpeg"
+    }
+  },
+  "contact": {
+    "faq": [
+      {
+        "q": "What's the best way to contact you?",
+        "a": "Phone is fastest for urgent matters; for general enquiries, our contact form or email work well and we'll respond as soon as we can during business hours."
+      },
+      {
+        "q": "Can I book an appointment through this page?",
+        "a": "Yes — use the \"Book Online\" button above, or call our team directly to arrange a time."
+      },
+      {
+        "q": "Do you have on-site parking?",
+        "a": "Yes, on-site parking is available for longer appointments, with 1-hour street parking also available nearby."
+      },
+      {
+        "q": "Is the practice accessible by public transport?",
+        "a": "Yes, we're within walking distance of local buses, trams and the train network."
+      },
+      {
+        "q": "What should I do if I have a dental emergency outside opening hours?",
+        "a": "Please call us directly on (03) 9000 0792 — see our Emergency Dentistry page for further guidance on what to do while you wait to be seen."
+      },
+      {
+        "q": "How quickly will I hear back if I use the contact form?",
+        "a": "Our team aims to respond as soon as possible during business hours. For anything urgent, phoning is the quickest way to reach us."
+      }
+    ],
+    "find_text": "Footscray Dental Studio is within walking distance of local buses, trams and the train network, making it easy to reach whether you're local or visiting from further afield. Convenient 1-hour street parking is available nearby, with dedicated on-site parking for longer appointments.",
+    "message_heading": "Send Us a Message",
+    "message_text": "Prefer to reach out online? Fill in the form below and our team will get back to you as soon as possible during business hours."
+  },
+  "team": [
+    {
+      "role": "Dentist",
+      "name": "Dr Adeela Younis",
+      "bio": "With more than 16 years in general dentistry, Dr. Adeela has built her career around a simple idea: every patient deserves to feel comfortable, understood, and genuinely cared for. Patients quickly notice her warm, welcoming manner and the relaxed atmosphere she creates for people of all ages. Whether she’s handling a routine check-up or a more involved procedure, she stays present throughout, focused on keeping the experience as pain-free and stress-free as possible.\n\nDr. Adeela earned her Bachelor of Dental Surgery from Baqai Medical University, where alongside her academic achievements, she took on mentoring roles with senior dental students — an early sign of the passion for teaching and knowledge-sharing that’s stayed with her ever since. She has gone on to work alongside respected dental surgeons in Australia and abroad, building particular expertise in root canal therapy, wisdom teeth removal, orthodontics, dental implants, veneers, crowns and bridges, and full smile makeovers.\n\nHer pursuit of the latest training and certifications isn’t just professional — it’s personal. Dr. Adeela is recognised by three global regulatory authorities, though what patients tend to remember most is her kindness and how closely she listens.\n\nAs a mother herself, she brings a natural, nurturing touch to treating children, understanding the anxieties young patients can have and working to turn each visit into a positive — even enjoyable — experience. That same warmth extends to how she connects with parents, reflecting her belief that every patient should be treated like family.\n\nSpeaking English, Urdu, Hindi, and Punjabi fluently, with working proficiency in Arabic, Dr. Adeela is able to make a wide range of patients feel seen, heard, and at ease.\n\nFor her patients, Dr. Adeela Younis is more than a dentist — she’s a trusted partner in their family’s dental health, guided by a gentle hand and a caring heart.",
+      "photo": "https://i.imgur.com/RfRurFT.jpeg"
+    },
+    {
+      "role": "Dentist",
+      "name": "Dr. Zainab Zahid",
+      "bio": "With clinical experience spanning both Australia and overseas, Dr. Zahid is a general dentist known for her caring, gentle touch. She works to make every appointment — for patients of any age — as relaxed and stress-free as possible. Her approach centres on high-quality, patient-first care, balancing preventive dentistry with more advanced restorative techniques when needed.\n\nPatient education is a core part of how Dr. Zahid practises; she believes informed patients are better equipped to keep their smiles healthy for life. Building genuine, long-term relationships matters to her too — she’s found that patients who feel truly known tend to see better outcomes and greater overall wellbeing.\n\nDr. Zahid keeps her skills sharp through regular professional development, making sure she’s up to date with the latest techniques and technology in modern dentistry.\n\nOutside the clinic, she loves to travel, explore new cultures, and try local cuisines wherever she goes. That curiosity and openness carry over into her work, adding warmth to how she connects with her patients.",
+      "photo": "https://i.imgur.com/d5mE2Hw.jpeg"
+    },
+    {
+      "role": "Dentist",
+      "name": "Dr. Nikhat H. Syeda",
+      "bio": "Dr. Nikhat trained as a dentist in India before relocating to Australia to build her career, where she now focuses on delivering dental care centred around each patient’s individual needs.\n\nHer clinical interests lie in preventive, restorative, and general dentistry, with particular emphasis on supporting patients toward lasting oral health. Rather than applying a one-size-fits-all approach, she customises treatment plans to suit each patient, and stays current with evidence-based techniques through continual learning in her field.\n\nPatients often describe Dr. Nikhat’s manner as gentle and caring. She puts thought into making her practice feel warm and unintimidating, and places real value on the relationships she builds with the people she treats — aiming for every visit to be a comfortable, positive one.\n\nDr. Nikhat speaks English, Hindi, Urdu, Arabic, and Telugu, which allows her to connect with patients from a wide range of cultural backgrounds. She’s particularly focused on making dental care easy to understand and accessible to everyone who walks through the door.\n\nWhen she’s not at the practice, Dr. Nikhat enjoys interior design, travel, and hosting gatherings with family and friends — she loves turning spaces into welcoming environments and bringing people together for memorable occasions.",
+      "photo": "https://i.imgur.com/4T1lHiu.jpeg"
+    }
+  ],
+  "offers_page": {
+    "faq": [
+      {
+        "q": "Are these offers available to all patients?",
+        "a": "Most offers are available to new and existing patients; suitability for any treatment is confirmed at consultation with your dentist."
+      },
+      {
+        "q": "Can I combine multiple offers?",
+        "a": "Please contact our team to confirm which offers can be used together, as this may vary depending on your treatment needs."
+      },
+      {
+        "q": "Do offers expire?",
+        "a": "Offers are subject to change — please check with our team or this page for current availability before booking your appointment."
+      },
+      {
+        "q": "Is the Child Dental Benefits Schedule the same as a free offer?",
+        "a": "No — CDBS is a government scheme, not a practice promotion. Eligible children can access bulk-billed services; contact us to check eligibility for your child."
+      },
+      {
+        "q": "Is teeth whitening suitable for everyone?",
+        "a": "Suitability is assessed individually at consultation, as whitening isn't appropriate for every patient or every tooth condition."
+      },
+      {
+        "q": "How do I redeem an offer?",
+        "a": "Simply mention the offer when booking online or by phone, and our team will confirm the details with you ahead of your appointment."
+      }
+    ],
+    "intro_heading": "Before You Book",
+    "intro": "Below are our current offers for new and existing patients. All treatment recommendations are made following an individual consultation and assessment — suitability varies from patient to patient, and your dentist will always explain your options clearly before any treatment begins.",
+    "footnote": "Offers are subject to change and individual patient suitability, as determined at consultation. Terms and conditions apply — please contact the practice for full details."
+  },
+  "announcement": {
+    "enabled": false,
+    "text": "",
+    "link": ""
+  }
+}
