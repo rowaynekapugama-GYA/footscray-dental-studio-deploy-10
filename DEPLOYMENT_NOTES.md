@@ -34,13 +34,13 @@ Settings > Environments > Production. Keep the existing `SMTP2GO_API_KEY`, `CONT
 | `DATABASE_URL` | added by the Neon integration |
 | `BLOB_READ_WRITE_TOKEN` | added by the Blob integration |
 | `PAYLOAD_SECRET` | a long random string (`openssl rand -base64 32`). Signs dashboard logins. |
-| `NEXT_PUBLIC_SERVER_URL` | `https://www.footscraydentalstudio.com.au` |
+| `NEXT_PUBLIC_SERVER_URL` | `https://www.footscraydentalstudio.com.au`, **Production only**, type Config (Vercel will not store a `NEXT_PUBLIC_` variable as Secret). Previews need nothing: the dashboard uses whatever address it was opened on. |
 | `PUBLISH_HOOK_URL` | the deploy hook URL from step 1 |
 | `ADMIN_EMAIL` | GYA's admin login, e.g. `rowayne@gyaclients.com` |
 | `ADMIN_PASSWORD` | its password (12+ characters). Used once, on the first build, to create the account. Change it in the dashboard afterwards and delete this variable. |
 | `ADMIN_NAME` | optional, `GYA` |
 
-Also tick Preview for all of them so a branch deploy has a working dashboard.
+Tick Preview as well as Production for all the others, so a branch deploy has a working dashboard.
 
 **Origin matters.** Payload treats a request from a host that is not in its allowed list as logged out (symptom: login works, saves do nothing, uploads say "not allowed"). `payload.config.ts` allows the www and apex domains, `NEXT_PUBLIC_SERVER_URL`, and Vercel's preview hosts, so previews and production both work. If the site ever moves domain, update that list.
 

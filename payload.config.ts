@@ -32,8 +32,13 @@ const hosts = [
   'http://localhost:3000',
 ].filter(Boolean) as string[]
 
+// Preview deployments have their own addresses (branch and per-deploy). Leaving serverURL
+// unset there makes the dashboard call its API on whatever address it was opened on, so no
+// per-preview setting is needed. Production keeps the fixed domain.
+const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
+
 export default buildConfig({
-  serverURL: SITE_URL,
+  ...(IS_PREVIEW ? {} : { serverURL: SITE_URL }),
   cors: hosts,
   csrf: hosts,
   admin: {

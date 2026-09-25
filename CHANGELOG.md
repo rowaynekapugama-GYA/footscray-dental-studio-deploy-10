@@ -65,4 +65,5 @@ This revision is a complete visual redesign of all 31 pages plus a real-imagery 
 - Blog posts are edited in the dashboard; the 32 launch articles were imported with their images. The blog is rendered by build/blog.mjs, a port of blog.py that reproduces its output exactly.
 - Forms unchanged for visitors; each enquiry is now also stored in the dashboard.
 - Fixed a raw markdown link on the Special Offers page ("[All-on-X](...)" now renders as a link).
+- Preview deployments need no per-branch address setting: the dashboard's API calls are relative on previews.
 - Removed the interim JSON-on-GitHub admin panel (api/admin, admin/) and its environment variables.
