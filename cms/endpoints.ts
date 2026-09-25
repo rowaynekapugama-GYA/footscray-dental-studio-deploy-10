@@ -1,5 +1,6 @@
 import type { Endpoint } from 'payload'
 import { importContent } from './sync'
+import { blobToken } from './blob'
 
 const json = (data: any, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json' } })
 
@@ -42,6 +43,8 @@ export const importContent_: Endpoint = {
     const url = new URL(req.url || '', 'http://x')
     const overwrite = url.searchParams.get('overwrite') === '1'
     const lines: string[] = []
+    const blob = blobToken()
+    if (process.env.VERCEL && !blob.ok) return json({ ok: false, error: `Import needs photo storage first. ${blob.note}` }, 503)
     try {
       const counts = await importContent(req.payload, { overwrite, log: (m) => lines.push(m) })
       return json({ ok: true, counts, log: lines })
@@ -59,6 +62,7 @@ export const siteStatus: Endpoint = {
     if (!req.user) return json({ ok: false, error: 'Please sign in.' }, 401)
     const s: any = await req.payload.findGlobal({ slug: 'site-status', depth: 0 })
     const pages = await req.payload.count({ collection: 'pages' })
-    return json({ ok: true, ...s, pages: pages.totalDocs, hookConfigured: Boolean(process.env.PUBLISH_HOOK_URL), role: (req.user as any).role })
+    const blob = blobToken()
+    return json({ ok: true, ...s, pages: pages.totalDocs, hookConfigured: Boolean(process.env.PUBLISH_HOOK_URL), blobNote: process.env.VERCEL ? blob.note : '', role: (req.user as any).role })
   },
 }

@@ -17,6 +17,10 @@ import { Redirects } from './cms/collections/Redirects'
 import { SiteSettings } from './cms/globals/SiteSettings'
 import { SiteStatus } from './cms/globals/SiteStatus'
 import { publishSite, importContent, siteStatus } from './cms/endpoints'
+import { blobToken } from './cms/blob'
+
+const BLOB = blobToken()
+if (BLOB.note && process.env.VERCEL) console.warn(BLOB.note)
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -63,9 +67,9 @@ export default buildConfig({
   }),
   plugins: [
     vercelBlobStorage({
-      enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+      enabled: BLOB.ok,
       collections: { media: true },
-      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+      token: BLOB.token,
     }),
   ],
   endpoints: [publishSite, importContent, siteStatus],

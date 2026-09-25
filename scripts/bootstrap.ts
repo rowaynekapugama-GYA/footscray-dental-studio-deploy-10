@@ -2,6 +2,7 @@ import './load-env'
 import { getPayload } from 'payload'
 import config from '../payload.config'
 import { importContent } from '../cms/sync'
+import { blobToken } from '../cms/blob'
 
 /**
  * Runs at the start of every build, after migrations:
@@ -23,7 +24,11 @@ if (users.totalDocs === 0) {
   }
 }
 const pages = await payload.count({ collection: 'pages', overrideAccess: true })
-if (pages.totalDocs === 0) {
+const blob = blobToken()
+if (pages.totalDocs === 0 && process.env.VERCEL && !blob.ok) {
+  // the 32 articles carry inline photos that must go to Blob; importing without it would lose them
+  console.log('bootstrap: skipping the first import until photo storage works. ' + blob.note)
+} else if (pages.totalDocs === 0) {
   console.log('bootstrap: empty database, importing the site content from the repository')
   const counts = await importContent(payload, { log: (m) => console.log('  ' + m) })
   console.log('bootstrap: imported', JSON.stringify(counts))

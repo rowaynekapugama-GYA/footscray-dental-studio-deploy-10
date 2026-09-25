@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button, toast } from '@payloadcms/ui'
 
-type Status = { lastChangedAt?: string; lastPublishedAt?: string; lastImportedAt?: string; lastPublishNote?: string; pages?: number; hookConfigured?: boolean; role?: string }
+type Status = { blobNote?: string; lastChangedAt?: string; lastPublishedAt?: string; lastImportedAt?: string; lastPublishNote?: string; pages?: number; hookConfigured?: boolean; role?: string }
 
 const fmt = (iso?: string) => (iso ? new Date(iso).toLocaleString('en-AU', { dateStyle: 'medium', timeStyle: 'short' }) : 'never')
 
@@ -41,6 +41,7 @@ export const PublishPanel: React.FC = () => {
         <span className="status">Last change {fmt(s?.lastChangedAt)} · last published {fmt(s?.lastPublishedAt)}{s && !s.hookConfigured ? ' · publishing not connected yet' : ''}</span>
       </div>
       {s?.lastPublishNote && <p className="status" style={{ marginTop: '.6rem' }}>{s.lastPublishNote}</p>}
+      {s?.blobNote && <p className="status" style={{ marginTop: '.6rem', color: 'var(--theme-error-500)' }}>{s.blobNote}</p>}
     </div>
   )
 }
