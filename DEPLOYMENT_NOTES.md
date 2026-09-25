@@ -79,6 +79,15 @@ This token is what lets the admin panel commit changes. Each save is a commit li
 
 After adding variables, trigger a deploy (Deployments > Redeploy) so the functions pick them up.
 
+## Fixes in this build (25 September, after the first live deploy)
+
+- **Admin login showed `[object Object]`; the contact form showed "Sorry, that did not send".** `vercel.json` has `trailingSlash: true`, so Vercel was redirecting `/api/admin/login` to `/api/admin/login/`, and the slashed path did not match the function, giving Vercel's own 404 (a JSON object, hence the garbled message). The forms and the admin panel now call the slashed paths directly, and `vercel.json` has explicit rewrites for `/api/admin/:action/` and `/api/contact/`.
+- **The "Website" honeypot field was visible and the error box unstyled.** `/assets/*` is cached for a year, so browsers kept the old `styles.css`. The build now appends `?v=<content hash>` to every CSS and JS reference, so a changed file always gets a new URL. Anyone who saw the old styling just needs the page to load once more.
+- The admin panel now shows a plain sentence for any error shape, including Vercel platform errors.
+- The API functions no longer bundle the whole site (13 MB down to ~100 KB), so cold starts are quicker.
+- With no email key set, the form's server log now says exactly that instead of a filesystem error.
+- `push-site-to-github.sh` keeps the admin panel's data in the repo (`content/site.json`, `content/auth.json`, uploaded photos) across code pushes, so re-pushing a zip never wipes the practice's edits or their changed password. `KEEP_CONTENT=no` overrides that.
+
 ## Step 4: test the form
 
 1. Open `/contact/`, submit with real details. You should see the green "Thanks for your message" box, and the email should arrive at `CONTACT_TO` within a minute, with the patient's address as Reply-To.
@@ -125,3 +134,10 @@ npm test                      # in a second terminal, 46 checks
 ## Regenerating pages
 
 If GYA rebuilds pages with the Python generators (`build/glow.py`, `rollout.py`, `blog.py`), the markers come along automatically. Run `npm run extract -- --force` only if you want to reset `content/site.json` to what the generated pages say, which discards the client's edits, so do not do that casually.
+
+## Google Tag Manager
+
+Container `GTM-MTVSMPG7` had been added by hand to the live homepage only. It is now
+emitted by the generator (`build/glow.py`, `GTM_ID`) on all 68 pages, so it survives
+rebuilds and admin publishes. It is deliberately not loaded on `/admin/`. To change the
+container, edit `GTM_ID` and regenerate.

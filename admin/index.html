@@ -196,14 +196,21 @@
     cur[parts[parts.length - 1]] = v;
   }
   function api(action, method, body) {
-    return fetch(API + action, {
+    return fetch(API + action + '/', {
       method: method || 'GET',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-Requested-With': 'fetch' },
       body: body ? JSON.stringify(body) : undefined,
       credentials: 'same-origin'
     }).then(function (r) {
       return r.json().catch(function () { return { ok: false, error: 'Server returned an unexpected response.' }; })
-        .then(function (j) { if (r.status === 401 && action !== 'login') showLogin(); j.status = r.status; return j; });
+        .then(function (j) {
+          if (!j || typeof j !== 'object') j = { ok: false, error: 'Server returned an unexpected response.' };
+          // Vercel's own errors arrive as {error: {code, message}}; flatten to a sentence
+          if (j.error && typeof j.error === 'object') j.error = (j.error.message || j.error.code || 'Unexpected server error') + (j.error.code ? ' (' + j.error.code + ')' : '');
+          if (!r.ok && !j.error) j.error = 'Request failed (HTTP ' + r.status + ').';
+          if (r.status === 401 && action !== 'login') showLogin();
+          j.status = r.status; return j;
+        });
     }).catch(function () { return { ok: false, error: 'Could not reach the server. Check your connection.' }; });
   }
   function msg(node, kind, text, extra) {

@@ -16,6 +16,9 @@
 #
 # Optionally pass the zip and the branch:
 #   ./push-site-to-github.sh <repo-url> footscray-dental-studio-deploy.zip main
+#
+# The admin panel's data in the repo (content/site.json, content/auth.json, uploaded
+# photos) is kept across pushes. KEEP_CONTENT=no ./push-site-to-github.sh ... replaces it.
 
 set -euo pipefail
 
@@ -68,10 +71,21 @@ fi
 echo "     default branch: $BRANCH"
 git checkout --quiet "$BRANCH" 2>/dev/null || git checkout --quiet -b "$BRANCH"
 
-echo "3/6  Clearing the old files (keeping git history and README)"
-# Nothing hand-edited in the old tree is lost: the one manual change (Google Tag
-# Manager on the homepage) is now generated on every page. Anything else added by hand
-# would be, so check the last few commits on GitHub before running this.
+echo "3/6  Clearing the old files (keeping git history, README and the admin panel's data)"
+# The admin panel commits three things to this repo: the practice's edits
+# (content/site.json), the changed password (content/auth.json) and uploaded photos
+# (site/assets/img/uploads/). Those are the live site's data, so they are kept across
+# code pushes. Run with KEEP_CONTENT=no to replace them with the zip's copies.
+KEEP="$WORK/keep"; mkdir -p "$KEEP"
+if [ "${KEEP_CONTENT:-yes}" != "no" ]; then
+  for f in content/site.json content/auth.json; do
+    [ -f "$f" ] && { mkdir -p "$KEEP/$(dirname "$f")"; cp "$f" "$KEEP/$f"; echo "     keeping $f from the repo"; }
+  done
+  if [ -d site/assets/img/uploads ]; then
+    mkdir -p "$KEEP/site/assets/img"; cp -R site/assets/img/uploads "$KEEP/site/assets/img/"
+    echo "     keeping $(find site/assets/img/uploads -type f ! -name '.gitkeep' | wc -l | tr -d ' ') uploaded photo(s)"
+  fi
+fi
 # Delete everything the repo tracks, so stray folders from the manual uploads go
 # too. .git is untouched, and a README is kept if one exists.
 find . -mindepth 1 -maxdepth 1 \
@@ -80,6 +94,7 @@ find . -mindepth 1 -maxdepth 1 \
 
 echo "4/6  Copying the build in"
 cp -R "$WORK/site/." .
+cp -R "$KEEP/." .   # the kept data goes back on top
 
 echo "5/6  Committing"
 cat > .gitignore <<'IGNORE'

@@ -38,7 +38,7 @@ const page = (p) => fs.readFileSync(path.join(ROOT, 'public', p), 'utf8');
   console.log(`\n=== Contact form API (${BASE}) ===`);
   const before = outbox();
   const old = String(Date.now() - 10000);
-  let r = await post('/api/contact', { form_type: 'appointment', 'first-name': 'Test', 'last-name': 'Patient', email: 'test@example.com',
+  let r = await post('/api/contact/', { form_type: 'appointment', 'first-name': 'Test', 'last-name': 'Patient', email: 'test@example.com',
     phone: '0400 000 000', service: 'Check-up & Clean', datetime: '2026-10-01T10:00', message: 'Hello from the test', page: '/', ts: old, website: '' });
   check(r.status === 200 && r.json.ok, '1. Valid appointment request is accepted', JSON.stringify(r.json));
   check(outbox() === before + 1, '2. …and an email was produced (log provider wrote to outbox/)');
@@ -47,38 +47,38 @@ const page = (p) => fs.readFileSync(path.join(ROOT, 'public', p), 'utf8');
     '3. Email goes to CONTACT_TO, reply-to is the patient, subject names them', mail.subject);
   check(/Preferred time: 2026-10-01T10:00/.test(mail.text) && /Service: Check-up/.test(mail.text), '4. Email body carries every field');
 
-  r = await post('/api/contact', { form_type: 'contact', name: 'Bot', email: 'bot@example.com', phone: '0400000000', message: 'buy', ts: old, website: 'http://spam' });
+  r = await post('/api/contact/', { form_type: 'contact', name: 'Bot', email: 'bot@example.com', phone: '0400000000', message: 'buy', ts: old, website: 'http://spam' });
   check(r.status === 200 && r.json.ok && outbox() === before + 1, '5. Honeypot filled: silent 200, nothing sent');
-  r = await post('/api/contact', { form_type: 'contact', name: 'Fast', email: 'f@example.com', phone: '0400000000', message: 'hi', ts: String(Date.now()), website: '' });
+  r = await post('/api/contact/', { form_type: 'contact', name: 'Fast', email: 'f@example.com', phone: '0400000000', message: 'hi', ts: String(Date.now()), website: '' });
   check(r.status === 200 && outbox() === before + 1, '6. Submitted under 3 s: silent 200, nothing sent');
-  r = await post('/api/contact', { form_type: 'contact', name: 'X', email: 'not-an-email', phone: '0400000000', message: 'hi', ts: old });
+  r = await post('/api/contact/', { form_type: 'contact', name: 'X', email: 'not-an-email', phone: '0400000000', message: 'hi', ts: old });
   check(r.status === 400 && /email/i.test(r.json.error), '7. Bad email rejected with a readable message', r.json.error);
-  r = await post('/api/contact', { form_type: 'contact', name: 'X', email: 'x@example.com', phone: '12', message: 'hi', ts: old });
+  r = await post('/api/contact/', { form_type: 'contact', name: 'X', email: 'x@example.com', phone: '12', message: 'hi', ts: old });
   check(r.status === 400 && /phone/i.test(r.json.error), '8. Bad phone rejected');
-  r = await post('/api/contact', { form_type: 'contact', name: 'X', email: 'x@example.com', phone: '0400000000', message: 'hi', ts: old }, { 'X-Requested-With': '' });
+  r = await post('/api/contact/', { form_type: 'contact', name: 'X', email: 'x@example.com', phone: '0400000000', message: 'hi', ts: old }, { 'X-Requested-With': '' });
   check(r.status === 403, '9. Cross-site post without the fetch header is refused');
-  r = await post('/api/contact', { form_type: 'newsletter', email: 'news@example.com', ts: old });
+  r = await post('/api/contact/', { form_type: 'newsletter', email: 'news@example.com', ts: old });
   check(r.status === 200 && outbox() === before + 2, '10. Newsletter sign-up accepted and emailed');
-  r = await post('/api/contact', { form_type: 'contact', name: 'X', email: 'x@example.com', phone: '0400000000', message: '', ts: old });
+  r = await post('/api/contact/', { form_type: 'contact', name: 'X', email: 'x@example.com', phone: '0400000000', message: '', ts: old });
   check(r.status === 400, '11. Contact form requires a message');
-  r = await post('/api/contact', { form_type: 'contact', name: '<b>Eve</b>', email: 'eve@example.com', phone: '0400000000', message: '<script>alert(1)</script>', ts: old });
+  r = await post('/api/contact/', { form_type: 'contact', name: '<b>Eve</b>', email: 'eve@example.com', phone: '0400000000', message: '<script>alert(1)</script>', ts: old });
   const last = JSON.parse(fs.readFileSync(path.join(ROOT, 'outbox', fs.readdirSync(path.join(ROOT, 'outbox')).sort().pop()), 'utf8'));
   check(r.status === 200 && !/<script>/.test(last.html) && /&lt;script&gt;/.test(last.html), '12. HTML in submissions is escaped in the email');
 
   console.log('\n=== Admin API ===');
-  r = await call('/api/admin/login', 'POST', { username: env.ADMIN_USERNAME, password: 'wrong-password-123' });
+  r = await call('/api/admin/login/', 'POST', { username: env.ADMIN_USERNAME, password: 'wrong-password-123' });
   check(r.status === 401, '13. Wrong password refused');
-  r = await call('/api/admin/content', 'GET');
+  r = await call('/api/admin/content/', 'GET');
   check(r.status === 401, '14. Content requires a session');
-  r = await call('/api/admin/login', 'POST', { username: env.ADMIN_USERNAME, password: PASSWORD });
+  r = await call('/api/admin/login/', 'POST', { username: env.ADMIN_USERNAME, password: PASSWORD });
   const setCookie = r.headers.get('set-cookie') || '';
   check(r.status === 200 && r.json.ok && /HttpOnly/.test(setCookie) && /SameSite=Lax/.test(setCookie), '15. Login sets an HttpOnly, SameSite cookie', setCookie.slice(0, 60));
   let cookie = setCookie.split(';')[0];
   check(r.json.mustChangePassword === true, '16. First login flags the initial password for changing');
 
-  r = await call('/api/admin/me', 'GET', null, cookie);
+  r = await call('/api/admin/me/', 'GET', null, cookie);
   check(r.status === 200 && r.json.user === env.ADMIN_USERNAME, '17. /me returns the signed-in user');
-  r = await call('/api/admin/content', 'GET', null, cookie);
+  r = await call('/api/admin/content/', 'GET', null, cookie);
   check(r.status === 200 && r.json.content && r.json.schema && r.json.content.home.h1, '18. Content and schema load');
   const content = r.json.content;
 
@@ -93,7 +93,7 @@ const page = (p) => fs.readFileSync(path.join(ROOT, 'public', p), 'utf8');
   content.team.push({ name: 'Dr Test Person', role: 'Dentist', photo: '/assets/img/hero-home.jpg', bio: 'First para.\n\nSecond **bold** para.' });
   content.offers[0].price = '$99';
   content.home.faq.push({ q: 'Is this a test question?', a: 'Yes, it is.' });
-  r = await call('/api/admin/content', 'PUT', { content }, cookie);
+  r = await call('/api/admin/content/', 'PUT', { content }, cookie);
   check(r.status === 200 && r.json.ok && r.json.changed.includes('home') && r.json.changed.includes('practice'), '19. Publish accepted, reports what changed', JSON.stringify(r.json).slice(0, 200));
 
   const home = page('index.html'), team = page('meet-the-team/index.html'), contact = page('contact/index.html'), post1 = page('tooth-pain-relief/index.html');
@@ -114,38 +114,38 @@ const page = (p) => fs.readFileSync(path.join(ROOT, 'public', p), 'utf8');
 
   // ---- validation
   const bad = JSON.parse(JSON.stringify(content)); bad.home.h1 = ''; bad.practice.review_url = 'javascript:alert(1)';
-  r = await call('/api/admin/content', 'PUT', { content: bad }, cookie);
+  r = await call('/api/admin/content/', 'PUT', { content: bad }, cookie);
   check(r.status === 400 && r.json.errors && r.json.errors.length >= 2, '33. Empty required field and javascript: URL rejected', JSON.stringify(r.json.errors));
 
   // ---- upload
   const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==', 'base64');
-  r = await call('/api/admin/upload', 'POST', { name: 'Test Photo.png', type: 'image/png', data: 'data:image/png;base64,' + png.toString('base64') }, cookie);
+  r = await call('/api/admin/upload/', 'POST', { name: 'Test Photo.png', type: 'image/png', data: 'data:image/png;base64,' + png.toString('base64') }, cookie);
   check(r.status === 200 && /^\/assets\/img\/uploads\/test-photo-[a-f0-9]{8}\.png$/.test(r.json.path), '34. Image upload stored under a safe name', JSON.stringify(r.json));
   check(fs.existsSync(path.join(ROOT, 'public', r.json.path)), '35. Uploaded image is served from public/');
-  r = await call('/api/admin/upload', 'POST', { name: 'evil.png', type: 'image/png', data: Buffer.from('<html>').toString('base64') }, cookie);
+  r = await call('/api/admin/upload/', 'POST', { name: 'evil.png', type: 'image/png', data: Buffer.from('<html>').toString('base64') }, cookie);
   check(r.status === 400, '36. A non-image claiming to be PNG is rejected');
-  r = await call('/api/admin/upload', 'POST', { name: 'x.svg', type: 'image/svg+xml', data: Buffer.from('<svg onload="alert(1)"></svg>').toString('base64') }, cookie);
+  r = await call('/api/admin/upload/', 'POST', { name: 'x.svg', type: 'image/svg+xml', data: Buffer.from('<svg onload="alert(1)"></svg>').toString('base64') }, cookie);
   check(r.status === 400, '37. SVG with script handlers is rejected');
 
   // ---- password change
-  r = await call('/api/admin/password', 'POST', { current: 'nope', next: 'NewPassword12345' }, cookie);
+  r = await call('/api/admin/password/', 'POST', { current: 'nope', next: 'NewPassword12345' }, cookie);
   check(r.status === 401, '38. Password change needs the current password');
-  r = await call('/api/admin/password', 'POST', { current: PASSWORD, next: 'short' }, cookie);
+  r = await call('/api/admin/password/', 'POST', { current: PASSWORD, next: 'short' }, cookie);
   check(r.status === 400, '39. Weak new password rejected');
-  r = await call('/api/admin/password', 'POST', { current: PASSWORD, next: 'BrandNewPassw0rd2026' }, cookie);
+  r = await call('/api/admin/password/', 'POST', { current: PASSWORD, next: 'BrandNewPassw0rd2026' }, cookie);
   const newCookie = (r.headers.get('set-cookie') || '').split(';')[0];
   check(r.status === 200 && r.json.ok && newCookie && newCookie !== cookie, '40. Password changed and a fresh session issued');
   check(fs.existsSync(path.join(ROOT, 'content', 'auth.json')) && /"version": 1/.test(fs.readFileSync(path.join(ROOT, 'content', 'auth.json'), 'utf8')), '41. New hash persisted to content/auth.json');
-  r = await call('/api/admin/me', 'GET', null, cookie);
+  r = await call('/api/admin/me/', 'GET', null, cookie);
   check(r.status === 401, '42. The old session is invalid after the password change');
-  r = await call('/api/admin/login', 'POST', { username: env.ADMIN_USERNAME, password: PASSWORD });
+  r = await call('/api/admin/login/', 'POST', { username: env.ADMIN_USERNAME, password: PASSWORD });
   check(r.status === 401, '43. Old password no longer works');
-  r = await call('/api/admin/login', 'POST', { username: env.ADMIN_USERNAME, password: 'BrandNewPassw0rd2026' });
+  r = await call('/api/admin/login/', 'POST', { username: env.ADMIN_USERNAME, password: 'BrandNewPassw0rd2026' });
   check(r.status === 200 && r.json.mustChangePassword === false, '44. New password works and the first-login warning is gone');
   cookie = (r.headers.get('set-cookie') || '').split(';')[0];
-  r = await call('/api/admin/logout', 'POST', null, cookie);
+  r = await call('/api/admin/logout/', 'POST', null, cookie);
   check(r.status === 200 && /Max-Age=0/.test(r.headers.get('set-cookie') || ''), '45. Logout clears the cookie');
-  r = await call('/api/admin/me', 'GET', null, cookie);
+  r = await call('/api/admin/me/', 'GET', null, cookie);
   check(r.status === 401, '46. …and the session is gone');
 
   console.log(`\n${passed} passed, ${failed} failed`);

@@ -66,13 +66,28 @@ function build() {
   fs.rmSync(OUT, { recursive: true, force: true });
   fs.mkdirSync(OUT, { recursive: true });
 
+  // Cache busting. /assets/* is served with a one-year immutable cache header, so a
+  // changed stylesheet or script must get a new URL or returning visitors keep the old
+  // copy for a year. Every CSS/JS reference gets ?v=<content hash>, which changes only
+  // when the file does.
+  const versions = {};
+  walk(SRC, p => {
+    if (/\.(css|js)$/.test(p)) {
+      const rel = '/' + path.relative(SRC, p).split(path.sep).join('/');
+      versions[rel] = require('crypto').createHash('sha1').update(fs.readFileSync(p)).digest('hex').slice(0, 10);
+    }
+  });
+  // pages reference assets relatively (../assets/...) so resolve against /assets/
+  const fingerprint = html => html.replace(/(href|src)="((?:\.\.\/)*\/?)(assets\/[^"?#]+\.(?:css|js))"/g,
+    (m, attr, prefix, file) => (versions['/' + file] ? `${attr}="${prefix}${file}?v=${versions['/' + file]}"` : m));
+
   let pages = 0, files = 0;
   walk(SRC, src => {
     const rel = path.relative(SRC, src);
     const dest = path.join(OUT, rel);
     fs.mkdirSync(path.dirname(dest), { recursive: true });
     if (src.endsWith('.html')) {
-      fs.writeFileSync(dest, apply(fs.readFileSync(src, 'utf8'), content, schema));
+      fs.writeFileSync(dest, fingerprint(apply(fs.readFileSync(src, 'utf8'), content, schema)));
       pages++;
     } else {
       fs.copyFileSync(src, dest);
@@ -83,7 +98,11 @@ function build() {
   // admin panel
   if (fs.existsSync(ADMIN_SRC)) {
     fs.mkdirSync(path.join(OUT, 'admin'), { recursive: true });
-    for (const f of fs.readdirSync(ADMIN_SRC)) fs.copyFileSync(path.join(ADMIN_SRC, f), path.join(OUT, 'admin', f));
+    for (const f of fs.readdirSync(ADMIN_SRC)) {
+      const src = path.join(ADMIN_SRC, f), dest = path.join(OUT, 'admin', f);
+      if (f.endsWith('.html')) fs.writeFileSync(dest, fingerprint(fs.readFileSync(src, 'utf8')));
+      else fs.copyFileSync(src, dest);
+    }
   }
   // keep the panel and the API out of search engines
   const robots = path.join(OUT, 'robots.txt');

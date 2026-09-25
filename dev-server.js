@@ -50,7 +50,7 @@ function serveStatic(req, res, pathname) {
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   try {
-    if (url.pathname === '/api/contact') {
+    if (/^\/api\/contact\/?$/.test(url.pathname)) {
       return await contactHandler(req, res);
     }
     const m = /^\/api\/admin\/([a-z]+)\/?$/.exec(url.pathname);

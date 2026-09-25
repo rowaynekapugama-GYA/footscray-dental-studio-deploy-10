@@ -128,7 +128,7 @@
   }
 
   /* ----- Forms: validate, then POST as JSON to /api/contact ----- */
-  var ENDPOINT = '/api/contact';
+  var ENDPOINT = '/api/contact/';
 
   /* Stamp the load time into every form; the API treats a sub-3-second submit as a bot */
   document.querySelectorAll('input[name="ts"]').forEach(function (el) { el.value = String(Date.now()); });

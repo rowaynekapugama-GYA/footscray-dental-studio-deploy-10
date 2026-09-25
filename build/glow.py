@@ -73,6 +73,16 @@ BUSINESS_SCHEMA = (
     "</script>"
 )
 
+# Google Tag Manager container. Added by GYA to the live homepage on 23 Sep 2026; the
+# generator now puts it on every page so it survives rebuilds and admin publishes.
+GTM_ID = "GTM-MTVSMPG7"
+GTM_HEAD = (f"<!-- Google Tag Manager -->\n<script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':"
+            f"new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';"
+            f"j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}})"
+            f"(window,document,'script','dataLayer','{GTM_ID}');</script>\n<!-- End Google Tag Manager -->")
+GTM_BODY = (f'<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM_ID}" '
+            f'height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->')
+
 def head_v2(title, desc, url):
     from common import SITE_NAME
     return f'''<!DOCTYPE html>
@@ -94,8 +104,10 @@ def head_v2(title, desc, url):
 <link rel="stylesheet" href="/assets/css/styles.css">
 <script src="/assets/js/main.js" defer></script>
 {BUSINESS_SCHEMA}
+{GTM_HEAD}
 </head>
 <body>
+{GTM_BODY}
 <a class="skip-link" href="#main">Skip to main content</a>
 '''
 
@@ -268,7 +280,7 @@ def booking_section(heading="Book an Appointment",
       <div class="social-row">{socials}</div>
     </div>
     <div class="reveal">
-      <form data-validate novalidate aria-label="Appointment request form" action="/api/contact" method="post">
+      <form data-validate novalidate aria-label="Appointment request form" action="/api/contact/" method="post">
         {form_hidden("appointment")}
         <div class="form-grid form-grid--2">
           <div class="field">

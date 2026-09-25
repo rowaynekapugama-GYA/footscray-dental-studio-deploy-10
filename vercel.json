@@ -6,9 +6,20 @@
   "trailingSlash": true,
   "functions": {
     "api/**/*.js": {
-      "maxDuration": 15
+      "maxDuration": 15,
+      "excludeFiles": "{public,site,build,test,admin,outbox}/**"
     }
   },
+  "rewrites": [
+    {
+      "source": "/api/admin/:action/",
+      "destination": "/api/admin/[action]?action=:action"
+    },
+    {
+      "source": "/api/contact/",
+      "destination": "/api/contact"
+    }
+  ],
   "redirects": [
     {
       "source": "/teeth-straightening-for-adults",

@@ -1019,7 +1019,7 @@ def contact_page():
       <div class="btn-row"><a class="btn btn--call" href="{PHONE_TEL}">{ICONS["phone"]} Call {PHONE_DISPLAY}</a></div>
     </div>
     <div class="reveal">
-      <form data-validate novalidate aria-label="Contact form" action="/api/contact" method="post">
+      <form data-validate novalidate aria-label="Contact form" action="/api/contact/" method="post">
         {form_hidden("contact")}
         <div class="form-grid form-grid--2">
           <div class="field"><label for="cf-name">Name <span class="req">*</span></label><input id="cf-name" name="name" type="text" autocomplete="name" required><p class="error-msg" role="alert"></p></div>

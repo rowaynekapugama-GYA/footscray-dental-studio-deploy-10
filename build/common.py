@@ -20,7 +20,7 @@ def hours_line():
 
 
 def form_hidden(form_type):
-    """Hidden fields every form posts to /api/contact.
+    """Hidden fields every form posts to /api/contact/.
 
     - form_type tells the API which template to use
     - ts is filled by main.js with the page-load time; a submit under 3 s is a bot
