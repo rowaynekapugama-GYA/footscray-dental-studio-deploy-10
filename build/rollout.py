@@ -122,6 +122,18 @@ PAGE_IMG_OVERRIDES = {
     "all-on-x-implants": {"hero": "https://i.imgur.com/bC6995a.png", "split": "https://i.imgur.com/vHBiTmS.jpeg"},
 }
 
+# ---- admin panel section keys: every editable body section on a page gets
+# pages.<slug>.sections.<n> in order of appearance (heading, body, image)
+_CUR = {"slug": "", "n": 0}
+def begin_page(slug):
+    _CUR["slug"], _CUR["n"] = slug, 0
+def sec_key():
+    k = f'pages.{_CUR["slug"]}.sections.{_CUR["n"]}'
+    _CUR["n"] += 1
+    return k
+def faq_key():
+    return f'pages.{_CUR["slug"]}.faq'
+
 def page_img_src(slug, kind, fallback_url):
     return PAGE_IMG_OVERRIDES.get(slug, {}).get(kind, fallback_url)
 
@@ -194,8 +206,11 @@ def overview_section(remaining, heading="What you should know", eyebrow="Overvie
     if not remaining and not extra_html:
         return ""
     body = "".join(f"<p>{md_inline(p)}</p>" for p in remaining) + extra_html
-    mark = f' data-cms="{cms_key}"' if cms_key else ""
-    hmark = f' data-cms="{cms_key}_heading"' if cms_key else ""
+    if cms_key:
+        mark, hmark = f' data-cms="{cms_key}"', f' data-cms="{cms_key}_heading"'
+    else:
+        k = sec_key()
+        mark, hmark = f' data-cms="{k}.body"', f' data-cms="{k}.heading"'
     return f'''<section class="section {bg}" aria-labelledby="overview-heading">
   <div class="container overview-grid reveal">
     <div>
@@ -224,10 +239,11 @@ def prose_section(sec, bg):
             inner.append(render_cta_row(payload))
         elif btype == "note":
             inner.append(f'<p class="small-note">{md_inline(payload)}</p>')
+    k = sec_key()
     return f'''<section class="section {bg}" aria-labelledby="{hid}">
   <div class="container--narrow reveal">
-    <h2 id="{hid}">{sec["heading"]}</h2>
-    {"".join(inner)}
+    <h2 id="{hid}" data-cms="{k}.heading">{sec["heading"]}</h2>
+    <div data-cms="{k}.body">{"".join(inner)}</div>
   </div>
 </section>
 '''
@@ -244,10 +260,11 @@ def steps_section(sec, bg):
             inner.append(render_checklist(payload))
         elif btype == "cta":
             inner.append(render_cta_row(payload))
+    k = sec_key()
     return f'''<section class="section {bg}" aria-labelledby="{hid}">
   <div class="container">
-    <div class="section-head reveal"><h2 id="{hid}">{sec["heading"]}</h2></div>
-    <div class="reveal">{"".join(inner)}</div>
+    <div class="section-head reveal"><h2 id="{hid}" data-cms="{k}.heading">{sec["heading"]}</h2></div>
+    <div class="reveal" data-cms="{k}.body" data-cms-opts="steps:grid p:narrow">{"".join(inner)}</div>
   </div>
 </section>
 '''
@@ -263,14 +280,15 @@ def suitable_split(sec, slug, bg):
             inner.append(render_checklist(payload, two_col=False))
         elif btype == "cta":
             inner.append(render_cta_row(payload))
+    k = sec_key()
     split_img = (f'<img src="{page_img_src(slug, "split", stock(STOCK[key], 1100))}" alt="{alt}" '
-                 f'loading="lazy" onerror="this.remove()">')
+                 f'loading="lazy" onerror="this.remove()" data-cms-attr="src:{k}.image">')
     return f'''<section class="section {bg}" aria-labelledby="{hid}">
   <div class="container split reveal">
     <div>
       <span class="eyebrow">Is this right for you?</span>
-      <h2 id="{hid}">{sec["heading"]}</h2>
-      {"".join(inner)}
+      <h2 id="{hid}" data-cms="{k}.heading">{sec["heading"]}</h2>
+      <div data-cms="{k}.body" data-cms-opts="list:1col">{"".join(inner)}</div>
     </div>
     <div class="split-photo">{split_img}</div>
   </div>
@@ -290,13 +308,14 @@ def content_split(sec, slug, bg):
             inner.append(render_checklist(payload, two_col=False))
         elif btype == "cta":
             inner.append(render_cta_row(payload))
+    k = sec_key()
     split_img = (f'<img src="{page_img_src(slug, "split", stock(STOCK[key], 1100))}" alt="{alt}" '
-                 f'loading="lazy" onerror="this.remove()">')
+                 f'loading="lazy" onerror="this.remove()" data-cms-attr="src:{k}.image">')
     return f'''<section class="section {bg}" aria-labelledby="{hid}">
   <div class="container split reveal">
     <div>
-      <h2 id="{hid}">{sec["heading"]}</h2>
-      {"".join(inner)}
+      <h2 id="{hid}" data-cms="{k}.heading">{sec["heading"]}</h2>
+      <div data-cms="{k}.body" data-cms-opts="list:1col">{"".join(inner)}</div>
     </div>
     <div class="split-photo">{split_img}</div>
   </div>
@@ -340,6 +359,7 @@ def related_section_v2(sec):
 def service_page(fname, url, category_label, category_url):
     meta, sections = parse_copy(fname)
     slug = url.rstrip("/").split("/")[-1]
+    begin_page(slug)
     paras, strong_line, cta_html = lede_blocks(sections)
     intro, remaining = split_intro(paras)
     trail = [("Home", "/"), ("Services", "/services/")]
@@ -375,7 +395,7 @@ def service_page(fname, url, category_label, category_url):
         bg_i += 1
 
     html.append(faq_section_v2(get_section(sections, "Frequently Asked Questions"),
-                               bg="section--white"))
+                               bg="section--white", cms_key=faq_key()))
     html.append(related_section_v2(get_section(sections, "Related Services")))
     html.append(booking_section())
     html.append("</main>")
@@ -386,6 +406,7 @@ def service_page(fname, url, category_label, category_url):
 def category_page(fname, url, label):
     meta, sections = parse_copy(fname)
     slug = url.rstrip("/").split("/")[-1]
+    begin_page(slug)
     paras, _, cta_html = lede_blocks(sections)
     intro, remaining = split_intro(paras)
     trail = [("Home", "/"), ("Services", "/services/"), (meta["h1"], url)]
@@ -429,8 +450,8 @@ def category_page(fname, url, label):
                 ic = SERVICE_ICONS.get(u.rstrip("/").split("/")[-1], "tooth")
                 cards.append(f'''<article class="svc-card">
   <span class="icon-tile">{ICONS[ic]}</span>
-  <h3><a href="{u}">{name}</a></h3>
-  <p>{md_inline(desc)}</p>
+  <h3><a href="{u}" data-cms="title">{name}</a></h3>
+  <p data-cms="text">{md_inline(desc)}</p>
   <span class="btn btn--sm btn--outline">Learn More</span>
 </article>''')
             i += 1
@@ -438,9 +459,9 @@ def category_page(fname, url, label):
   <div class="container">
     <div class="section-head section-head--center reveal">
       <span class="eyebrow">{label}</span>
-      <h2 id="category-services">{svc_sec["heading"]}</h2>
+      <h2 id="category-services" data-cms="pages.{slug}.cards_heading">{svc_sec["heading"]}</h2>
     </div>
-    <div class="grid grid--3 reveal-stagger">{"".join(cards)}</div>
+    <div class="grid grid--3 reveal-stagger" data-cms-list="pages.{slug}.cards" data-cms-list-skip="1">{"".join(cards)}</div>
   </div>
 </section>
 ''')
@@ -455,7 +476,7 @@ def category_page(fname, url, label):
             html.append(prose_section(sec, "section--off"))
 
     html.append(faq_section_v2(get_section(sections, "Frequently Asked Questions"),
-                               bg="section--white"))
+                               bg="section--white", cms_key=faq_key()))
     html.append(booking_section())
     html.append("</main>")
     html.append(footer_v2())
@@ -480,6 +501,7 @@ HUB_CARD_IMG = {
 def hub_page():
     meta, sections = parse_copy("06-services-hub-page-copy.md")
     url = "/services/"
+    begin_page("services")
     paras, _, cta_html = lede_blocks(sections)
     intro, remaining = split_intro(paras)
 
@@ -516,8 +538,8 @@ def hub_page():
         cards_target.append(f'''<article class="svc-card" style="overflow:hidden">
   {img}
   <span class="icon-tile">{ICONS[ic]}</span>
-  <h3><a href="{cat_url}">{sec["heading"]}</a></h3>
-  <p>{md_inline(desc)}</p>
+  <h3><a href="{cat_url}" data-cms="title">{sec["heading"]}</a></h3>
+  <p data-cms="text">{md_inline(desc)}</p>
   {inc_html}
   <span class="btn btn--sm {btn}">{md_inline_label(cta) if cta else "Explore"}</span>
 </article>''')
@@ -528,8 +550,8 @@ def hub_page():
       <span class="eyebrow">Where would you like to start?</span>
       <h2>Explore Our Care Categories</h2>
     </div>
-    <div class="grid grid--3 reveal-stagger">{"".join(cat_cards)}</div>
-    <div class="grid grid--2 reveal-stagger" style="margin-top:1.5rem">{"".join(extra_cards)}</div>
+    <div class="grid grid--3 reveal-stagger" data-cms-list="pages.services.category_cards">{"".join(cat_cards)}</div>
+    <div class="grid grid--2 reveal-stagger" style="margin-top:1.5rem" data-cms-list="pages.services.extra_cards">{"".join(extra_cards)}</div>
   </div>
 </section>
 ''')
@@ -542,19 +564,20 @@ def hub_page():
                 inner.append(f"<p>{md_inline(payload)}</p>")
             elif btype == "cta":
                 inner.append(render_cta_row(payload))
+        k = sec_key()
         html.append(f'''<section class="section section--off" aria-labelledby="not-sure">
   <div class="container split reveal">
     <div>
       <span class="eyebrow">We'll guide you</span>
-      <h2 id="not-sure">{ns["heading"]}</h2>
-      {"".join(inner)}
+      <h2 id="not-sure" data-cms="{k}.heading">{ns["heading"]}</h2>
+      <div data-cms="{k}.body">{"".join(inner)}</div>
     </div>
-    <div class="split-photo"><img src="{SECTION_IMGS["services-not-sure"]}" alt="A dentist talking a patient through their options" loading="lazy" onerror="this.remove()"></div>
+    <div class="split-photo"><img src="{SECTION_IMGS["services-not-sure"]}" alt="A dentist talking a patient through their options" loading="lazy" onerror="this.remove()" data-cms-attr="src:{k}.image"></div>
   </div>
 </section>
 ''')
 
-    html.append(faq_section_v2(get_section(sections, "Frequently Asked Questions"), bg="section--white"))
+    html.append(faq_section_v2(get_section(sections, "Frequently Asked Questions"), bg="section--white", cms_key=faq_key()))
     html.append(booking_section())
     html.append("</main>")
     html.append(footer_v2())
@@ -564,11 +587,12 @@ def hub_page():
 def emergency_page():
     meta, sections = parse_copy("25-emergency-dentistry-page-copy.md")
     url = "/services/emergency-dentistry/"
+    begin_page("emergency-dentistry")
     paras, strong_line, _ = lede_blocks(sections)
     intro, remaining = split_intro(paras)
     banner = f'''<div class="urgent-banner" style="margin-top:1.75rem">
   <span class="urgent-icon">{ICONS["alert"]}</span>
-  <p>{md_inline(strong_line) if strong_line else f"If you're experiencing a dental emergency, please call us directly on {PHONE_DISPLAY}."}</p>
+  <p data-cms="pages.emergency-dentistry.banner">{md_inline(strong_line) if strong_line else f"If you're experiencing a dental emergency, please call us directly on {PHONE_DISPLAY}."}</p>
   <a class="btn btn--navy btn--no-arrow" href="{PHONE_TEL}" style="margin-left:auto">{ICONS["phone"]} Call Now</a>
 </div>
 <div class="btn-row"><a class="btn btn--glass" href="/patient-info/">Book an Emergency Appointment</a></div>'''
@@ -596,18 +620,18 @@ def emergency_page():
                 if m:
                     cards.append(f'''<article class="svc-card">
   <span class="icon-tile">{ICONS["heart"]}</span>
-  <h3>{m.group(1)}</h3>
-  <p>{md_inline(m.group(2))}</p>
+  <h3 data-cms="title">{m.group(1)}</h3>
+  <p data-cms="text">{md_inline(m.group(2))}</p>
 </article>''')
             elif btype == "note":
-                note = f'<p class="small-note reveal" style="margin-top:2rem">{md_inline(payload)}</p>'
+                note = f'<p class="small-note reveal" style="margin-top:2rem" data-cms="pages.emergency-dentistry.wait_note">{md_inline(payload)}</p>'
         html.append(f'''<section class="section section--off" aria-labelledby="while-you-wait">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">First-aid guidance</span>
-      <h2 id="while-you-wait">{wait["heading"]}</h2>
+      <h2 id="while-you-wait" data-cms="pages.emergency-dentistry.wait_heading">{wait["heading"]}</h2>
     </div>
-    <div class="{grid_n(len(cards))} reveal-stagger">{"".join(cards)}</div>
+    <div class="{grid_n(len(cards))} reveal-stagger" data-cms-list="pages.emergency-dentistry.wait_cards">{"".join(cards)}</div>
     {note}
   </div>
 </section>
@@ -627,8 +651,8 @@ def emergency_page():
   <div class="container split">
     <div class="reveal">
       <span class="eyebrow">Prompt appointments</span>
-      <h2 id="getting-seen">{seen["heading"]}</h2>
-      {"".join(paras2)}
+      <h2 id="getting-seen" data-cms="pages.emergency-dentistry.seen_heading">{seen["heading"]}</h2>
+      <div data-cms="pages.emergency-dentistry.seen_body">{"".join(paras2)}</div>
       {cta_row}
     </div>
     <div class="info-panel info-panel--dark reveal">
@@ -641,7 +665,7 @@ def emergency_page():
 ''')
 
     html.append(faq_section_v2(get_section(sections, "Frequently Asked Questions"),
-                               bg="section--white", eyebrow_txt="Emergency care"))
+                               bg="section--white", eyebrow_txt="Emergency care", cms_key=faq_key()))
     html.append(related_section_v2(get_section(sections, "Related Services")))
     html.append(booking_section())
     html.append("</main>")
@@ -684,6 +708,7 @@ TEAM_FEATURED = [
 def about_page():
     meta, sections = parse_copy("02-about-us-page-copy.md")
     url = "/about/"
+    begin_page("about")
     lede = get_section(sections, "__lede__")
     paras = [p for t, p in lede["blocks"] if t == "p"]
     ctas = next((p for t, p in lede["blocks"] if t == "cta"), None)
@@ -725,8 +750,8 @@ def about_page():
         name, desc = (m.group(1), m.group(3)) if m else (it, "")
         tcards.append(f'''<article class="svc-card">
   <span class="icon-tile">{ICONS[tech_icons[i % 6]]}</span>
-  <h3>{name}</h3>
-  <p>{md_inline(desc)}</p>
+  <h3 data-cms="title">{name}</h3>
+  <p data-cms="text">{md_inline(desc)}</p>
 </article>''')
     html.append(f'''<section class="section section--off" aria-labelledby="technology">
   <div class="container">
@@ -735,8 +760,8 @@ def about_page():
       <h2 id="technology" data-cms="about.tech_heading">{tech["heading"]}</h2>
       <p data-cms="about.tech_intro">{md_inline(tech_paras[0])}</p>
     </div>
-    <div class="grid grid--3 reveal-stagger">{"".join(tcards)}</div>
-    <p class="reveal center" style="margin-top:2rem;max-width:46rem;margin-inline:auto">{md_inline(tech_paras[1]) if len(tech_paras) > 1 else ""}</p>
+    <div class="grid grid--3 reveal-stagger" data-cms-list="about.tech_cards">{"".join(tcards)}</div>
+    <p class="reveal center" style="margin-top:2rem;max-width:46rem;margin-inline:auto" data-cms="about.tech_outro">{md_inline(tech_paras[1]) if len(tech_paras) > 1 else ""}</p>
   </div>
 </section>
 ''')
@@ -894,6 +919,7 @@ def offers_page():
 def book_page():
     meta, sections = parse_copy("04-book-appointment-page-copy.md")
     url = "/patient-info/"
+    begin_page("patient-info")
     lede = get_section(sections, "__lede__")
     lede_p = next((p for t, p in lede["blocks"] if t == "p"), "")
     intro, remaining = split_intro([lede_p])
@@ -914,17 +940,18 @@ def book_page():
     first = get_section(sections, "Your First Visit")
     fp = [p for t, p in first["blocks"] if t == "p"]
     fi = next((p for t, p in first["blocks"] if t == "ul"), [])
+    fk = sec_key()
     html.append(f'''<section class="section section--off" aria-labelledby="first-visit">
   <div class="container split reveal">
     <div>
       <span class="eyebrow">New patients welcome</span>
-      <h2 id="first-visit">{first["heading"]}</h2>
-      <p>{md_inline(fp[0])}</p>
+      <h2 id="first-visit" data-cms="{fk}.heading">{first["heading"]}</h2>
+      <div data-cms="{fk}.body" data-cms-opts="list:1col"><p>{md_inline(fp[0])}</p>
       <p>{md_inline(fp[1]) if len(fp) > 1 else ""}</p>
       {render_checklist(fi, two_col=False)}
-      {"".join(f"<p>{md_inline(p)}</p>" for p in fp[2:])}
+      {"".join(f"<p>{md_inline(p)}</p>" for p in fp[2:])}</div>
     </div>
-    <div class="split-photo"><img src="{SECTION_IMGS["book-first-visit"]}" alt="The welcoming, modern studio interior" loading="lazy" onerror="this.remove()"></div>
+    <div class="split-photo"><img src="{SECTION_IMGS["book-first-visit"]}" alt="The welcoming, modern studio interior" loading="lazy" onerror="this.remove()" data-cms-attr="src:{fk}.image"></div>
   </div>
 </section>
 ''')
@@ -933,10 +960,11 @@ def book_page():
     cancel = get_section(sections, "Cancellations & Rescheduling")
     def dark_card(sec, icon):
         ps = "".join(f"<p>{md_inline(p)}</p>" for t, p in sec["blocks"] if t == "p")
+        k = sec_key()
         return f'''<div class="info-panel info-panel--dark" style="padding:2.25rem">
   <span class="icon-tile" style="background:rgba(189,153,94,.16);border-color:transparent;color:var(--gold-light);margin-bottom:1rem">{ICONS[icon]}</span>
-  <h3 style="display:block">{sec["heading"]}</h3>
-  {ps}
+  <h3 style="display:block" data-cms="{k}.heading">{sec["heading"]}</h3>
+  <div data-cms="{k}.body">{ps}</div>
 </div>'''
     html.append(f'''<section class="section section--navy" aria-label="Payments and cancellations">
   <div class="container grid grid--2 reveal-stagger">
@@ -949,7 +977,7 @@ def book_page():
     ready = get_section(sections, "Ready to Book")
     html.append(booking_section(heading=ready["heading"] if ready else "Book an Appointment"))
     html.append(faq_section_v2(get_section(sections, "Frequently Asked Questions"),
-                               bg="section--white", eyebrow_txt="Booking"))
+                               bg="section--white", eyebrow_txt="Booking", cms_key=faq_key()))
     html.append("</main>")
     html.append(footer_v2())
     write_page(url, "".join(html))
@@ -958,6 +986,7 @@ def book_page():
 def contact_page():
     meta, sections = parse_copy("05-contact-us-page-copy.md")
     url = "/contact/"
+    begin_page("contact")
     lede = get_section(sections, "__lede__")
     lede_p = next((p for t, p in lede["blocks"] if t == "p"), "")
     git = get_section(sections, "Get In Touch")
@@ -1046,8 +1075,8 @@ def contact_page():
     <div class="urgent-banner reveal">
       <span class="urgent-icon">{ICONS["alert"]}</span>
       <div style="flex:1;min-width:16rem">
-        <h2 id="emergency-callout" style="font-size:1.45rem;margin-bottom:.4rem;color:var(--navy-deep)">{emg["heading"]}</h2>
-        <p>{md_inline(emg_p)}</p>
+        <h2 id="emergency-callout" style="font-size:1.45rem;margin-bottom:.4rem;color:var(--navy-deep)" data-cms="contact.emergency_heading">{emg["heading"]}</h2>
+        <p data-cms="contact.emergency_text">{md_inline(emg_p)}</p>
       </div>
       <div style="display:flex;gap:.75rem;flex-wrap:wrap">
         <a class="btn btn--navy btn--no-arrow" href="{PHONE_TEL}">{ICONS["phone"]} Call {PHONE_DISPLAY}</a>

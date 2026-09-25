@@ -17,8 +17,9 @@
 # Optionally pass the zip and the branch:
 #   ./push-site-to-github.sh <repo-url> footscray-dental-studio-deploy.zip main
 #
-# The admin panel's data in the repo (content/site.json, content/auth.json, uploaded
-# photos) is kept across pushes. KEEP_CONTENT=no ./push-site-to-github.sh ... replaces it.
+# Content edited in the dashboard lives in the database, not in the repo, so a push never
+# overwrites the practice's edits. The JSON in content/ is only the fallback the build
+# uses when the database is unreachable.
 
 set -euo pipefail
 
@@ -49,12 +50,12 @@ rm -rf "$WORK/site/__MACOSX"
 FILES=$(find "$WORK/site" -type f | wc -l | tr -d ' ')
 echo "     $FILES files"
 
-if [ ! -f "$WORK/site/vercel.json" ] || [ ! -f "$WORK/site/site/index.html" ] || [ ! -d "$WORK/site/api" ]; then
+if [ ! -f "$WORK/site/package.json" ] || [ ! -f "$WORK/site/payload.config.ts" ] || [ ! -f "$WORK/site/site/index.html" ]; then
   echo "     The unpacked build does not look right." >&2
-  echo "     Expected vercel.json, site/index.html and an api/ folder at the top level." >&2
+  echo "     Expected package.json, payload.config.ts and site/index.html at the top level." >&2
   exit 1
 fi
-echo "     vercel.json, site/ and api/ are where they should be"
+echo "     package.json, payload.config.ts and site/ are where they should be"
 
 echo "2/6  Cloning $REPO_URL"
 git clone --quiet "$REPO_URL" "$WORK/repo"
@@ -71,38 +72,19 @@ fi
 echo "     default branch: $BRANCH"
 git checkout --quiet "$BRANCH" 2>/dev/null || git checkout --quiet -b "$BRANCH"
 
-echo "3/6  Clearing the old files (keeping git history, README and the admin panel's data)"
-# The admin panel commits three things to this repo: the practice's edits
-# (content/site.json), the changed password (content/auth.json) and uploaded photos
-# (site/assets/img/uploads/). Those are the live site's data, so they are kept across
-# code pushes. Run with KEEP_CONTENT=no to replace them with the zip's copies.
-KEEP="$WORK/keep"; mkdir -p "$KEEP"
-if [ "${KEEP_CONTENT:-yes}" != "no" ]; then
-  for f in content/site.json content/auth.json; do
-    [ -f "$f" ] && { mkdir -p "$KEEP/$(dirname "$f")"; cp "$f" "$KEEP/$f"; echo "     keeping $f from the repo"; }
-  done
-  if [ -d site/assets/img/uploads ]; then
-    mkdir -p "$KEEP/site/assets/img"; cp -R site/assets/img/uploads "$KEEP/site/assets/img/"
-    echo "     keeping $(find site/assets/img/uploads -type f ! -name '.gitkeep' | wc -l | tr -d ' ') uploaded photo(s)"
-  fi
-fi
+echo "3/6  Clearing the old files (git history is kept)"
 # Delete everything the repo tracks, so stray folders from the manual uploads go
-# too. .git is untouched, and a README is kept if one exists.
+# too. .git is untouched.
 find . -mindepth 1 -maxdepth 1 \
-     ! -name '.git' ! -name 'README.md' ! -name '.gitignore' \
+     ! -name '.git' \
      -exec rm -rf {} +
 
 echo "4/6  Copying the build in"
 cp -R "$WORK/site/." .
-cp -R "$KEEP/." .   # the kept data goes back on top
 
 echo "5/6  Committing"
-cat > .gitignore <<'IGNORE'
-.DS_Store
-._*
-__MACOSX/
-Thumbs.db
-IGNORE
+# the build ships its own .gitignore (.env, media/, .next/, public/); add the macOS extras
+printf '\n# macOS\n.DS_Store\n._*\n__MACOSX/\nThumbs.db\n' >> .gitignore
 git add -A
 if git diff --cached --quiet; then
   echo "     Nothing changed, the repo already matches the build."
@@ -126,7 +108,7 @@ if [ "$PUSHED" -lt 100 ]; then
   echo "Check the branch name on GitHub and rerun with it as the third argument." >&2
   exit 1
 fi
-for must in vercel.json package.json site/index.html site/assets/css/styles.css api/contact.js content/site.json content/schema.json admin/index.html; do
+for must in package.json payload.config.ts next.config.mjs site/index.html site/assets/css/styles.css app/api/contact/route.ts content/site.json content/schema.json migrations/index.ts; do
   printf '%s\n' "$REMOTE_TREE" | grep -qx "$must" \
     || { echo "Missing on the remote after push: $must" >&2; exit 1; }
 done
@@ -135,8 +117,8 @@ echo
 echo "Done. Pushed $FILES files."
 echo
 echo "Check on GitHub that the repo root now has:"
-echo "  api/  admin/  build/  content/  lib/  site/  package.json  vercel.json"
+echo "  app/  build/  cms/  content/  lib/  migrations/  scripts/  site/  package.json  payload.config.ts"
 echo
-echo "Vercel builds public/ from that on every push. Then confirm:"
-echo "  https://<your-site>/assets/css/styles.css   returns CSS"
-echo "  https://<your-site>/admin/                  shows the sign-in screen"
+echo "Vercel builds on every push. Then confirm:"
+echo "  https://<your-site>/                        the site, unchanged"
+echo "  https://<your-site>/admin/                  the dashboard sign-in"

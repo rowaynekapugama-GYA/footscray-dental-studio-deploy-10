@@ -2,8 +2,9 @@
 import re
 from pathlib import Path
 
-COPY_DIR = Path("/home/claude/fds-extract/footscray-dental-studio-website-copy")
-OUT = Path("/home/claude/footscray-dental-studio/site")
+# The approved copy docs ship in build/copy so the pages can be regenerated anywhere.
+COPY_DIR = Path(__file__).resolve().parent / "copy"
+OUT = Path(__file__).resolve().parent.parent / "site"
 
 PHONE_DISPLAY = "(03) 9000 0792"
 PHONE_TEL = "tel:+61390000792"

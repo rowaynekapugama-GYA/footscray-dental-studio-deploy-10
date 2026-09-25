@@ -1,143 +1,93 @@
 # Deployment notes
 
-Footscray Dental Studio website: static pages, working contact forms, and an admin panel.
+Footscray Dental Studio: the launch site, unchanged, plus the GYA dashboard at `/admin/`.
 
-## What is in this build
+Same setup as Coastal Dental and The Cronulla Dentists: Next.js on Vercel, Payload CMS, Neon Postgres for content, Vercel Blob for photos. The public pages stay static.
+
+## What this build contains
 
 | Folder / file | Purpose |
 | --- | --- |
-| `site/` | The pages exactly as the generator wrote them, with `data-cms` markers on every editable spot. Never edit these by hand. |
-| `content/site.json` | Everything the admin panel can change: phone, hours, headlines, team, offers, FAQs, page intros, images. |
-| `content/schema.json` | Defines the admin panel form and how each field maps into the pages. |
-| `content/auth.json` | Created automatically the first time the password is changed. Holds the password hash, never the password. |
-| `build/apply-content.js` | The build step. Copies `site/` to `public/`, fills in the content, adds the admin panel. Vercel runs it on every deploy. |
-| `api/contact.js` | The contact, appointment and newsletter form endpoint. |
-| `api/admin/[action].js` | The admin panel API: login, content, uploads, password. |
-| `admin/index.html` | The admin panel itself, served at `/admin/`. |
-| `lib/` | Shared code: config, HTML patching, auth, storage, mail. No dependencies. |
-| `vercel.json` | Build command, output folder, clean URLs, the 195 redirect rules from the old domain. |
-| `dev-server.js` | Runs the whole thing locally, behaving like Vercel. |
-| `test/run.js` | 46 automated checks of the form and admin APIs. |
+| `site/` | The pages exactly as the generator wrote them, with `data-cms` markers. Never edit by hand. |
+| `content/site.json`, `content/posts.json` | The content as last pulled from the database. Committed as the fallback used when the database is unreachable. |
+| `content/old-domain-redirects.json` | The 195 ezydentalgroup.com.au and apex redirects from launch. |
+| `cms/`, `payload.config.ts`, `migrations/` | The dashboard. |
+| `app/api/contact/route.ts` | The contact, appointment and newsletter forms (SMTP2GO, plus a copy in the Enquiries list). |
+| `scripts/build.mjs` | What Vercel runs: migrate, bootstrap, pull, render, patch, `next build`. |
+| `middleware.ts`, `build/routing.mjs` | Clean URLs with trailing slashes, the 404 page, cache and security headers, redirects. |
 
-`public/` is the built output. It is not in the repo; Vercel builds it, and `npm run build` makes it locally.
+## Step 1: Vercel project settings
 
-## Server requirements
+Vercel > the project that owns www.footscraydentalstudio.com.au > Settings.
 
-**Vercel** (current host): nothing to install. Node 18+ runtime, which Vercel provides. Framework preset: **Other**. The build command and output directory are read from `vercel.json`.
-
-**Any other Node host** (a VPS, Render, Railway): Node 18+, run `npm run build` then `node dev-server.js` behind a reverse proxy, and set `CONTENT_STORE=local` so edits write to disk. The rest of this document assumes Vercel.
-
-**Not possible:** a PHP or plain static host. The forms and admin panel are Node functions.
-
-## Step 1: push the repository
-
-The repo root must be this folder (with `vercel.json` at the top), not the old layout where `index.html` sat at the root.
-
-Easiest: `./push-site-to-github.sh https://github.com/OWNER/REPO.git` from a folder holding this zip. It replaces the repo contents, keeps history, and verifies what landed.
-
-Or GitHub Desktop: clone the repo, delete its contents, copy this folder in, commit, push.
+1. **Build and Deployment > Framework Preset: Next.js.** The old project was set to "Other" for the static site. `vercel.json` also says `nextjs`, but set it in the UI too so the deploy logs make sense. Build command `npm run build`, output directory left blank, Node 20 or 22.
+2. **Storage > Create Database > Neon (Postgres).** Attach it to this project, all environments. That adds `DATABASE_URL` (and `POSTGRES_URL`) to the project. Same as Coastal.
+3. **Storage > Create > Blob.** Attach it. That adds `BLOB_READ_WRITE_TOKEN`.
+4. **Git > Deploy Hooks > Create Hook**, name `Publish from dashboard`, branch `main`. Copy the URL for `PUBLISH_HOOK_URL` below.
 
 ## Step 2: environment variables
 
-Vercel > Project > Settings > Environment Variables. Add each for **Production** (and Preview if you want previews working). Full list with comments in `.env.example`.
-
-### Required for the contact form
-
-| Variable | Value | Where it comes from |
-| --- | --- | --- |
-| `CONTACT_TO` | The inbox that receives submissions. Comma-separate for several. | Client |
-| `CONTACT_FROM` | `Footscray Dental Studio <noreply@footscraydentalstudio.com.au>` | Must be a sender the email provider has verified |
-| `SMTP2GO_API_KEY` | API key from SMTP2GO | GYA's SMTP2GO account. Same as Dental Specialists |
-
-Or `RESEND_API_KEY` instead of the SMTP2GO key. The code picks whichever is set.
-
-**Sender verification is the step people miss.** Whichever provider is used has to be told the sending domain is yours: in SMTP2GO, Settings > Sender Domains > add `footscraydentalstudio.com.au`, then add the SPF/DKIM records it gives you at the domain's DNS. Until that is done the provider rejects the send and the form shows its error message. If DNS access is slow to get, use a domain GYA has already verified as `CONTACT_FROM` for now; replies still go to the patient because Reply-To is set to their address.
-
-Optional: `CONTACT_AUTOREPLY=true` sends the patient a short acknowledgement. `CONTACT_SUBJECT_PREFIX` defaults to `[Website]`.
-
-### Required for the admin panel
+Settings > Environments > Production. Keep the existing `SMTP2GO_API_KEY`, `CONTACT_TO`, `CONTACT_FROM`. The old admin variables (`ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, `SESSION_SECRET`, `CONTENT_STORE`, `GITHUB_*`) are no longer read and can be deleted.
 
 | Variable | Value |
 | --- | --- |
-| `ADMIN_USERNAME` | `fds-admin` |
-| `ADMIN_PASSWORD_HASH` | From `ADMIN_CREDENTIALS.txt` (sent separately, not in this zip) |
-| `SESSION_SECRET` | From `ADMIN_CREDENTIALS.txt` |
-| `CONTENT_STORE` | `github` |
-| `GITHUB_TOKEN` | See below |
-| `GITHUB_REPO` | `OWNER/REPO`, e.g. `rowaynekapugama-GYA/footscray-dental-studio` |
-| `GITHUB_BRANCH` | `main` (or whatever branch Vercel deploys) |
+| `DATABASE_URL` | added by the Neon integration |
+| `BLOB_READ_WRITE_TOKEN` | added by the Blob integration |
+| `PAYLOAD_SECRET` | a long random string (`openssl rand -base64 32`). Signs dashboard logins. |
+| `NEXT_PUBLIC_SERVER_URL` | `https://www.footscraydentalstudio.com.au` |
+| `PUBLISH_HOOK_URL` | the deploy hook URL from step 1 |
+| `ADMIN_EMAIL` | GYA's admin login, e.g. `rowayne@gyaclients.com` |
+| `ADMIN_PASSWORD` | its password (12+ characters). Used once, on the first build, to create the account. Change it in the dashboard afterwards and delete this variable. |
+| `ADMIN_NAME` | optional, `GYA` |
 
-**The GitHub token.** GitHub > Settings > Developer settings > Personal access tokens > **Fine-grained tokens** > Generate. Repository access: **Only select repositories**, pick the site repo. Permissions: **Contents: Read and write**. Nothing else. Set an expiry of a year and put a reminder in the calendar; when it expires the admin panel can still be logged into but saves will fail with a clear message.
+Also tick Preview for all of them so a branch deploy has a working dashboard.
 
-This token is what lets the admin panel commit changes. Each save is a commit like `Content update via admin panel: home, hours`, Vercel sees the push and redeploys, and the change is live about a minute later. That is also the audit trail: every edit is in the repo history with a timestamp.
+**Origin matters.** Payload treats a request from a host that is not in its allowed list as logged out (symptom: login works, saves do nothing, uploads say "not allowed"). `payload.config.ts` allows the www and apex domains, `NEXT_PUBLIC_SERVER_URL`, and Vercel's preview hosts, so previews and production both work. If the site ever moves domain, update that list.
 
-### Optional
+## Step 3: push and deploy
 
-`SITE_URL` (used in emails), `SESSION_HOURS` (default 8), `CONTACT_PHONE` (quoted in the auto-reply).
-
-## Step 3: redeploy
-
-After adding variables, trigger a deploy (Deployments > Redeploy) so the functions pick them up.
-
-## Fixes in this build (25 September, after the first live deploy)
-
-- **Admin login showed `[object Object]`; the contact form showed "Sorry, that did not send".** `vercel.json` has `trailingSlash: true`, so Vercel was redirecting `/api/admin/login` to `/api/admin/login/`, and the slashed path did not match the function, giving Vercel's own 404 (a JSON object, hence the garbled message). The forms and the admin panel now call the slashed paths directly, and `vercel.json` has explicit rewrites for `/api/admin/:action/` and `/api/contact/`.
-- **The "Website" honeypot field was visible and the error box unstyled.** `/assets/*` is cached for a year, so browsers kept the old `styles.css`. The build now appends `?v=<content hash>` to every CSS and JS reference, so a changed file always gets a new URL. Anyone who saw the old styling just needs the page to load once more.
-- The admin panel now shows a plain sentence for any error shape, including Vercel platform errors.
-- The API functions no longer bundle the whole site (13 MB down to ~100 KB), so cold starts are quicker.
-- With no email key set, the form's server log now says exactly that instead of a filesystem error.
-- `push-site-to-github.sh` keeps the admin panel's data in the repo (`content/site.json`, `content/auth.json`, uploaded photos) across code pushes, so re-pushing a zip never wipes the practice's edits or their changed password. `KEEP_CONTENT=no` overrides that.
-
-## Step 4: test the form
-
-1. Open `/contact/`, submit with real details. You should see the green "Thanks for your message" box, and the email should arrive at `CONTACT_TO` within a minute, with the patient's address as Reply-To.
-2. Submit the appointment form at the bottom of any service page the same way.
-3. Submit with a bad email address: you should see an inline error, nothing sent.
-4. If the red "Sorry, that did not send" box appears: Vercel > Deployments > latest > Functions > `api/contact` > logs. The log line says exactly which provider refused and why, usually an unverified sender.
-
-Spam handling is silent by design: a bot that fills the hidden `website` field, submits within 3 seconds of page load, or posts more than 6 times in 10 minutes gets a normal-looking success and nothing is sent.
-
-## Step 5: test the admin panel
-
-1. Open `/admin/`. Sign in with the credentials from `ADMIN_CREDENTIALS.txt`. A yellow banner says the initial password should be changed.
-2. Change the password (sidebar). The banner disappears, and `content/auth.json` appears in the repo as a commit.
-3. Change something visible, e.g. Practice details > Phone number. Save & publish. The status bar confirms and names the commit.
-4. Watch Vercel > Deployments: a new deploy starts within seconds. When it finishes, the phone number is different on every page, including the Call buttons and the structured data.
-5. Upload a photo somewhere (e.g. Meet the Team). It commits to `site/assets/img/uploads/` and is served from `/assets/img/uploads/`.
-
-If saving fails with a GitHub message, the token is wrong, expired, or lacks Contents write on that repo. If the banner says "Server setup is incomplete", it lists exactly which variable is missing.
-
-## What the client can edit
-
-Practice details (phone, email, address, map link, social links, Google reviews link), opening hours, an announcement bar, every headline and intro on the homepage plus its service cards, feature list, story, FAQ and photos, the About page sections, the team (add, remove, reorder, photos, bios), special offers (add, remove, price, description, bullets), the contact page text and FAQ, and the headline, intro line and hero photo of all 27 inner pages.
-
-**Not editable in the panel:** blog posts (they are generated from markdown by the Python build), the navigation, the health fund logos, and page structure. Those remain GYA changes. Blog editing can be added later if wanted.
-
-## Security notes, in plain terms
-
-- Passwords are hashed with scrypt; the plain password exists nowhere on the server.
-- Sessions are signed HttpOnly cookies, 8 hours, invalidated on password change. Sign-out clears the cookie; because sessions are stateless on serverless, a stolen cookie stays valid until it expires or the password changes. Changing the password is the "log everyone out" button.
-- 8 failed logins from one address in 15 minutes triggers a cool-off.
-- The panel and API are `noindex` and blocked in `robots.txt`.
-- The admin only ever writes three things: `content/site.json`, `content/auth.json`, and image uploads. It cannot touch code.
-- Uploads are checked by file signature, capped at 4 MB, and SVGs containing scripts are refused.
-
-## Running it locally
+From a folder holding the zip:
 
 ```bash
-cp .env.example .env      # leave the API keys blank: emails go to outbox/, saves go to disk
-node build/make-password.js   # paste the hash into .env as ADMIN_PASSWORD_HASH
-npm run dev                   # http://localhost:3000 and /admin/
-npm test                      # in a second terminal, 46 checks
+bash push-site-to-github.sh https://github.com/rowaynekapugama-GYA/footscray-dental-studio-deploy-10.git footscray-dental-studio-v3.zip cms
 ```
 
-## Regenerating pages
+That pushes to a `cms` branch, which Vercel builds as a preview. Check the preview:
 
-If GYA rebuilds pages with the Python generators (`build/glow.py`, `rollout.py`, `blog.py`), the markers come along automatically. Run `npm run extract -- --force` only if you want to reset `content/site.json` to what the generated pages say, which discards the client's edits, so do not do that casually.
+1. Any page looks and reads exactly as the live site (it is the same HTML).
+2. `/admin/` shows the sign-in screen. Sign in with `ADMIN_EMAIL` / `ADMIN_PASSWORD`. The dashboard shows Pages (32), Blog posts (32), Team (3), Special offers (6), Media library (67 blog images), Enquiries, Redirects, Users, Site settings.
+3. Change something visible on a page, press **Publish website**. A new build starts (Deployments). When it finishes the change is on the preview.
 
-## Google Tag Manager
+Then push the same zip to `main` (rerun the command with `main` as the last argument). The production build does the same bootstrap against the same database, finds it already populated, and simply pulls.
 
-Container `GTM-MTVSMPG7` had been added by hand to the live homepage only. It is now
-emitted by the generator (`build/glow.py`, `GTM_ID`) on all 68 pages, so it survives
-rebuilds and admin publishes. It is deliberately not loaded on `/admin/`. To change the
-container, edit `GTM_ID` and regenerate.
+The first build on an empty database takes longer (it imports the content and uploads the 67 blog images to Blob). Later builds take about two minutes.
+
+## Step 4: hand the practice their login
+
+In the dashboard, Users > Create new: their email, a password, role **Editor**. Editors can change all content and publish; they cannot manage users. Send them `docs/HOW-TO-UPDATE.md`.
+
+## What the practice can edit
+
+Every page's headline, intro line and hero photo; every body section's heading, text and photo (tick lists, numbered steps and button rows included); every FAQ; the homepage cards, features, statement and story; the About page; the team (add, remove, reorder, photos, bios); special offers with start and end dates; site settings (phone, email, address, hours, socials, reviews link, announcement bar); each page's title tag, meta description, sharing image and noindex; blog posts with a rich editor, featured image, category, related articles and the surgical note; redirects. Every enquiry from the forms is also listed under Enquiries.
+
+Not editable in the dashboard: the navigation and footer links, the health fund logo strip, the legal pages, page structure and design. Those remain GYA changes to the generators in `build/`.
+
+## How a change reaches the site
+
+Save in the dashboard writes to the database. Publish website calls the Vercel deploy hook. The build pulls the database into `content/*.json`, renders the blog, patches the pages and deploys. The live site is static HTML the whole time. Version history is kept per document in the dashboard (Versions tab), and Enquiries are stored whether or not the email got through.
+
+## If something goes wrong
+
+- **Build fails at `payload migrate`:** `DATABASE_URL` missing or the Neon database unreachable. The site itself still builds from the committed JSON if you remove the variable temporarily; the dashboard needs the database.
+- **"Publishing is not connected yet":** `PUBLISH_HOOK_URL` is missing or the hook was deleted.
+- **Uploads fail:** `BLOB_READ_WRITE_TOKEN` missing, or the request origin is not in the allowed list (see Step 2).
+- **Dashboard shows an empty site:** the import did not run. Sign in as admin and press **Import from files** on the dashboard. **Reset to files** replaces edited pages with the repository's copies (destructive, admins only).
+- **Regenerated the pages with the Python generators?** Commit the new `site/`, then in the dashboard press **Reset to files** if the structure of a page changed (new or removed sections). Wording-only changes to the generators are ignored until then, because the database is the source of truth.
+- **Function logs:** Vercel > Deployments > latest > Functions. `api/contact` logs which provider refused an email and why.
+
+## Security notes
+
+- Dashboard logins are Payload's, with bcrypt password hashes, an 8-hour session cookie, 8 failed attempts then a 15-minute lock.
+- `/admin` and `/api` are `noindex` and blocked in `robots.txt`; preview deployments carry `noindex` on every page.
+- Forms keep the honeypot, three-second rule, per-IP rate limit and link check. Enquiries are only readable when signed in.
+- The public site never queries the database. A database outage cannot take the site down.

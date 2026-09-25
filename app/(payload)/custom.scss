@@ -1,0 +1,9 @@
+/* Dashboard tweaks for the practice: brand colour on the primary actions. */
+:root {
+  --theme-elevation-0: #fbfaf7;
+}
+.publish-panel { border: 1px solid var(--theme-elevation-150); border-radius: 8px; padding: 1.2rem 1.4rem; margin-bottom: 1.5rem; background: var(--theme-elevation-0); }
+.publish-panel h2 { margin: 0 0 .4rem; font-size: 1.1rem; }
+.publish-panel p { margin: 0 0 .8rem; color: var(--theme-elevation-600); }
+.publish-panel .row { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+.publish-panel .status { font-size: .85rem; color: var(--theme-elevation-500); }
