@@ -179,12 +179,12 @@ export function htmlToLexical(html: string, opts: HtmlToLexicalOpts = {}): LexRo
     }
     if (t.tag === 'figure' || t.tag === 'img') {
       // find the img inside
-      let j = i, src = '', alt = ''
+      let j = i, src = '', alt = '', mid: string | undefined
       for (; j < toks.length; j++) {
-        if (toks[j].tag === 'img') { src = attr(toks[j].attrs, 'src') || ''; alt = attr(toks[j].attrs, 'alt') || ''; if (t.tag === 'img') { j++; break } }
+        if (toks[j].tag === 'img') { src = attr(toks[j].attrs, 'src') || ''; alt = attr(toks[j].attrs, 'alt') || ''; mid = attr(toks[j].attrs, 'data-media-id'); if (t.tag === 'img') { j++; break } }
         if (t.tag === 'figure' && toks[j].tag === 'figure' && toks[j].close) { j++; break }
       }
-      const id = opts.mediaByPath ? opts.mediaByPath(src) : undefined
+      const id = mid ? (/^\d+$/.test(mid) ? Number(mid) : mid) : (opts.mediaByPath ? opts.mediaByPath(src) : undefined)
       if (id !== undefined) blocks.push(upload(id, { fields: alt ? { alt } : null }))
       else blocks.push(paragraph([])) // image the library does not hold; keep a slot so nothing shifts
       i = j; continue
@@ -209,6 +209,8 @@ export type LexicalToHtmlOpts = {
   article?: boolean
   /** resolve an upload node to {src, alt, width, height} */
   media?: (id: any) => { src: string; alt: string; width?: number; height?: number } | undefined
+  /** editor: tag inline images with their media id so a round trip keeps them */
+  mediaIds?: boolean
   /** join blocks with this string (the generator uses "" in bodies and "\n" in articles) */
   joiner?: string
 }
@@ -304,7 +306,8 @@ export function lexicalToHtml(data: LexRoot | null | undefined, opts: LexicalToH
       const alt = (b.fields && b.fields.alt) || m.alt || ''
       const dims = m.width ? ` width="${m.width}" height="${m.height}"` : ''
       const cls = m.width && m.width < 600 ? 'post-figure post-figure--small' : 'post-figure'
-      out.push(`<figure class="${cls}"><img src="${escapeAttr(m.src)}" alt="${escapeAttr(alt)}"${dims} loading="lazy" decoding="async" onerror="this.closest('figure').remove()"></figure>`)
+      const idAttr = opts.mediaIds ? ` data-media-id="${escapeAttr(String(typeof b.value === 'object' && b.value ? b.value.id : b.value))}"` : ''
+      out.push(`<figure class="${cls}"><img src="${escapeAttr(m.src)}" alt="${escapeAttr(alt)}"${dims}${idAttr} loading="lazy" decoding="async" onerror="this.closest('figure').remove()"></figure>`)
     } else if (b.type === 'horizontalrule') {
       out.push('<hr>')
     }

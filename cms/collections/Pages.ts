@@ -104,7 +104,8 @@ const categoryGroup: Field = {
 export const Pages: CollectionConfig = {
   slug: 'pages',
   labels: { singular: 'Page', plural: 'Pages' },
-  admin: {
+  admin: { hidden: true, // superseded by the visual dashboard
+   
     useAsTitle: 'title', defaultColumns: ['title', 'path', 'template', 'updatedAt'],
     group: 'Website',
     description: 'Every page of the site. Edit the wording and photos here, then press Publish website on the dashboard.',

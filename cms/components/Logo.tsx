@@ -1,7 +1,11 @@
 import React from 'react'
+
+/* The practice's own logo files, served from the site's /assets folder. */
 export const Logo = () => (
-  <div style={{ fontFamily: 'Marcellus, Georgia, serif', fontSize: '1.6rem', letterSpacing: '.02em', color: '#1f2d3d' }}>Footscray <b>Dental Studio</b></div>
+  // eslint-disable-next-line @next/next/no-img-element
+  <img src="/assets/img/logo.png" alt="Footscray Dental Studio" width={300} height={78} style={{ width: 300, height: 'auto', maxWidth: '100%' }} />
 )
 export const Icon = () => (
-  <div style={{ width: 28, height: 28, borderRadius: 8, background: '#1f2d3d', color: '#c8a45c', display: 'grid', placeItems: 'center', fontWeight: 700, fontSize: 14 }}>F</div>
+  // eslint-disable-next-line @next/next/no-img-element
+  <img src="/assets/img/admin-mark.png" alt="" width={28} height={28} style={{ width: 28, height: 28 }} />
 )

@@ -10,7 +10,11 @@ const nextConfig = {
   skipTrailingSlashRedirect: true,
   poweredByHeader: false,
   images: { unoptimized: true },
-  outputFileTracingIncludes: { '/[...rest]': ['./public/404.html'] },
+  outputFileTracingIncludes: {
+    '/[...rest]': ['./public/404.html'],
+    // the dashboard renders the pages from the generated HTML and the schema
+    '/api/fds/[action]': ['./site/**/*.html', './content/schema.json', './content/site.json', './cms/editor-bridge.js'],
+  },
   async redirects() { return siteRedirects() },
   async headers() { return siteHeaders() },
   async rewrites() { return siteRewrites() },

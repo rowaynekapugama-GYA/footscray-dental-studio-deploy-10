@@ -1,59 +1,61 @@
 # Updating the Footscray Dental Studio website
 
-Your website has a dashboard where you can change the wording, swap photos, add blog posts and keep the practice details current. Nothing you do there goes live until you press **Publish website**, so you can take your time.
+Your website has a dashboard where you can change the wording, swap photos, update the page titles Google shows, write blog posts and keep the practice details current.
 
 **Where:** www.footscraydentalstudio.com.au/admin/
-**Login:** the email and password GYA sent you. Use **Forgot password** on the sign-in screen if you need a new one.
+**Login:** the email and password GYA sent you. If you forget your password, ask GYA and we will reset it.
 
-## The one thing to remember
+The menu on the left has everything: **Pages, Blog posts, Team, Special offers, Practice details, Enquiries, Settings**. **Sign out** is at the bottom.
 
-Saving a page stores your change. It is not on the website yet. When you are ready, go to the dashboard home (the logo, top left) and press **Publish website**. The site rebuilds itself and your changes are live about two minutes later. You can make several changes and publish them together.
+## How changes go live
+
+Press **Save changes** and the website updates by itself about two minutes later. The top bar tells you when something is not saved yet ("2 unsaved changes") and when it is ("All changes saved"). If you try to leave a page with unsaved changes, the dashboard checks with you first.
 
 ## Editing a page
 
-1. **Pages** in the menu, then click the page.
-2. **Top of page** is the headline, the line under it and the hero photo.
-3. **Sections** are the blocks of copy down the page, in order. Click a section to open it. The layout of each section is fixed; the heading, text and photo are yours to change.
-4. **Frequently asked questions** at the bottom of most pages: add, remove or reorder questions.
-5. **Save**, then publish when ready.
+1. Click **Pages**, then **Edit** next to the page.
+2. The page opens exactly as it looks on the website. **Click any text on the page** and type to change it. **Click any photo** to replace it.
+3. Press **Save changes** (or Ctrl+S, Cmd+S on a Mac).
 
-In the text editor: **bold**, *italic* and links work as you would expect. A bullet list becomes the site's tick list. A numbered list becomes the numbered steps. If you want a row of buttons, type the link text, make it bold, and add the link: the first button is dark, the rest are outlined. A line in italics on its own becomes small print.
+Use **Desktop / Mobile** at the top to see how the page looks on a phone, and **View** to open the live page in a new tab.
+
+The panel on the right has three tabs:
+
+- **Content:** a list of every photo on the page. Click a thumbnail to jump to it, type a short description in the box next to it (screen readers and Google read this), or press **Replace**.
+- **SEO:** the page title (the blue link in Google, 50 to 60 characters is ideal), the meta description (the grey text under it, 120 to 160 characters), a sharing image for Facebook and messages, and a box to hide the page from Google. The preview at the top shows roughly how it will look in Google. **Restore the launch wording** puts back what GYA set at launch.
+- **Sections:** the blocks of the page in order. Drag them, or use the arrows, to change the order. The eye hides a section without deleting it; click it again to bring the section back.
 
 ## Photos
 
-Every photo spot shows the built-in photo the site launched with. To replace it, click **Choose from existing** to pick from the media library or **Create New** to upload. Clearing the upload goes back to the built-in photo. Always write a short alt text describing the photo; screen readers and Google read it.
-
-Photos are resized on upload, so a phone photo is fine. Landscape works best for hero images.
+When you replace a photo you can pick one from the library or upload a new one. Phone photos are fine; they are resized automatically. Landscape works best for the large photos at the top of pages. Always describe the photo in a few words when you upload it.
 
 ## Blog posts
 
-**Blog posts > Create new.** Headline, web address (made from the headline, you can shorten it), category, a two-sentence summary, a featured image, then the article. Add images inside the article with the + button in the editor.
+**Blog posts > New post.** Type the headline, then write the article in the big box. The toolbar has headings (H2, H3), bold, italic, links, bullet and numbered lists, quotes, and **Photo** to add a picture inside the article.
 
-Tick **Show the surgical procedure note** on any article about a surgical or invasive procedure (implants, extractions, wisdom teeth). It adds the wording the Dental Board expects.
+On the right: the featured image, a one or two sentence summary, the category, the date, the web address (made from the headline if you leave it empty) and the search engine settings.
 
-**Save as draft** keeps it private. **Publish** makes it part of the next site publish. The blog index, the sitemap and the related-articles links all update themselves.
+Tick **Add the surgical procedure note** on any article about implants, extractions, wisdom teeth or other invasive treatment. It adds the wording the Dental Board expects.
+
+**Save draft** keeps a post private. **Publish** puts it on the website. On a published post, **Unpublish** takes it down again and **Delete this post** removes it completely. The blog page, the sitemap and the related articles update themselves.
 
 ## Team, offers and practice details
 
-- **Team:** each dentist's name, role, photo and bio. Change the order with the Order field. Untick nothing, just tick **Hide from the site** if someone is away.
-- **Special offers:** title, price, what it includes, the button text, and optionally a start and end date. An offer with an end date drops off the site by itself on the next publish. Advertising rules: every offer must state the exact price, what is included and the period; no "free" unless it truly is; no urgency wording.
-- **Site settings:** phone, email, address, opening hours, social links, the Google reviews link, and the announcement bar for holiday closures. A change here updates every page, including the Call buttons and the details Google reads.
-
-## Search engine settings (SEO)
-
-Every page and post has an **SEO** tab: the title tag (what Google shows as the blue link), the meta description (the grey text under it), a sharing image for Facebook and messages, and a tick box to hide the page from search engines. Keep titles under 60 characters and descriptions between 120 and 160. If you are not sure, leave them; GYA set them at launch.
+- **Team:** each practitioner's photo, name, role and bio, in the order shown on the Meet the Team page. Use the arrows to reorder and the bin to remove someone. Names and qualifications must match their registration exactly.
+- **Special offers:** title, price, a small note, the description, what is included (one item per line) and the button text. Every offer must state the exact price, what it includes and when it ends. No "free" unless it truly is, and no urgency wording.
+- **Practice details:** phone, email, address, the Google Maps link, opening hours, the announcement bar (for holiday closures and similar), the Google reviews link and social media links. A change here updates every page, including the Call buttons and the details Google reads.
 
 ## Enquiries
 
-Every form sent from the website is emailed to the practice and also listed under **Enquiries**, with whether the email got through. Tick **Followed up** as you work through them.
+Every form sent from the website is emailed to the practice and also listed here. Click one to see the full message. Tick **Followed up** as you work through them.
 
-## Redirects
+## Settings
 
-If you retire a page or change a blog post's address, add a redirect (old address, new address) so old links and Google still land somewhere useful. Takes effect on the next publish.
+Change your password, see when the website was last updated, and add redirects. If you rename a blog post's web address or retire a page, add a redirect from the old address to the new one so old links and Google still land somewhere useful.
 
 ## Things that need GYA
 
-The menu and footer links, the health fund logos, the legal pages, and anything about the design or layout. Email or call us and we will sort it.
+The menu and footer links, the health fund logos, the legal pages, adding brand new pages, and anything about the design or layout. Email or call us and we will sort it.
 
 ## Wording rules for a dental website
 

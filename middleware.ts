@@ -12,7 +12,7 @@ import { NextRequest, NextResponse } from 'next/server'
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
   if (pathname === '/') { const u = req.nextUrl.clone(); u.pathname = '/index.html'; return NextResponse.rewrite(u) }
-  if (pathname.startsWith('/admin') || pathname.startsWith('/api') || pathname.startsWith('/_next') || /\.[a-zA-Z0-9]+$/.test(pathname)) return NextResponse.next()
+  if (pathname.startsWith('/admin') || pathname.startsWith('/cms') || pathname.startsWith('/api') || pathname.startsWith('/_next') || /\.[a-zA-Z0-9]+$/.test(pathname)) return NextResponse.next()
   if (!pathname.endsWith('/')) {
     // NextURL normalises trailing slashes away (trailingSlash: false), so build the Location by hand
     const u = new URL(req.url)

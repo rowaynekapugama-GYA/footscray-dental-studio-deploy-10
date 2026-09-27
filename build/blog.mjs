@@ -251,7 +251,7 @@ function writeSitemap(posts, indexPages) {
   for (let n = 2; n <= indexPages; n++) rows.push(`  <url><loc>${SITE}${BLOG_URL}page/${n}/</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>`)
   for (const p of posts) if (!p.noindex) rows.push(`  <url><loc>${SITE}${p.url}</loc><lastmod>${p.date_modified}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`)
   fs.writeFileSync(path.join(SITE_DIR, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + rows.join('\n') + '\n</urlset>\n')
-  fs.writeFileSync(path.join(SITE_DIR, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /api/\n\nSitemap: ${SITE}/sitemap.xml\n`)
+  fs.writeFileSync(path.join(SITE_DIR, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /cms/\nDisallow: /api/\n\nSitemap: ${SITE}/sitemap.xml\n`)
 }
 
 export async function buildBlog() {

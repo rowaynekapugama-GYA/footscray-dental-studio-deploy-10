@@ -1,7 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 import { htmlToLexical, lexicalToHtml } from '../cms/richtext'
-const C = require('/home/claude/footscray-sitekit/lib/content.js')
+import { createRequire } from 'module'
+const C = createRequire(import.meta.url)('/home/claude/footscray-sitekit/lib/content.cjs')
 const content = JSON.parse(fs.readFileSync('/home/claude/footscray-sitekit/content/site.json', 'utf8'))
 const schema = JSON.parse(fs.readFileSync('/home/claude/footscray-sitekit/content/schema.json', 'utf8'))
 const idx = C.fieldIndex(schema)

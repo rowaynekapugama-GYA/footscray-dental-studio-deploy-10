@@ -1,11 +1,11 @@
-# Redesign Changelog — Footscray Dental Studio (v2 "Glowdent" design language)
+# Redesign Changelog: Footscray Dental Studio (v2 "Glowdent" design language)
 
 Content, sitemap structure, URLs, copy and internal linking are unchanged from v1.
 This revision is a complete visual redesign of all 31 pages plus a real-imagery pass.
 
 ## Global design system (new `assets/css/styles.css`)
 - Floating pill header detached from the top edge, sticky with shadow transition; centred nav; navy "Book an Appointment" pill (gold hover) + gold-outlined emergency "Call Now" pill; collapses to a rounded card menu on mobile
-- Services dropdown rebuilt as an **image mega menu** — pill-framed category photos (client-supplied) over each column, hover zoom, gradient fallbacks. Fixed the "opens then disappears" bug (hover/click toggle conflict + hover dead-gap; clicks now only open on desktop, hover-close has a 260 ms grace period and a bridged gap)
+- Services dropdown rebuilt as an **image mega menu**, pill-framed category photos (client-supplied) over each column, hover zoom, gradient fallbacks. Fixed the "opens then disappears" bug (hover/click toggle conflict + hover dead-gap; clicks now only open on desktop, hover-close has a 260 ms grace period and a bridged gap)
 - All buttons are pills ending in a **circular badge with a thick diagonal ↗ arrow** (client-approved style), colour-swapping on hover with a diagonal slide and a springy entrance pop
 - White / off-white `#f5f5f3` alternating sections; navy reserved for feature sections, CTA moments and the footer; 20–24 px radii everywhere; scroll-reveal (fade/translate) with `prefers-reduced-motion` respected
 - Marcellus display type scaled up dramatically; Poppins body/nav/buttons
@@ -19,11 +19,11 @@ This revision is a complete visual redesign of all 31 pages plus a real-imagery 
 ## Imagery
 - Client-supplied (imgur): home hero, two editorial floats, story image, five service icons, four mega-menu pills
 - Higgsfield-generated (hosted URLs, per earlier step): five trust avatars + services photo card
-- All other pages use curated **Unsplash stock** (heroes, splits, category/hub cards, team placeholders) — every image has a graceful navy-gradient fallback if it fails to load
-- All imagery is hot-linked per client instruction ("download and localise at the end") — see IMAGE-MANIFEST.md for the full URL map
+- All other pages use curated **Unsplash stock** (heroes, splits, category/hub cards, team placeholders), every image has a graceful navy-gradient fallback if it fails to load
+- All imagery is hot-linked per client instruction ("download and localise at the end"), see IMAGE-MANIFEST.md for the full URL map
 
 ## QA
-- 31/31 pages rebuilt — zero remnants of the v1 design (verified by class-name sweep)
+- 31/31 pages rebuilt, zero remnants of the v1 design (verified by class-name sweep)
 - 0 dead links / 0 root-relative links (filesystem-resolved check across every href/src); one `<h1>` per page; unique titles & meta descriptions
 - Copy-verbatim check at the approved baseline (only layout adaptations, e.g. link rows rendered as cards)
 - Browser pass at 390 px and 1440 px on 10 representative pages: no horizontal overflow, no JS errors; mega menu, drawer, accordions and both forms tested
@@ -40,10 +40,10 @@ This revision is a complete visual redesign of all 31 pages plus a real-imagery 
 - **Meet Our Team** rebuilt: Dr Adeela Younis, Dr. Zainab Zahid and Dr. Nikhat H. Syeda now appear as full-width profile rows (client headshot one side, name and bio the other, alternating sides, photo pinning as the longer bios scroll) with their supplied bios reproduced verbatim; Dr Alan and Dr Abu Baker remain below as two balanced to-be-confirmed cards, and the review note now flags only what is still outstanding
 - `IMAGE-MANIFEST.md` extended to cover every client-supplied page photo and the three headshots, so the pre-launch localisation pass has one complete download list
 
-## Sitewide revision — hero text & card balance
+## Sitewide revision, hero text & card balance
 - Every hero trimmed to breadcrumbs + eyebrow + heading + one short intro sentence (≤ ~40 words) + CTAs; the hero scrim lightened to match
 - All remaining hero copy relocated **verbatim** into a new split "Overview" section directly below the hero (gold eyebrow + Marcellus heading left, relocated paragraphs right); merged into existing overview-style sections where one already existed (category pages → "What to Expect…", About → "Our Story", Book → "How Booking Works" intro, home → statement lead-in); Contact's 37-word hero already complied and was left as-is
-- All card grids rebalanced: equal row heights (`align-items: stretch`, flex cards, bottom-pinned CTAs), count-aware column classes so no row is left with a stranded orphan — 5-item grids render 3+2 centred at desktop, 2+2+1-centred at tablet, stacked on mobile; single related-service cards centre; steps grids are count-aware (3, 4, 5→3+2, 6→3+3, 7→4+3)
+- All card grids rebalanced: equal row heights (`align-items: stretch`, flex cards, bottom-pinned CTAs), count-aware column classes so no row is left with a stranded orphan, 5-item grids render 3+2 centred at desktop, 2+2+1-centred at tablet, stacked on mobile; single related-service cards centre; steps grids are count-aware (3, 4, 5→3+2, 6→3+3, 7→4+3)
 
 ## Blog preview and card link fixes (post-migration)
 - **Read Article button is now a real link.** It was rendered as a `<span>`, so it looked like a button but did nothing. It is now an `<a>` pointing at the post, and the whole card is a click target via a stretched overlay on the title link.
@@ -65,6 +65,19 @@ This revision is a complete visual redesign of all 31 pages plus a real-imagery 
 - Blog posts are edited in the dashboard; the 32 launch articles were imported with their images. The blog is rendered by build/blog.mjs, a port of blog.py that reproduces its output exactly.
 - Forms unchanged for visitors; each enquiry is now also stored in the dashboard.
 - Fixed a raw markdown link on the Special Offers page ("[All-on-X](...)" now renders as a link).
+- Dashboard in the practice's branding: the real logo on the sign-in screen, the arch mark as the icon, navy pill buttons, gold accents, Marcellus headings and Poppins text, the site's off-white ground.
 - A malformed BLOB_READ_WRITE_TOKEN (quotes, the name pasted in front, or the wrong value) no longer stops the dashboard: quotes and the name are stripped, and anything still unusable switches photo uploads off with a message on the dashboard saying what is wrong.
 - Preview deployments need no per-branch address setting: the dashboard's API calls are relative on previews.
 - Removed the interim JSON-on-GitHub admin panel (api/admin, admin/) and its environment variables.
+
+## 3.1.0 (26 September 2026): visual dashboard, same as Coastal Dental
+
+- /admin is now a visual editor in the Coastal Dental layout: dark menu on the left (Pages, Blog posts, Team, Special offers, Practice details, Enquiries, Settings, Signed in as, Sign out), and a page editor that shows the real page. Click any text to edit it in place, click any photo to replace it, Desktop and Mobile preview, Save changes.
+- Right-hand panel on every page: Content (every photo on the page with its alt text and a Replace button), SEO (title, description with character counts and a Google preview, sharing image, hide from Google, restore launch wording) and Sections (drag to reorder, hide or show).
+- Blog editor with a toolbar (headings, bold, italic, links, lists, quotes, photos), featured image, summary, category, date, web address, SEO fields and the surgical procedure note. Save draft, Publish, Unpublish, Delete.
+- Team, Special offers and Practice details (phone, email, address, maps link, hours, announcement bar, reviews link, socials) as simple forms. Enquiries list with Followed up. Settings: update the website now, change password, add editors, redirects.
+- Saving updates the website by itself; there is no separate Publish step.
+- Page content now lives in one database document (site-content) keyed like the page markers, with the last 25 saves kept as versions GYA can restore from /cms.
+- The Payload admin moved to /cms (GYA only). Blocked in robots.txt and noindex.
+- The live site is unchanged. Tested: a text edit, a photo swap with new alt text, a new SEO title and a hidden section on the About page each came through in the published HTML and nothing else changed; restoring the content gave back byte-identical pages.
+- Safety: until the 32 launch articles have been imported (the first import waits for a working Blob token), a build keeps the committed blog instead of the empty database, so an early save can never empty the live blog. The Blog posts screen says so and hides New post until then.

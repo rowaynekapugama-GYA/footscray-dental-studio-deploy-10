@@ -5,7 +5,8 @@ import { line, changeHooks } from '../fields'
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   label: 'Site settings',
-  admin: { group: 'Practice', description: 'Practice details used across every page: phone, email, address, hours, socials, announcement bar.' },
+  admin: { hidden: true, // superseded by the visual dashboard
+    group: 'Practice', description: 'Practice details used across every page: phone, email, address, hours, socials, announcement bar.' },
   access: { read: anyone, update: isLoggedIn },
   hooks: changeHooks,
   fields: [

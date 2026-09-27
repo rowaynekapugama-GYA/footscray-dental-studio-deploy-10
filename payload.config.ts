@@ -16,6 +16,7 @@ import { Enquiries } from './cms/collections/Enquiries'
 import { Redirects } from './cms/collections/Redirects'
 import { SiteSettings } from './cms/globals/SiteSettings'
 import { SiteStatus } from './cms/globals/SiteStatus'
+import { SiteContent } from './cms/globals/SiteContent'
 import { publishSite, importContent, siteStatus } from './cms/endpoints'
 import { blobToken } from './cms/blob'
 
@@ -45,18 +46,20 @@ export default buildConfig({
   ...(IS_PREVIEW ? {} : { serverURL: SITE_URL }),
   cors: hosts,
   csrf: hosts,
+  routes: { admin: '/cms' },
   admin: {
     user: Users.slug,
+    importMap: { baseDir: path.resolve(dirname), importMapFile: path.resolve(dirname, 'app/(payload)/cms/importMap.js') },
     meta: { titleSuffix: ' | Footscray Dental Studio admin', description: 'Website dashboard' },
     components: {
       beforeDashboard: ['@/cms/components/PublishPanel#PublishPanel'],
       graphics: { Logo: '@/cms/components/Logo#Logo', Icon: '@/cms/components/Logo#Icon' },
     },
-    importMap: { baseDir: path.resolve(dirname) },
     theme: 'light',
+    avatar: 'default',   // no Gravatar look-ups for the practice's logins
   },
   collections: [Pages, Posts, Team, Offers, Media, Enquiries, Redirects, Users],
-  globals: [SiteSettings, SiteStatus],
+  globals: [SiteSettings, SiteStatus, SiteContent],
   editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || 'dev-only-secret-change-me',
   typescript: { outputFile: path.resolve(dirname, 'payload-types.ts') },

@@ -33,6 +33,7 @@ export function siteHeaders() {
     { source: '/:path*', headers: [{ key: 'X-Content-Type-Options', value: 'nosniff' }, { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' }] },
     { source: '/admin/:path*', headers: [noindexStaging, { key: 'Cache-Control', value: 'no-store' }] },
     { source: '/admin', headers: [noindexStaging, { key: 'Cache-Control', value: 'no-store' }] },
+    { source: '/cms/:path*', headers: [noindexStaging, { key: 'Cache-Control', value: 'no-store' }] },
     { source: '/api/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex' }] },
     // preview deployments never compete with the live site in search
     { source: '/:path*', has: [{ type: 'host', value: '(.*)\\.vercel\\.app' }], headers: [noindexStaging] },

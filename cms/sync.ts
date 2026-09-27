@@ -219,6 +219,22 @@ export async function importContent(payload: Payload, opts: { overwrite?: boolea
     if (rel.length) await payload.update({ collection: 'posts', id: c.id, data: { related: rel } })
   }
 
+  // the visual dashboard's store: the whole of content/site.json, plus each page's title tag
+  const store: any = await payload.findGlobal({ slug: 'site-content', depth: 0, overrideAccess: true })
+  if (overwrite || !store?.data || !Object.keys(store.data).length) {
+    const data = JSON.parse(JSON.stringify(content))
+    data.seo = data.seo || {}
+    for (const p of pagePaths()) {
+      const tpl = templateOf(p, blogSlugs)
+      if (!tpl || tpl === 'blog' || data.seo[p]) continue   // blog pages take their SEO from the posts
+      const f = path.join(SITE, p === '/' ? '' : p.slice(1), 'index.html')
+      const m = headMeta(fs.readFileSync(f, 'utf8'))
+      data.seo[p] = { title: m.title, description: m.description, og_image: '', noindex: false }
+    }
+    data.layout = data.layout || {}
+    await payload.updateGlobal({ slug: 'site-content', data: { data }, overrideAccess: true })
+    log('site content store filled from the files')
+  }
   await payload.updateGlobal({ slug: 'site-status', data: { lastImportedAt: new Date().toISOString() } })
   log(`imported: ${JSON.stringify(counts)}`)
   return counts
@@ -232,6 +248,8 @@ export async function pullContent(payload: Payload, opts: { log?: Log; write?: b
   for (const p of walk(SITE).filter(f => f.endsWith('.html'))) C.collectOpts(fs.readFileSync(p, 'utf8'), optsByKey)
   const rich = (key: string, v: any) => fromRich(v, optsByKey[key] || {})
 
+  const store: any = await payload.findGlobal({ slug: 'site-content', depth: 0, overrideAccess: true })
+  const fromStore = store?.data && typeof store.data === 'object' && Object.keys(store.data).length ? store.data : null
   const settings: any = await payload.findGlobal({ slug: 'site-settings', depth: 0 })
   const site: any = {
     practice: settings.practice || {},
@@ -241,8 +259,8 @@ export async function pullContent(payload: Payload, opts: { log?: Log; write?: b
     pages: {}, seo: {},
   }
 
-  const pages: any[] = (await payload.find({ collection: 'pages', limit: 500, depth: 2 })).docs
-  if (!pages.length) {
+  const pages: any[] = fromStore ? [] : (await payload.find({ collection: 'pages', limit: 500, depth: 2 })).docs
+  if (!fromStore && !pages.length) {
     log('the database has no pages yet (run Import from files on the dashboard); keeping the committed content files')
     return null
   }
@@ -288,12 +306,13 @@ export async function pullContent(payload: Payload, opts: { log?: Log; write?: b
     site.seo[d.path] = { title: d.metaTitle || '', description: d.metaDescription || '', og_image: slotPath(d.ogImage), noindex: Boolean(d.noindex) }
   }
 
-  const team: any[] = (await payload.find({ collection: 'team', limit: 100, depth: 1, sort: 'order', where: { hidden: { not_equals: true } } })).docs
-  site.team = team.map(t => ({ name: t.name, role: t.role, photo: slotPath(t.photo), bio: fromRich(t.bio) }))
+  if (fromStore) Object.assign(site, JSON.parse(JSON.stringify(fromStore)))
+  const team: any[] = fromStore ? [] : (await payload.find({ collection: 'team', limit: 100, depth: 1, sort: 'order', where: { hidden: { not_equals: true } } })).docs
+  if (!fromStore) site.team = team.map(t => ({ name: t.name, role: t.role, photo: slotPath(t.photo), bio: fromRich(t.bio) }))
 
   const today = new Date().toISOString().slice(0, 10)
-  const offers: any[] = (await payload.find({ collection: 'offers', limit: 100, depth: 0, sort: 'order' })).docs
-  site.offers = offers
+  const offers: any[] = fromStore ? [] : (await payload.find({ collection: 'offers', limit: 100, depth: 0, sort: 'order' })).docs
+  if (!fromStore) site.offers = offers
     .filter(o => !o.hidden && (!o.startDate || o.startDate.slice(0, 10) <= today) && (!o.endDate || o.endDate.slice(0, 10) >= today))
     .map(o => ({ title: o.title, price: o.price || '', note: o.note || '', body: fromRich(o.body), bullets: (o.bullets || []).map((b: any) => b.text).join('\n'), cta_label: o.cta_label || 'Book Now' }))
 
@@ -317,12 +336,19 @@ export async function pullContent(payload: Payload, opts: { log?: Log; write?: b
   const redirects: any[] = (await payload.find({ collection: 'redirects', limit: 500, depth: 0 })).docs
   const redirectsJson = redirects.map(r => ({ from: r.from, to: r.to, type: r.type || '301' }))
 
+  // Until the launch articles have been imported (the first import waits for working photo
+  // storage), the database has no posts at all. Never let that empty the live blog.
+  const imported = (await payload.count({ collection: 'pages', overrideAccess: true })).totalDocs > 0
+  const anyPosts = (await payload.count({ collection: 'posts', overrideAccess: true })).totalDocs
+  const keepPosts = !imported || anyPosts === 0
+  if (keepPosts) log('the launch articles are not in the database yet; keeping the committed content/posts.json')
+
   if (write) {
     fs.mkdirSync(CONTENT, { recursive: true })
     fs.writeFileSync(path.join(CONTENT, 'site.json'), JSON.stringify(site, null, 2) + '\n')
-    fs.writeFileSync(path.join(CONTENT, 'posts.json'), JSON.stringify(postsJson, null, 2) + '\n')
+    if (!keepPosts) fs.writeFileSync(path.join(CONTENT, 'posts.json'), JSON.stringify(postsJson, null, 2) + '\n')
     fs.writeFileSync(path.join(CONTENT, 'redirects.json'), JSON.stringify(redirectsJson, null, 2) + '\n')
-    log(`pulled: ${pages.length} pages, ${postsJson.length} posts, ${site.team.length} team, ${site.offers.length} offers, ${redirectsJson.length} redirects`)
+    log(`pulled: ${pages.length} pages, ${keepPosts ? 'committed' : postsJson.length} posts, ${site.team.length} team, ${site.offers.length} offers, ${redirectsJson.length} redirects`)
   }
   return { site, posts: postsJson, redirects: redirectsJson }
 }

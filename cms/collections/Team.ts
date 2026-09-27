@@ -5,7 +5,8 @@ import { imageSlot, richBody, changeHooks } from '../fields'
 export const Team: CollectionConfig = {
   slug: 'team',
   labels: { singular: 'Practitioner', plural: 'Team' },
-  admin: { useAsTitle: 'name', defaultColumns: ['name', 'role', 'order', 'updatedAt'], group: 'Website',
+  admin: { hidden: true, // superseded by the visual dashboard
+    useAsTitle: 'name', defaultColumns: ['name', 'role', 'order', 'updatedAt'], group: 'Website',
     description: 'The practitioners on the Meet the Team page, in order.' },
   access: { read: anyone, create: isLoggedIn, update: isLoggedIn, delete: isLoggedIn },
   defaultSort: 'order',

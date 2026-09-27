@@ -102,10 +102,12 @@ export interface Config {
   globals: {
     'site-settings': SiteSetting;
     'site-status': SiteStatus;
+    'site-content': SiteContent;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'site-status': SiteStatusSelect<false> | SiteStatusSelect<true>;
+    'site-content': SiteContentSelect<false> | SiteContentSelect<true>;
   };
   locale: null;
   widgets: {
@@ -1425,6 +1427,24 @@ export interface SiteStatus {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-content".
+ */
+export interface SiteContent {
+  id: number;
+  data?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -1469,6 +1489,16 @@ export interface SiteStatusSelect<T extends boolean = true> {
   lastPublishedAt?: T;
   lastImportedAt?: T;
   lastPublishNote?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-content_select".
+ */
+export interface SiteContentSelect<T extends boolean = true> {
+  data?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

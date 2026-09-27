@@ -5,7 +5,8 @@ import { richBody, changeHooks } from '../fields'
 export const Offers: CollectionConfig = {
   slug: 'offers',
   labels: { singular: 'Special offer', plural: 'Special offers' },
-  admin: { useAsTitle: 'title', defaultColumns: ['title', 'price', 'order', 'endDate', 'updatedAt'], group: 'Website',
+  admin: { hidden: true, // superseded by the visual dashboard
+    useAsTitle: 'title', defaultColumns: ['title', 'price', 'order', 'endDate', 'updatedAt'], group: 'Website',
     description: 'Offer cards on the Special Offers page and the homepage. Every offer must state its price, what it includes and when it ends.' },
   access: { read: anyone, create: isLoggedIn, update: isLoggedIn, delete: isLoggedIn },
   defaultSort: 'order',
