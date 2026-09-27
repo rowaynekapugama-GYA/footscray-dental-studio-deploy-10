@@ -1,3 +1,21 @@
+# built output (Vercel builds it on deploy; run `npm run build` locally)
+public/
+# local secrets and test artefacts
+.env
+outbox/
+node_modules/
+__pycache__/
+.DS_Store
+# never commit credentials
+ADMIN_CREDENTIALS.txt
+# vercel cli output
+.vercel/
+# local uploads (production uses Vercel Blob) and Next build output
+media/
+.next/
+content/site.extracted.json
+
+# macOS
 .DS_Store
 ._*
 __MACOSX/

@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /cms/
+Disallow: /api/
 
 Sitemap: https://www.footscraydentalstudio.com.au/sitemap.xml
