@@ -81,3 +81,4 @@ This revision is a complete visual redesign of all 31 pages plus a real-imagery 
 - The Payload admin moved to /cms (GYA only). Blocked in robots.txt and noindex.
 - The live site is unchanged. Tested: a text edit, a photo swap with new alt text, a new SEO title and a hidden section on the About page each came through in the published HTML and nothing else changed; restoring the content gave back byte-identical pages.
 - Safety: until the 32 launch articles have been imported (the first import waits for a working Blob token), a build keeps the committed blog instead of the empty database, so an early save can never empty the live blog. The Blog posts screen says so and hides New post until then.
+- ADMIN_EMAIL / ADMIN_PASSWORD now create that login on the next build whenever no account has that email yet (previously only when there were no users at all). Existing accounts are never changed.
