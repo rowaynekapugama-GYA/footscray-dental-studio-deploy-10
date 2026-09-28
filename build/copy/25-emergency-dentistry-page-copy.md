@@ -12,7 +12,7 @@
 
 Dental emergencies can happen without warning — a sudden toothache, a knocked-out tooth from a fall, or a broken filling that leaves a tooth exposed and sensitive. When this happens, prompt attention can make a real difference to both your comfort and the outcome for your tooth. At Footscray Dental Studio, we aim to see emergency patients as quickly as possible during our opening hours.
 
-**If you're experiencing a dental emergency, please call us directly on (03) 9000 0792.**
+**If you're experiencing a dental emergency, please call us directly on (03) 7044 7722.**
 
 **[Call Now]**  **[Book an Emergency Appointment]**
 
@@ -60,13 +60,15 @@ Apply a cold compress to the outside of the affected area and contact us promptl
 We aim to accommodate emergency patients as promptly as possible within our opening hours. Calling ahead helps our team prepare for your visit and advise you on immediate care while you're on your way.
 
 **Opening Hours**
-Monday–Friday: 9:00am–5:00pm
+Monday: 9:00am–5:00pm
+Tuesday: 9:00am–6:00pm
+Wednesday–Friday: 9:00am–5:00pm
 Saturday: 9:00am–3:00pm
 Sunday: By appointment only
 
 For dental emergencies outside these hours, please contact your nearest hospital emergency department or after-hours medical service.
 
-**[Call (03) 9000 0792]**
+**[Call (03) 7044 7722]**
 
 ---
 

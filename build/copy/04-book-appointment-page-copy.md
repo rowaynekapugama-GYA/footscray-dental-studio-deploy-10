@@ -10,7 +10,7 @@
 
 Booking your visit with Footscray Dental Studio is simple. Choose a time that suits you online, or give our friendly team a call — we're happy to help find an appointment that works around your schedule, whether it's your first visit or a routine check-up.
 
-**[Book Online]**  **[Call (03) 9000 0792]**
+**[Book Online]**  **[Call (03) 7044 7722]**
 
 ---
 
@@ -58,14 +58,14 @@ Each appointment is specially reserved for you, and our team prepares in advance
 
 ## Ready to Book?
 
-**[Book Online]**  **[Call (03) 9000 0792]**  **[Contact Us]**
+**[Book Online]**  **[Call (03) 7044 7722]**  **[Contact Us]**
 
 ---
 
 ## Frequently Asked Questions
 
 **How do I book an appointment?**
-You can book online or call us on (03) 9000 0792 — our team will help find a time that suits you, whether online or over the phone.
+You can book online or call us on (03) 7044 7722 — our team will help find a time that suits you, whether online or over the phone.
 
 **What should I bring to my first visit?**
 Your Medicare/health fund card, any referral letters or relevant records, a list of current medications, and any previous X-rays or reports, if available.

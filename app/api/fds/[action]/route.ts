@@ -6,6 +6,7 @@ import {
   postToEditor, editorToPost, triggerPublish,
 } from '@/cms/editor'
 import { blobToken } from '@/cms/blob'
+import { timingSafeEqual } from 'crypto'
 
 /**
  * The visual dashboard's API. Every action needs a signed-in dashboard user (Payload's
@@ -60,8 +61,46 @@ export async function GET(req: NextRequest, ctx: { params: Promise<{ action: str
   return json({ ok: false, error: 'Unknown action.' }, 404)
 }
 
+/**
+ * Sign-in rescue for the login set in Vercel (ADMIN_EMAIL + ADMIN_PASSWORD). Called by the
+ * sign-in form only after a normal sign-in fails. If the typed email and password are exactly
+ * those two variables, the account is created (or its password set back to that value and any
+ * lock cleared), so the login in Vercel always works at runtime, whatever happened at build.
+ * Once ADMIN_PASSWORD is deleted from Vercel this does nothing.
+ */
+const same = (a: string, b: string) => {
+  const x = Buffer.from(a), y = Buffer.from(b)
+  return x.length === y.length && timingSafeEqual(x, y)
+}
+async function ensureAdmin(req: NextRequest) {
+  await new Promise(r => setTimeout(r, 800)) // slows guessing; Payload's own lockout still applies to sign-in
+  let body: any = {}
+  try { body = await req.json() } catch { body = {} }
+  const envEmail = (process.env.ADMIN_EMAIL || '').trim().toLowerCase()
+  const envPass = process.env.ADMIN_PASSWORD || ''
+  if (!envEmail || !envPass) return json({ ok: false, reason: 'no-env' })
+  const email = String(body.email || '').trim().toLowerCase(), password = String(body.password || '')
+  if (!same(email, envEmail) || !same(password, envPass)) return json({ ok: false, reason: 'no-match' })
+  try {
+    const payload = await getPayload({ config })
+    const found = await payload.find({ collection: 'users', overrideAccess: true, limit: 1, depth: 0, where: { email: { equals: envEmail } } })
+    if (!found.docs.length) {
+      await payload.create({ collection: 'users', overrideAccess: true, data: { email: envEmail, password: envPass, name: process.env.ADMIN_NAME || 'Admin', role: 'admin' } as any })
+      console.log(`sign-in rescue: created ${envEmail}`)
+    } else {
+      await payload.update({ collection: 'users', id: (found.docs[0] as any).id, overrideAccess: true, data: { password: envPass, loginAttempts: 0, lockUntil: null, role: 'admin' } as any })
+      console.log(`sign-in rescue: reset the password of ${envEmail} to ADMIN_PASSWORD`)
+    }
+    return json({ ok: true })
+  } catch (e: any) {
+    console.error('sign-in rescue failed', e)
+    return json({ ok: false, reason: 'db', detail: String(e?.message || e).slice(0, 300) })
+  }
+}
+
 export async function POST(req: NextRequest, ctx: { params: Promise<{ action: string }> }) {
   const { action } = await ctx.params
+  if (action === 'ensure-admin') return ensureAdmin(req)
   const { payload, user } = await session(req)
   if (!user) return json({ ok: false, error: 'Please sign in.' }, 401)
   if (req.headers.get('x-requested-with') !== 'fds') return json({ ok: false, error: 'Forbidden' }, 403)

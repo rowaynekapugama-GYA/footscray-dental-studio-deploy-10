@@ -4,8 +4,8 @@
   "globals": [
     {
       "key": "practice.phone",
-      "original": "(03) 9000 0792",
-      "tel_original": "tel:+61390000792"
+      "original": "(03) 7044 7722",
+      "tel_original": "tel:+61370447722"
     },
     {
       "key": "practice.email",
@@ -129,7 +129,7 @@
           "key": "announcement.text",
           "label": "Message",
           "type": "text",
-          "placeholder": "We are closed on Friday 26 December. Emergencies: call (03) 9000 0792."
+          "placeholder": "We are closed on Friday 26 December. Emergencies: call (03) 7044 7722."
         },
         {
           "key": "announcement.link",

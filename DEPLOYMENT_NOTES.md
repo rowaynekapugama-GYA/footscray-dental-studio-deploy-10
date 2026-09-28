@@ -37,7 +37,7 @@ Settings > Environments > Production. Keep the existing `SMTP2GO_API_KEY`, `CONT
 | `NEXT_PUBLIC_SERVER_URL` | `https://www.footscraydentalstudio.com.au`, **Production only**, type Config (Vercel will not store a `NEXT_PUBLIC_` variable as Secret). Previews need nothing: the dashboard uses whatever address it was opened on. |
 | `PUBLISH_HOOK_URL` | the deploy hook URL from step 1 |
 | `ADMIN_EMAIL` | the admin login, e.g. `info@footscraydentalstudio.com.au` |
-| `ADMIN_PASSWORD` | its password (10+ characters). On each build, if no account has `ADMIN_EMAIL` yet, one is created as an admin with this password. Existing accounts are never changed, so to add a new admin login just change these two and redeploy. Delete `ADMIN_PASSWORD` once you have signed in. |
+| `ADMIN_PASSWORD` | its password (10+ characters). On each build, if no account has `ADMIN_EMAIL` yet, one is created as an admin with this password. Existing accounts are never changed, so to add a new admin login just change these two and redeploy. The sign-in form also accepts these two exactly as typed in Vercel even if the build did not create the account: it creates the account, or resets its password to `ADMIN_PASSWORD` and clears a lockout, then signs in. Delete `ADMIN_PASSWORD` once you have signed in; that switches this off. |
 | `ADMIN_NAME` | optional, `GYA` |
 
 Tick Preview as well as Production for all the others, so a branch deploy has a working dashboard.

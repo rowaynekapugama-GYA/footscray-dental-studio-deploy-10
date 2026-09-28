@@ -1,6 +1,6 @@
 # Blog migration writing rules — Footscray Dental Studio (read fully before writing)
 
-You are rewriting a blog post from the old Ezy Dental Group site as Footscray Dental Studio's own content. Same practice, same address (289 Barkly St, Footscray VIC 3011), same phone ((03) 9000 0792), new name and new leadership. The goal is an SEO-safe migration: the post must keep its ranking signals while reading as fresh, first-party content.
+You are rewriting a blog post from the old Ezy Dental Group site as Footscray Dental Studio's own content. Same practice, same address (289 Barkly St, Footscray VIC 3011), same phone ((03) 7044 7722), new name and new leadership. The goal is an SEO-safe migration: the post must keep its ranking signals while reading as fresh, first-party content.
 
 ## Output file
 

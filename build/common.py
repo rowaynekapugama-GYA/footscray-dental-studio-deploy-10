@@ -6,18 +6,28 @@ from pathlib import Path
 COPY_DIR = Path(__file__).resolve().parent / "copy"
 OUT = Path(__file__).resolve().parent.parent / "site"
 
-PHONE_DISPLAY = "(03) 9000 0792"
-PHONE_TEL = "tel:+61390000792"
+PHONE_DISPLAY = "(03) 7044 7722"
+PHONE_TEL = "tel:+61370447722"
 EMAIL = "info@footscraydentalstudio.com.au"
 ADDRESS = "289 Barkly St, Footscray VIC 3011"
-MAPS_URL = "https://www.google.com/maps/search/?api=1&query=289+Barkly+St+Footscray+VIC+3011"
+MAPS_URL = "https://www.google.com/maps/place/Footscray+Dental+Studio/@-37.7993294,144.8944961,854m/data=!3m2!1e3!4b1!4m6!3m5!1s0x6ad65de4a43b38a1:0x4f4153651d19ea89!8m2!3d-37.7993294!4d144.8944961!16s%2Fg%2F11nw1dhhcj"
 SITE_NAME = "Footscray Dental Studio"
 
-HOURS = [("Monday–Friday", "9:00am–5:00pm"), ("Saturday", "9:00am–3:00pm"), ("Sunday", "By appointment only")]
+HOURS = [("Monday", "9:00am–5:00pm"), ("Tuesday", "9:00am–6:00pm"), ("Wednesday–Friday", "9:00am–5:00pm"),
+         ("Saturday", "9:00am–3:00pm"), ("Sunday", "By appointment only")]
+
+_DAY_ABBR = {"Monday": "Mon", "Tuesday": "Tue", "Wednesday": "Wed", "Thursday": "Thu",
+             "Friday": "Fri", "Saturday": "Sat", "Sunday": "Sun"}
+
+def short_days(d):
+    """'Wednesday–Friday' -> 'Wed–Fri'. Must match shortDays() in lib/content.cjs."""
+    for full, short in _DAY_ABBR.items():
+        d = d.replace(full, short)
+    return d
 
 def hours_line():
-    """One-line opening hours for the footer, e.g. 'Mon–Fri 9:00am–5:00pm · Sat …'."""
-    return " · ".join(f"{d} {h}" for d, h in HOURS)
+    """One-line opening hours for the footer, e.g. 'Mon 9:00am–5:00pm · Tue 9:00am–6:00pm · …'."""
+    return " · ".join(f"{short_days(d)} {h}" for d, h in HOURS)
 
 
 def form_hidden(form_type):

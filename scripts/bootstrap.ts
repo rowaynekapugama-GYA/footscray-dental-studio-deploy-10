@@ -3,6 +3,7 @@ import { getPayload } from 'payload'
 import config from '../payload.config'
 import { importContent } from '../cms/sync'
 import { blobToken } from '../cms/blob'
+import { applyContentFixes } from '../cms/fixes'
 
 /**
  * Runs at the start of every build, after migrations:
@@ -27,6 +28,7 @@ if (email && password) {
 } else if ((await payload.count({ collection: 'users', overrideAccess: true })).totalDocs === 0) {
   console.log('bootstrap: no users yet and ADMIN_EMAIL/ADMIN_PASSWORD not set; set them and redeploy to create the first login')
 }
+try { await applyContentFixes(payload, (m) => console.log('bootstrap: ' + m)) } catch (e: any) { console.log('bootstrap: content fixes skipped: ' + (e?.message || e)) }
 const pages = await payload.count({ collection: 'pages', overrideAccess: true })
 const blob = blobToken()
 if (pages.totalDocs === 0 && process.env.VERCEL && !blob.ok) {

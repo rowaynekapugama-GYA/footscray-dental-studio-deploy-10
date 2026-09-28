@@ -12,7 +12,7 @@ Welcome to Footscray Dental Studio — a fresh, modern dental practice built on 
 
 Whether you're due for a routine check-up, exploring cosmetic options, or need more comprehensive restorative work, our team takes the time to understand your individual needs and guide you through your options clearly, so you always feel informed and comfortable with your care.
 
-**[Book an Appointment]**  **[Call (03) 9000 0792]**
+**[Book an Appointment]**  **[Call (03) 7044 7722]**
 
 ---
 
@@ -72,11 +72,13 @@ Footscray Dental Studio continues a long-standing local presence, now under new 
 Footscray Dental Studio is located at 289 Barkly St, Footscray VIC 3011 — within walking distance of local buses, trams and the train network. On-site parking is available for longer appointments, with convenient 1-hour street parking nearby.
 
 **Opening Hours**
-Monday–Friday: 9:00am–5:00pm
+Monday: 9:00am–5:00pm
+Tuesday: 9:00am–6:00pm
+Wednesday–Friday: 9:00am–5:00pm
 Saturday: 9:00am–3:00pm
 Sunday: By appointment only
 
-**Phone:** (03) 9000 0792
+**Phone:** (03) 7044 7722
 **Email:** info@footscraydentalstudio.com.au
 
 **[Book Online]**  **[Get Directions]**
@@ -101,7 +103,7 @@ We accept all major health funds, with on-the-spot claiming available through HI
 Yes — convenient 1-hour street parking is available nearby, plus dedicated on-site parking for longer appointments.
 
 **How do I book an appointment?**
-You can book online or call us on (03) 9000 0792. Our team is happy to help find a time that suits you.
+You can book online or call us on (03) 7044 7722. Our team is happy to help find a time that suits you.
 
 ---
 
