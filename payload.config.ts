@@ -71,6 +71,9 @@ export default buildConfig({
   plugins: [
     vercelBlobStorage({
       enabled: BLOB.ok,
+      // the storage fields (_objectKey, prefix) must exist in the database schema whether or
+      // not Blob is configured, or migrations made without Blob miss columns Vercel then queries
+      alwaysInsertFields: true,
       collections: { media: true },
       token: BLOB.token,
     }),
