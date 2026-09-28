@@ -13,7 +13,7 @@ const nextConfig = {
   outputFileTracingIncludes: {
     '/[...rest]': ['./public/404.html'],
     // the dashboard renders the pages from the generated HTML and the schema
-    '/api/fds/[action]': ['./site/**/*.html', './content/schema.json', './content/site.json', './cms/editor-bridge.js'],
+    '/api/fds/[action]': ['./site/**/*.html', './site/assets/img/blog/**', './build/blog-content/**', './content/schema.json', './content/site.json', './cms/editor-bridge.js'],
   },
   async redirects() { return siteRedirects() },
   async headers() { return siteHeaders() },

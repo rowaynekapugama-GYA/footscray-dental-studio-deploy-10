@@ -14,12 +14,14 @@ We'd love to hear from you. Whether you're booking an appointment, have a questi
 
 ## Get In Touch
 
-**Phone:** (03) 9000 0792
+**Phone:** (03) 7044 7722
 **Email:** info@footscraydentalstudio.com.au
 **Address:** 289 Barkly St, Footscray VIC 3011
 
 **Opening Hours**
-Monday–Friday: 9:00am–5:00pm
+Monday: 9:00am–5:00pm
+Tuesday: 9:00am–6:00pm
+Wednesday–Friday: 9:00am–5:00pm
 Saturday: 9:00am–3:00pm
 Sunday: By appointment only
 
@@ -45,7 +47,7 @@ Footscray Dental Studio is within walking distance of local buses, trams and the
 
 ## Dental Emergency?
 
-If you're experiencing a dental emergency — such as severe pain, a knocked-out or broken tooth, or swelling — please call us directly on (03) 9000 0792 so we can arrange to see you as soon as possible.
+If you're experiencing a dental emergency — such as severe pain, a knocked-out or broken tooth, or swelling — please call us directly on (03) 7044 7722 so we can arrange to see you as soon as possible.
 
 **[Emergency Dentistry Info →]**
 
@@ -66,7 +68,7 @@ Yes, on-site parking is available for longer appointments, with 1-hour street pa
 Yes, we're within walking distance of local buses, trams and the train network.
 
 **What should I do if I have a dental emergency outside opening hours?**
-Please call us directly on (03) 9000 0792 — see our Emergency Dentistry page for further guidance on what to do while you wait to be seen.
+Please call us directly on (03) 7044 7722 — see our Emergency Dentistry page for further guidance on what to do while you wait to be seen.
 
 **How quickly will I hear back if I use the contact form?**
 Our team aims to respond as soon as possible during business hours. For anything urgent, phoning is the quickest way to reach us.

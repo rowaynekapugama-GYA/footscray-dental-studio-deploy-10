@@ -18,8 +18,8 @@ const SITE = 'https://www.footscraydentalstudio.com.au'
 const AUTHOR = 'Footscray Dental Studio Team'
 const BLOG_URL = '/blog/'
 const PER_PAGE = 9
-const PHONE_DISPLAY = '(03) 9000 0792'
-const PHONE_TEL = 'tel:+61390000792'
+const PHONE_DISPLAY = '(03) 7044 7722'
+const PHONE_TEL = 'tel:+61370447722'
 const ICON_PHONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg>'
 const SURGICAL_DISCLAIMER = 'Any surgical or invasive procedure carries risks. Before proceeding, you should seek a second opinion from an appropriately qualified health practitioner.'
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']

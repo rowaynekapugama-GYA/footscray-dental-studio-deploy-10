@@ -1,6 +1,6 @@
 'use client'
 import React, { useCallback, useEffect, useState } from 'react'
-import { get, rest } from './api'
+import { get, post, rest } from './api'
 import { IcPages, IcBlog, IcTeam, IcOffer, IcPin, IcInbox, IcGear, IcExternal } from './icons'
 import PageEditor from './PageEditor'
 import { PagesList, BlogList, BlogEditor, PracticeView, TeamView, OffersView, EnquiriesView, SettingsView } from './views'
@@ -74,7 +74,7 @@ export default function Dashboard() {
     fullBleed = true
   } else if (seg[0] === 'blog' && seg[1]) {
     body = <BlogEditor key={seg[1]} id={seg[1]} back={() => go('/admin/blog/')} toast={toast} goTo={id => { window.history.replaceState({}, '', `/admin/blog/${id}/`); setPath(`/admin/blog/${id}/`) }} />
-  } else if (seg[0] === 'blog') body = <BlogList open={id => go(`/admin/blog/${id}/`)} />
+  } else if (seg[0] === 'blog') body = <BlogList open={id => go(`/admin/blog/${id}/`)} toast={toast} />
   else if (seg[0] === 'team') body = <TeamView toast={toast} />
   else if (seg[0] === 'offers') body = <OffersView toast={toast} />
   else if (seg[0] === 'practice') body = <PracticeView toast={toast} />
@@ -132,7 +132,13 @@ function Login({ onDone }: { onDone: () => void }) {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
     setBusy(true); setError('')
-    const r = await rest('POST', '/api/users/login', { email: email.trim(), password })
+    let r = await rest('POST', '/api/users/login', { email: email.trim(), password })
+    if (!r.user && r.status !== 429) {
+      // the login set in Vercel (ADMIN_EMAIL / ADMIN_PASSWORD) is made to work if it does not yet
+      const fix = await post('ensure-admin', { email: email.trim(), password })
+      if (fix.ok) r = await rest('POST', '/api/users/login', { email: email.trim(), password })
+      else if (fix.reason === 'db') { setBusy(false); setError('The dashboard cannot reach its database. ' + (fix.detail || '')); return }
+    }
     setBusy(false)
     if (r.user) onDone()
     else if (r.status === 429 || /locked/i.test(r.error || '')) setError('Too many attempts. Please wait a few minutes and try again.')

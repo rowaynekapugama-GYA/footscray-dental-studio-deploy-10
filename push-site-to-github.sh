@@ -69,8 +69,16 @@ if [ -z "$BRANCH" ]; then
       | sed -n 's/.*HEAD branch: //p' | head -1)"
   [ -z "$BRANCH" ] && BRANCH="main"
 fi
-echo "     default branch: $BRANCH"
-git checkout --quiet "$BRANCH" 2>/dev/null || git checkout --quiet -b "$BRANCH"
+echo "     branch: $BRANCH"
+# Start from the branch's latest commit on GitHub. (A plain "git checkout cms" is ambiguous
+# because the site also has a cms/ folder, and falling back to a new branch made the push
+# get rejected as out of date.)
+if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+  git fetch --quiet origin "$BRANCH"
+  git checkout --quiet -B "$BRANCH" "origin/$BRANCH" --
+else
+  git checkout --quiet -B "$BRANCH" --
+fi
 
 echo "3/6  Clearing the old files (git history is kept)"
 # Delete everything the repo tracks, so stray folders from the manual uploads go

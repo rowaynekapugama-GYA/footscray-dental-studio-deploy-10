@@ -52,9 +52,9 @@ function extractDefaults(schema) {
   arrayify(into);
   // sensible defaults for fields the pages do not carry yet
   into.practice = Object.assign({
-    phone: '(03) 9000 0792', email: 'info@footscraydentalstudio.com.au',
+    phone: '(03) 7044 7722', email: 'info@footscraydentalstudio.com.au',
     address: '289 Barkly St, Footscray VIC 3011',
-    maps_url: 'https://www.google.com/maps/place/Ezy+Dental+Group+-+Dentist+Footscray/data=!4m2!3m1!1s0x0:0xc3d2cca966430256',
+    maps_url: 'https://www.google.com/maps/place/Footscray+Dental+Studio/@-37.7993294,144.8944961,854m/data=!3m2!1e3!4b1!4m6!3m5!1s0x6ad65de4a43b38a1:0x4f4153651d19ea89!8m2!3d-37.7993294!4d144.8944961!16s%2Fg%2F11nw1dhhcj',
     review_url: '', review_label: 'Read our Google reviews', facebook: '', instagram: '', linkedin: ''
   }, into.practice || {});
   into.hours_note = into.hours_note || '';

@@ -58,16 +58,19 @@ BUSINESS_SCHEMA = (
     '"url":"https://www.footscraydentalstudio.com.au/",'
     '"logo":"https://www.footscraydentalstudio.com.au/assets/img/logo.png",'
     '"image":"https://www.footscraydentalstudio.com.au/assets/img/hero-home.jpg",'
-    '"telephone":"(03) 9000 0792","email":"info@footscraydentalstudio.com.au",'
+    '"telephone":"(03) 7044 7722","email":"info@footscraydentalstudio.com.au",'
     '"priceRange":"$$",'
     '"address":{"@type":"PostalAddress","streetAddress":"289 Barkly St",'
     '"addressLocality":"Footscray","addressRegion":"VIC","postalCode":"3011","addressCountry":"AU"},'
-    '"geo":{"@type":"GeoCoordinates","latitude":-37.7995,"longitude":144.8997},'
+    '"geo":{"@type":"GeoCoordinates","latitude":-37.7993294,"longitude":144.8944961},'
+    '"hasMap":"https://www.google.com/maps/place/Footscray+Dental+Studio/@-37.7993294,144.8944961,854m/data=!3m2!1e3!4b1!4m6!3m5!1s0x6ad65de4a43b38a1:0x4f4153651d19ea89!8m2!3d-37.7993294!4d144.8944961!16s%2Fg%2F11nw1dhhcj",'
     '"areaServed":[{"@type":"City","name":"Footscray"},{"@type":"City","name":"Seddon"},'
     '{"@type":"City","name":"Yarraville"},{"@type":"City","name":"West Footscray"},'
     '{"@type":"City","name":"Maribyrnong"}],'
     '"openingHoursSpecification":['
-    '{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],'
+    '{"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"09:00","closes":"17:00"},'
+    '{"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"09:00","closes":"18:00"},'
+    '{"@type":"OpeningHoursSpecification","dayOfWeek":["Wednesday","Thursday","Friday"],'
     '"opens":"09:00","closes":"17:00"},'
     '{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"15:00"}]}'
     "</script>"
@@ -606,9 +609,9 @@ def home_v2():
     visit_p = next((p for t, p in visit["blocks"] if t == "p"
                     and not p.startswith("**Opening Hours**") and not p.startswith("**Phone:**")), "")
     hours_rows = "".join(f'<div class="hrow"><span data-cms="days">{d}</span><span data-cms="time">{h}</span></div>' for d, h in HOURS)
-    # Practice's Google Maps place (currently listed as "Ezy Dental Group - Dentist Footscray")
-    map_src = "https://maps.google.com/maps?cid=14110565610442392150&output=embed"
-    place_url = "https://www.google.com/maps/place/Ezy+Dental+Group+-+Dentist+Footscray/data=!4m2!3m1!1s0x0:0xc3d2cca966430256"
+    # The practice's Google Maps listing (Footscray Dental Studio)
+    map_src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3415.3205291025865!2d144.8944961!3d-37.799329400000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65de4a43b38a1%3A0x4f4153651d19ea89!2sFootscray%20Dental%20Studio!5e0!3m2!1sen!2sau!4v1790555250000!5m2!1sen!2sau"
+    place_url = "https://www.google.com/maps/place/Footscray+Dental+Studio/@-37.7993294,144.8944961,854m/data=!3m2!1e3!4b1!4m6!3m5!1s0x6ad65de4a43b38a1:0x4f4153651d19ea89!8m2!3d-37.7993294!4d144.8944961!16s%2Fg%2F11nw1dhhcj"
     html.append(f'''<section class="section section--white" aria-labelledby="visiting-us">
   <div class="container">
     <div class="section-head section-head--center reveal">

@@ -55,16 +55,36 @@ export function PagesList({ open }: { open: (path: string) => void }) {
 }
 
 // ================================================================ blog
-export function BlogList({ open }: { open: (id: string) => void }) {
+export function BlogList({ open, toast }: { open: (id: string) => void; toast?: Toast }) {
   const [posts, setPosts] = useState<any[] | null>(null)
   const [waiting, setWaiting] = useState('')
   const [q, setQ] = useState('')
-  useEffect(() => {
-    get('/api/fds/posts').then(r => {
-      setPosts(r.ok ? r.posts : [])
-      if (r.ok && !r.imported) setWaiting(r.blobNote || 'x')
-    })
-  }, [])
+  const [loading, setLoading] = useState('')
+  const [error, setError] = useState('')
+  const load = () => get('/api/fds/posts').then(r => {
+    setPosts(r.ok ? r.posts : [])
+    setWaiting(r.ok && !r.imported ? (r.blobNote || 'x') : '')
+  })
+  useEffect(() => { load() }, [])
+
+  // Loads the launch articles, their photos and the pages in steps (each call does ~40 seconds).
+  const importNow = async () => {
+    setError(''); setLoading('Starting…')
+    const names: Record<string, string> = { photos: 'Uploading the article photos', pages: 'Loading the pages', articles: 'Loading the articles' }
+    for (let i = 0; i < 30; i++) {
+      const r = await post('import-content', {})
+      if (!r.ok) { setLoading(''); setError(r.error || 'The import stopped.'); return }
+      if (r.done) {
+        setLoading('')
+        toast?.(`${r.posts} articles loaded. ${r.message || ''}`.trim(), r.published === false ? 'err' : 'ok')
+        load(); return
+      }
+      const c = r.counts || {}
+      setLoading(`${names[r.stage] || 'Working'}… (${c.media || 0} photos, ${c.pages || 0} pages, ${c.posts || 0} articles so far in this step)`)
+    }
+    setLoading(''); setError('This is taking longer than expected. Press the button again to carry on from where it stopped.')
+  }
+
   const shown = (posts || []).filter(p => !q || (p.title + ' ' + p.category).toLowerCase().includes(q.toLowerCase()))
   return (
     <div className="view">
@@ -74,10 +94,14 @@ export function BlogList({ open }: { open: (id: string) => void }) {
       </PageHead>
       {!posts && <p className="muted">Loading posts…</p>}
       {waiting && (
-        <p className="note">
-          The 32 articles already on the website have not been loaded into the dashboard yet. They load by themselves on the next build once photo storage (Vercel Blob) is working, and New post appears then. The live blog is not affected in the meantime.
-          {waiting !== 'x' && <><br /><br />{waiting}</>}
-        </p>
+        <section className="card">
+          <h2 className="card-h">Load the existing articles</h2>
+          <p>The 32 articles already on the website are not in the dashboard yet. Loading them copies each article and its photos in, so you can edit them and add new ones. It takes a few minutes; keep this page open. The live blog is not affected.</p>
+          {waiting !== 'x' && <p className="note note-err">{waiting}</p>}
+          {error && <p className="note note-err">{error}</p>}
+          {loading ? <p className="muted"><span className="spinner spinner-sm" /> {loading}</p>
+            : <button className="btn btn-dark" disabled={waiting !== 'x'} onClick={importNow}>Load the 32 articles now</button>}
+        </section>
       )}
       <div className="list">
         {shown.map(p => (

@@ -1,18 +1,26 @@
 {
   "practice": {
     "email": "info@footscraydentalstudio.com.au",
-    "phone": "(03) 9000 0792",
+    "phone": "(03) 7044 7722",
     "address": "289 Barkly St, Footscray VIC 3011",
     "facebook": "",
     "linkedin": "",
-    "maps_url": "https://www.google.com/maps/place/Ezy+Dental+Group+-+Dentist+Footscray/data=!4m2!3m1!1s0x0:0xc3d2cca966430256",
+    "maps_url": "https://www.google.com/maps/place/Footscray+Dental+Studio/@-37.7993294,144.8944961,854m/data=!3m2!1e3!4b1!4m6!3m5!1s0x6ad65de4a43b38a1:0x4f4153651d19ea89!8m2!3d-37.7993294!4d144.8944961!16s%2Fg%2F11nw1dhhcj",
     "instagram": "",
     "review_url": "",
     "review_label": "Read our Google reviews"
   },
   "hours": [
     {
-      "days": "Monday–Friday",
+      "days": "Monday",
+      "time": "9:00am–5:00pm"
+    },
+    {
+      "days": "Tuesday",
+      "time": "9:00am–6:00pm"
+    },
+    {
+      "days": "Wednesday–Friday",
       "time": "9:00am–5:00pm"
     },
     {
@@ -97,7 +105,7 @@
           "q": "Is the practice accessible by public transport?"
         },
         {
-          "a": "<p>Please call us directly on (03) 9000 0792 — see our Emergency Dentistry page for further guidance on what to do while you wait to be seen.</p>",
+          "a": "<p>Please call us directly on (03) 7044 7722 — see our Emergency Dentistry page for further guidance on what to do while you wait to be seen.</p>",
           "q": "What should I do if I have a dental emergency outside opening hours?"
         },
         {
@@ -592,7 +600,7 @@
       "h1": "Book an Appointment",
       "faq": [
         {
-          "a": "<p>You can book online or call us on (03) 9000 0792 — our team will help find a time that suits you, whether online or over the phone.</p>",
+          "a": "<p>You can book online or call us on (03) 7044 7722 — our team will help find a time that suits you, whether online or over the phone.</p>",
           "q": "How do I book an appointment?"
         },
         {
@@ -1395,7 +1403,7 @@
         }
       ],
       "intro": "Dental emergencies can happen without warning — a sudden toothache, a knocked-out tooth from a fall, or a broken filling that leaves a tooth exposed and sensitive.",
-      "banner": "If you're experiencing a dental emergency, please call us directly on (03) 9000 0792.",
+      "banner": "If you're experiencing a dental emergency, please call us directly on (03) 7044 7722.",
       "sections": [
         {
           "body": "<p>When this happens, prompt attention can make a real difference to both your comfort and the outcome for your tooth. At Footscray Dental Studio, we aim to see emergency patients as quickly as possible during our opening hours.</p>",
@@ -1712,7 +1720,7 @@
         "q": "Is parking available?"
       },
       {
-        "a": "<p>You can book online or call us on (03) 9000 0792. Our team is happy to help find a time that suits you.</p>",
+        "a": "<p>You can book online or call us on (03) 7044 7722. Our team is happy to help find a time that suits you.</p>",
         "q": "How do I book an appointment?"
       }
     ],
@@ -1949,7 +1957,7 @@
         "q": "Is the practice accessible by public transport?"
       },
       {
-        "a": "<p>Please call us directly on (03) 9000 0792 — see our Emergency Dentistry page for further guidance on what to do while you wait to be seen.</p>",
+        "a": "<p>Please call us directly on (03) 7044 7722 — see our Emergency Dentistry page for further guidance on what to do while you wait to be seen.</p>",
         "q": "What should I do if I have a dental emergency outside opening hours?"
       },
       {
@@ -1959,7 +1967,7 @@
     ],
     "find_text": "Footscray Dental Studio is within walking distance of local buses, trams and the train network, making it easy to reach whether you're local or visiting from further afield. Convenient 1-hour street parking is available nearby, with dedicated on-site parking for longer appointments.",
     "message_text": "Prefer to reach out online? Fill in the form below and our team will get back to you as soon as possible during business hours.",
-    "emergency_text": "If you're experiencing a dental emergency — such as severe pain, a knocked-out or broken tooth, or swelling — please call us directly on (03) 9000 0792 so we can arrange to see you as soon as possible.",
+    "emergency_text": "If you're experiencing a dental emergency — such as severe pain, a knocked-out or broken tooth, or swelling — please call us directly on (03) 7044 7722 so we can arrange to see you as soon as possible.",
     "message_heading": "Send Us a Message",
     "emergency_heading": "Dental Emergency?"
   },
