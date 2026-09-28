@@ -18,12 +18,16 @@ const payload = await getPayload({ config })
 // An existing account is never touched, so a password changed in the dashboard is never reset.
 const email = (process.env.ADMIN_EMAIL || '').trim().toLowerCase(), password = process.env.ADMIN_PASSWORD || ''
 if (email && password) {
+  try {
   const found = await payload.find({ collection: 'users', overrideAccess: true, limit: 1, depth: 0, where: { email: { equals: email } } })
   if (!found.docs.length) {
     await payload.create({ collection: 'users', overrideAccess: true, data: { email, password, name: process.env.ADMIN_NAME || 'GYA', role: 'admin' } as any })
     console.log(`bootstrap: created the admin account ${email}`)
   } else {
     console.log(`bootstrap: the account ${email} already exists; its password is managed in the dashboard`)
+  }
+  } catch (e: any) {
+    console.log('bootstrap: could not create the admin login (' + (e?.message || e) + '); signing in with ADMIN_EMAIL/ADMIN_PASSWORD will create it instead')
   }
 } else if ((await payload.count({ collection: 'users', overrideAccess: true })).totalDocs === 0) {
   console.log('bootstrap: no users yet and ADMIN_EMAIL/ADMIN_PASSWORD not set; set them and redeploy to create the first login')

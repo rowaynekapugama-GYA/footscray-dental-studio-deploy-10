@@ -6,6 +6,7 @@ import {
   postToEditor, editorToPost, triggerPublish,
 } from '@/cms/editor'
 import { blobToken } from '@/cms/blob'
+import { importContent } from '@/cms/sync'
 import { timingSafeEqual } from 'crypto'
 
 /**
@@ -107,6 +108,26 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ action: st
   let body: any = {}
   try { body = await req.json() } catch { body = {} }
   const who = user.email
+
+  // Load the launch articles, photos and pages into the dashboard, in steps of about 40
+  // seconds (the client calls again until done). Admins only. Safe to repeat.
+  if (action === 'import-content') {
+    if (user.role !== 'admin') return json({ ok: false, error: 'Only an admin can do this.' }, 403)
+    const blob = blobToken()
+    if (process.env.VERCEL && !blob.ok) return json({ ok: false, error: blob.note || 'Photo storage (BLOB_READ_WRITE_TOKEN) is not set up.' })
+    const lines: string[] = []
+    try {
+      const r: any = await importContent(payload, { deadline: Date.now() + (Number(process.env.IMPORT_STEP_MS) || 40_000), strictMedia: true, log: (m) => lines.push(m) })
+      if (r?.partial) return json({ ok: true, done: false, stage: r.stage, counts: r.counts })
+      const posts = (await payload.count({ collection: 'posts', overrideAccess: true })).totalDocs
+      const media = (await payload.count({ collection: 'media', overrideAccess: true })).totalDocs
+      const pub = await triggerPublish(payload, who)
+      return json({ ok: true, done: true, posts, media, published: pub.ok, message: pub.message, log: lines.slice(-5) })
+    } catch (e: any) {
+      console.error('import-content failed', e)
+      return json({ ok: false, error: String(e?.message || e).slice(0, 400), log: lines.slice(-5) })
+    }
+  }
 
   if (action === 'save-page') {
     const p = String(body.path || '/')

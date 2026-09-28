@@ -74,7 +74,7 @@ export default function Dashboard() {
     fullBleed = true
   } else if (seg[0] === 'blog' && seg[1]) {
     body = <BlogEditor key={seg[1]} id={seg[1]} back={() => go('/admin/blog/')} toast={toast} goTo={id => { window.history.replaceState({}, '', `/admin/blog/${id}/`); setPath(`/admin/blog/${id}/`) }} />
-  } else if (seg[0] === 'blog') body = <BlogList open={id => go(`/admin/blog/${id}/`)} />
+  } else if (seg[0] === 'blog') body = <BlogList open={id => go(`/admin/blog/${id}/`)} toast={toast} />
   else if (seg[0] === 'team') body = <TeamView toast={toast} />
   else if (seg[0] === 'offers') body = <OffersView toast={toast} />
   else if (seg[0] === 'practice') body = <PracticeView toast={toast} />

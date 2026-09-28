@@ -16,7 +16,10 @@ import { loadMarkdownPosts, mdToHtml } from './blog-md'
 // @ts-ignore CommonJS helper shared with the static build
 import C from '../lib/content.cjs'
 
-export const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
+// In scripts this file sits in cms/; inside the Next.js bundle it does not, so fall back to the
+// working directory (the project root on Vercel and locally).
+const HERE = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
+export const ROOT = fs.existsSync(path.join(HERE, 'site')) ? HERE : process.cwd()
 const SITE = path.join(ROOT, 'site')
 const CONTENT = path.join(ROOT, 'content')
 const BLOG_MD = path.join(ROOT, 'build', 'blog-content')
@@ -76,8 +79,11 @@ const faqOut = (items?: any[]) => (items || []).map(f => ({ q: f.question || '',
 const arr = (items: any, key: string) => (items || []).map((x: any) => (typeof x === 'string' ? { [key]: x } : x))
 
 // ---------------------------------------------------------------- IMPORT (files -> db)
-export async function importContent(payload: Payload, opts: { overwrite?: boolean; log?: Log } = {}) {
+export async function importContent(payload: Payload, opts: { overwrite?: boolean; log?: Log; deadline?: number; strictMedia?: boolean } = {}): Promise<any> {
   const log = opts.log || (() => {})
+  // deadline: stop early (and say so) so a web request can run the import in several steps.
+  // Every step is safe to repeat: finished media, pages and posts are skipped.
+  const late = () => Boolean(opts.deadline && Date.now() > opts.deadline)
   const overwrite = Boolean(opts.overwrite)
   const content = readJson(path.join(CONTENT, 'site.json'))
   if (!content) throw new Error('content/site.json is missing. Run: node build/apply-content.js extract')
@@ -107,10 +113,11 @@ export async function importContent(payload: Payload, opts: { overwrite?: boolea
     for (const f of fs.readdirSync(blogImgDir).sort()) {
       const rel = `/assets/img/blog/${f}`
       if (mediaByPath.has(rel) || !/\.(webp|jpe?g|png|gif)$/i.test(f)) continue
+      if (late()) return { partial: true, stage: 'photos', counts }
       try {
         const doc: any = await payload.create({ collection: 'media', data: { alt: altByLocal.get(f) || f.replace(/\.[a-z]+$/i, '').replace(/-/g, ' '), builtinPath: rel }, filePath: path.join(blogImgDir, f) })
         mediaByPath.set(rel, doc.id); counts.media++
-      } catch (e: any) { log(`media ${f}: ${e.message}`) }
+      } catch (e: any) { log(`media ${f}: ${e.message}`); if (opts.strictMedia) throw new Error(`Uploading ${f} to photo storage failed: ${e.message}`) }
     }
   }
 
@@ -120,6 +127,7 @@ export async function importContent(payload: Payload, opts: { overwrite?: boolea
   for (const p of pagePaths()) {
     const template = templateOf(p, blogSlugs)
     if (!template) continue
+    if (late()) return { partial: true, stage: 'pages', counts }
     const slug = slugOf(p)
     const html = fs.readFileSync(path.join(SITE, p === '/' ? '' : p.slice(1), 'index.html'), 'utf8')
     const meta = headMeta(html)
@@ -203,6 +211,7 @@ export async function importContent(payload: Payload, opts: { overwrite?: boolea
     const d = p.data
     const ex = existingPosts.get(d.slug)
     if (ex && !overwrite) { created.push({ slug: d.slug, id: ex.id, related: d.related }); continue }
+    if (late()) return { partial: true, stage: 'articles', counts }
     const html = mdToHtml(p.body, () => undefined)
     const body = htmlToLexical(html, { mediaByPath: (src) => mediaByPath.get(src) })
     const data: any = {
