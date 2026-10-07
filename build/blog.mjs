@@ -20,6 +20,9 @@ const BLOG_URL = '/blog/'
 const PER_PAGE = 9
 const PHONE_DISPLAY = '(03) 7044 7722'
 const PHONE_TEL = 'tel:+61370447722'
+// Online booking (CareStack); keep in step with BOOKING_URL in build/common.py
+const BOOKING_URL = 'https://onlineappointment.carestack.au/?dn=asmiles&In=1#/home'
+const BOOKING_ATTRS = `href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer"`
 const ICON_PHONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg>'
 const SURGICAL_DISCLAIMER = 'Any surgical or invasive procedure carries risks. Before proceeding, you should seek a second opinion from an appropriately qualified health practitioner.'
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -225,7 +228,7 @@ async function postPage(ch, p, bySlug) {
       <h2>Book an appointment in Footscray</h2>
       <p>If anything in this article sounds familiar, our team at 289 Barkly St, Footscray is here to help. Book online or call us and we will find a time that suits you.</p>
       <div class="btn-row">
-        <a class="btn btn--navy" href="/patient-info/">Book an Appointment</a>
+        <a class="btn btn--navy" ${BOOKING_ATTRS}>Book an Appointment</a>
         <a class="btn btn--outline btn--no-arrow" href="${PHONE_TEL}">${ICON_PHONE} Call ${PHONE_DISPLAY}</a>
       </div>
     </div>

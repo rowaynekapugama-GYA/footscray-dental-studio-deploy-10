@@ -7,7 +7,11 @@ import type { Payload } from 'payload'
  *
  * 28 Sep 2026: new phone number, Tuesday open until 6pm, and the Footscray Dental Studio
  * Google Maps listing in place of the old Ezy Dental Group one.
+ * 7 Oct 2026: every booking button inside dashboard-edited text opens the CareStack online
+ * booking in a new tab (the generators do the same for the buttons they write).
  */
+export const BOOKING_URL = 'https://onlineappointment.carestack.au/?dn=asmiles&In=1#/home'
+export const BOOKING_ATTRS = `href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer"`
 const REPLACE: [string, string][] = [
   ['(03) 9000 0792', '(03) 7044 7722'],
   ['03 9000 0792', '03 7044 7722'],
@@ -23,7 +27,11 @@ const NEW_HOURS = [
   { days: 'Sunday', time: 'By appointment only' },
 ]
 
+// Only buttons (class="btn ...") whose href was the booking page; plain text links are left alone.
+// Runs on JSON text, so the quote may be a plain " or an escaped \" (captured as $1).
+const BOOKING_BTN = /<a class=(\\?")btn([^"\\]*)\1 href=\1(?:\/patient-info\/|(?:\.\.\/)+patient-info\/index\.html|#book)\1(?! target=)/g
 const replaceAll = (s: string) => REPLACE.reduce((acc, [a, b]) => acc.split(a).join(b), s)
+  .replace(BOOKING_BTN, (_m, q, cls) => `<a class=${q}btn${cls}${q} href=${q}${BOOKING_URL}${q} target=${q}_blank${q} rel=${q}noopener noreferrer${q}`)
 const isOldHours = (rows: any) => Array.isArray(rows) && rows.length === OLD_HOURS.length
   && rows.every((r: any, i: number) => String(r?.days || '').trim() === OLD_HOURS[i][0] && String(r?.time || '').trim() === OLD_HOURS[i][1])
 
@@ -40,7 +48,7 @@ export async function applyContentFixes(payload: Payload, log: (m: string) => vo
     const r = fix(store.data)
     if (r.changed) {
       await payload.updateGlobal({ slug: 'site-content' as any, data: { data: r.value } as any, overrideAccess: true, depth: 0 })
-      log('content fixes: updated the saved website content (phone, hours, map link)')
+      log('content fixes: updated the saved website content (phone, hours, map link, booking buttons)')
     }
   }
   const settings: any = await payload.findGlobal({ slug: 'site-settings' as any, depth: 0, overrideAccess: true })

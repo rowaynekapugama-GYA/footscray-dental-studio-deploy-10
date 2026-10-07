@@ -2,13 +2,14 @@ import fs from 'fs'
 import path from 'path'
 import { htmlToLexical, lexicalToHtml } from '../cms/richtext'
 import { createRequire } from 'module'
-const C = createRequire(import.meta.url)('/home/claude/footscray-sitekit/lib/content.cjs')
-const content = JSON.parse(fs.readFileSync('/home/claude/footscray-sitekit/content/site.json', 'utf8'))
-const schema = JSON.parse(fs.readFileSync('/home/claude/footscray-sitekit/content/schema.json', 'utf8'))
+const C = createRequire(import.meta.url)('../lib/content.cjs')
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
+const content = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/site.json'), 'utf8'))
+const schema = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/schema.json'), 'utf8'))
 const idx = C.fieldIndex(schema)
 // opts from the pages
 const opts: any = {}
-;(function walk(d: string) { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) walk(p); else if (p.endsWith('.html')) C.collectOpts(fs.readFileSync(p, 'utf8'), opts) } })('/home/claude/footscray-sitekit/site')
+;(function walk(d: string) { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) walk(p); else if (p.endsWith('.html')) C.collectOpts(fs.readFileSync(p, 'utf8'), opts) } })(path.join(ROOT, 'site'))
 const norm = (h: string) => h.replace(/>\s+</g, '><').replace(/href="(\.\.\/)+/g, 'href="/').replace(/index\.html"/g, '"').trim()
 let n = 0, bad = 0
 function visit(v: any, key: string, listDef?: any) {

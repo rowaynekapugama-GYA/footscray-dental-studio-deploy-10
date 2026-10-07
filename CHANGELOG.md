@@ -94,3 +94,11 @@ This revision is a complete visual redesign of all 31 pages plus a real-imagery 
 - The import finds the project files inside the deployed dashboard (it used to look for them next to its own compiled file), and the dashboard's function now ships the blog photos and article sources it needs.
 - Bootstrap carries on to the import even if creating the admin login fails.
 - Fix: on Vercel the photo library query asked for a "_objectkey" column the database did not have (the Blob storage plugin adds it only when Blob is configured, and the migrations were generated without Blob). The storage fields are now always part of the schema, and migration 20260928_012131_blob_storage_fields adds "_objectkey" and "prefix" to the media table on the next build. This also fixes the photo picker and uploads.
+
+## 3.2.0 (7 October 2026): online booking via CareStack
+
+- Every booking button on the site now opens the CareStack online booking (https://onlineappointment.carestack.au/?dn=asmiles&In=1#/home) in a new tab (target="_blank" rel="noopener noreferrer"): the header and mobile menu "Book an Appointment", the homepage hero, the "Ready to book" banner on every page, the booking cards on the homepage and contact page ("Book Online"), the special offer cards, the emergency page banner, every "Book a ... Consultation" button row inside service pages, the blog post call to action, the 404 page, the footer "Book an Appointment" link, and the "Book Online" button on the Book an Appointment page itself (previously an in-page anchor).
+- One place to change it: BOOKING_URL in build/common.py (the generators) and in cms/fixes.ts (the dashboard side); build/blog.mjs carries a copy for the blog.
+- Content saved in the database gets the same change on the next build (cms/fixes.ts, safe to repeat), and the rich text converter keeps the new tab attributes when a section is edited in the dashboard.
+- Left as they were: phone and email links, "Contact Us" buttons, the Book an Appointment page's own enquiry form, and the Sitemap page's listing of that page.
+- test/richtext-roundtrip.ts now uses repository-relative paths.

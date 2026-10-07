@@ -73,6 +73,10 @@ On every page, by clicking it on the live preview: every heading, paragraph, lis
 
 Not editable in the dashboard: the navigation and footer links, the health fund logo strip, the legal pages, page structure and design. Those remain GYA changes to the generators in `build/`.
 
+## Online booking link
+
+Every booking button opens CareStack in a new tab. The address lives in `BOOKING_URL` in `build/common.py` (regenerate `site/` with `python3 build/glow.py && python3 build/rollout.py`), in `cms/fixes.ts` (applied to dashboard-saved content on each build), and in `build/blog.mjs`. Change all three together.
+
 ## How a change reaches the site
 
 **Save changes** writes to the database and calls the Vercel deploy hook, so the site rebuilds by itself (Settings > Update the website now does the same on demand). The build pulls the database into `content/*.json`, renders the blog, patches the pages and deploys. The live site is static HTML the whole time.

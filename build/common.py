@@ -12,6 +12,10 @@ EMAIL = "info@footscraydentalstudio.com.au"
 ADDRESS = "289 Barkly St, Footscray VIC 3011"
 MAPS_URL = "https://www.google.com/maps/place/Footscray+Dental+Studio/@-37.7993294,144.8944961,854m/data=!3m2!1e3!4b1!4m6!3m5!1s0x6ad65de4a43b38a1:0x4f4153651d19ea89!8m2!3d-37.7993294!4d144.8944961!16s%2Fg%2F11nw1dhhcj"
 SITE_NAME = "Footscray Dental Studio"
+# Online booking (CareStack). Every booking button on the site opens this in a new tab.
+# Also used by cms/fixes.ts and cms/richtext.ts for buttons inside dashboard-edited text.
+BOOKING_URL = "https://onlineappointment.carestack.au/?dn=asmiles&In=1#/home"
+BOOKING_ATTRS = f'href="{BOOKING_URL}" target="_blank" rel="noopener noreferrer"'
 
 HOURS = [("Monday", "9:00am–5:00pm"), ("Tuesday", "9:00am–6:00pm"), ("Wednesday–Friday", "9:00am–5:00pm"),
          ("Saturday", "9:00am–3:00pm"), ("Sunday", "By appointment only")]
@@ -214,12 +218,12 @@ def header_html(active=""):
       </ul>
       <div class="mobile-nav-ctas">
         <a class="btn btn--call" href="{PHONE_TEL}">{ICONS["phone"]} Call Now — {PHONE_DISPLAY}</a>
-        <a class="btn btn--navy" href="/patient-info/">Book an Appointment</a>
+        <a class="btn btn--navy" {BOOKING_ATTRS}>Book an Appointment</a>
       </div>
     </nav>
     <div class="header-ctas">
       <a class="btn btn--call" href="{PHONE_TEL}" title="Emergency? Call us now on {PHONE_DISPLAY}">{ICONS["phone"]} Call Now</a>
-      <a class="btn btn--navy" href="/patient-info/">Book an Appointment</a>
+      <a class="btn btn--navy" {BOOKING_ATTRS}>Book an Appointment</a>
     </div>
   </div>
 </header>
@@ -240,7 +244,7 @@ def breadcrumbs(trail):
 
 def cta_banner(heading="Ready to book your visit?",
                text="Book online or call our friendly team — we're happy to help find a time that suits you.",
-               primary=("Book an Appointment", "/patient-info/"),
+               primary=("Book an Appointment", BOOKING_URL),
                secondary=("Call " + PHONE_DISPLAY, PHONE_TEL)):
     return f'''<section class="cta-banner">
   <div class="container cta-banner-inner reveal">
@@ -249,7 +253,7 @@ def cta_banner(heading="Ready to book your visit?",
       <p>{text}</p>
     </div>
     <div class="btn-row mt-0">
-      <a class="btn btn--primary btn--lg" href="{primary[1]}">{primary[0]}</a>
+      <a class="btn btn--primary btn--lg" href="{primary[1]}"{link_attrs(primary[1])}>{primary[0]}</a>
       <a class="btn btn--outline-light btn--lg" href="{secondary[1]}">{ICONS["phone"]} {secondary[0]}</a>
     </div>
   </div>
@@ -258,7 +262,7 @@ def cta_banner(heading="Ready to book your visit?",
 
 def footer_html():
     quick = [("Home", "/"), ("About Us", "/about/"), ("Meet the Team", "/about/#meet-the-team"),
-             ("Special Offers", "/special-offers/"), ("Book an Appointment", "/patient-info/"),
+             ("Special Offers", "/special-offers/"), ("Book an Appointment", BOOKING_URL),
              ("Contact Us", "/contact/")]
     services = [("All Services", "/services/"),
                 ("General & Preventive", "/services/general-preventive/"),
@@ -268,7 +272,7 @@ def footer_html():
                 ("All-on-X Dental Implants", "/services/restorative/all-on-x-implants/"),
                 ("Emergency Dentistry", "/services/emergency-dentistry/"),
                 ("Children's Dentistry", "/services/childrens-dentistry/")]
-    quick_lis = "\n".join(f'<li><a href="{u}">{n}</a></li>' for n, u in quick)
+    quick_lis = "\n".join(f'<li><a href="{u}"{link_attrs(u)}>{n}</a></li>' for n, u in quick)
     serv_lis = "\n".join(f'<li><a href="{u}">{n}</a></li>' for n, u in services)
     hours_rows = "\n".join(f"<tr><td>{d}</td><td>{h}</td></tr>" for d, h in HOURS)
     year = 2026
@@ -344,7 +348,7 @@ def cta_href(label):
         return "/contact/"
     if l.startswith("explore") or l.startswith("learn about"):
         return None  # resolved by page context
-    return "/patient-info/"  # all booking-style CTAs
+    return BOOKING_URL  # all booking-style CTAs open the online booking in a new tab
 
 def is_cta_line(line):
     s = line.strip()
@@ -480,14 +484,18 @@ def get_section(sections, name):
 def render_cta_row(ctas, style_map=None, context_href=None, large=False):
     out = []
     for idx, (label, href) in enumerate(ctas):
-        target = href or cta_href(label) or context_href or "/patient-info/"
+        target = href or cta_href(label) or context_href or BOOKING_URL
         cls = "btn--navy" if idx == 0 else "btn--outline"
         if style_map:
             cls = style_map(idx, label)
         size = " btn--lg" if large else ""
         ic = ICONS["phone"] + " " if "call" in label.lower() else ""
-        out.append(f'<a class="btn {cls}{size}" href="{target}">{ic}{md_inline_label(label)}</a>')
+        out.append(f'<a class="btn {cls}{size}" href="{target}"{link_attrs(target)}>{ic}{md_inline_label(label)}</a>')
     return '<div class="btn-row">' + "".join(out) + "</div>"
+
+def link_attrs(href):
+    """target/rel for the online booking link (opens in a new tab); nothing for site links."""
+    return ' target="_blank" rel="noopener noreferrer"' if href == BOOKING_URL else ""
 
 def md_inline_label(label):
     return re.sub(r"\*", "", label)

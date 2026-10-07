@@ -16,6 +16,8 @@
  *   paragraph of bold links -> button row (first button dark, the rest outlined)
  *   paragraph entirely in italics -> small print (.small-note)
  */
+import { BOOKING_URL } from './fixes'
+
 
 export type LexNode = { type: string; [k: string]: any }
 export type LexRoot = { root: LexNode }
@@ -270,8 +272,10 @@ export function lexicalToHtml(data: LexRoot | null | undefined, opts: LexicalToH
           const label = plainText(l.children || [])
           const cls = idx === 0 ? 'btn--navy' : 'btn--outline'
           const ic = /call/i.test(label) ? ICON_PHONE + ' ' : ''
-          const url = l.fields?.url || docUrl(l.fields?.doc) || '/patient-info/'
-          return `<a class="btn ${cls}" href="${escapeAttr(url)}">${ic}${escapeText(label)}</a>`
+          const url = l.fields?.url || docUrl(l.fields?.doc) || BOOKING_URL
+          // the online booking (and any other outside link) opens in a new tab, like the generators write it
+          const blank = l.fields?.newTab || /^https?:\/\//i.test(url) ? ' target="_blank" rel="noopener noreferrer"' : ''
+          return `<a class="btn ${cls}" href="${escapeAttr(url)}"${blank}>${ic}${escapeText(label)}</a>`
         }).join('') + '</div>')
         continue
       }

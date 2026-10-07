@@ -3,7 +3,7 @@ Images are referenced by their hosted Higgsfield URLs (localised later)."""
 import re
 from common import (
     ICONS, PHONE_DISPLAY, PHONE_TEL, EMAIL, ADDRESS, MAPS_URL, HOURS,
-    hours_line, form_hidden, form_error,
+    BOOKING_URL, BOOKING_ATTRS, link_attrs, hours_line, form_hidden, form_error,
     GP_SUBS, COS_SUBS, RES_SUBS, logo_svg, parse_copy, get_section,
     md_inline, md_inline_label, render_faq, write_page,
 )
@@ -176,12 +176,12 @@ def header_v2(active=""):
       </ul>
       <div class="mobile-nav-ctas">
         <a class="btn btn--call" href="{PHONE_TEL}">{ICONS["phone"]} Call Now — {PHONE_DISPLAY}</a>
-        <a class="btn btn--navy" href="/patient-info/">Book an Appointment</a>
+        <a class="btn btn--navy" {BOOKING_ATTRS}>Book an Appointment</a>
       </div>
     </nav>
     <div class="header-ctas">
       <a class="btn btn--call" href="{PHONE_TEL}" title="Emergency? Call us now on {PHONE_DISPLAY}">{ICONS["phone"]} Call Now</a>
-      <a class="btn btn--navy" href="/patient-info/">Book an Appointment</a>
+      <a class="btn btn--navy" {BOOKING_ATTRS}>Book an Appointment</a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">
         <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
         <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
@@ -195,7 +195,7 @@ def header_v2(active=""):
 def footer_v2():
     pages = [("Home", "/"), ("About Us", "/about/"), ("Meet the Team", "/meet-the-team/"),
              ("Special Offers", "/special-offers/"), ("Blog", "/blog/"),
-             ("Book an Appointment", "/patient-info/"), ("Contact Us", "/contact/")]
+             ("Book an Appointment", BOOKING_URL), ("Contact Us", "/contact/")]
     services = [("All Services", "/services/"),
                 ("General & Preventive", "/services/general-preventive/"),
                 ("Cosmetic Dentistry", "/services/cosmetic/"),
@@ -208,7 +208,7 @@ def footer_v2():
             ("Terms of Use", "/terms/"),
             ("Sitemap", "/sitemap/")]
     def col(title, links):
-        lis = "\n".join(f'<li><a href="{u}">{n}</a></li>' for n, u in links)
+        lis = "\n".join(f'<li><a href="{u}"{link_attrs(u)}>{n}</a></li>' for n, u in links)
         return f'<div><h3 class="col-title">{title}</h3><ul>{lis}</ul></div>'
     return f'''<footer class="site-footer">
   <div class="container">
@@ -448,7 +448,7 @@ def home_v2():
       <h1 data-cms="home.h1">{meta["h1"]}</h1>
       <p class="hero-sub" data-cms="home.hero_intro">{md_inline(hero_sub)}</p>
       <div class="btn-row">
-        <a class="btn btn--white btn--lg" href="/patient-info/">Book an Appointment</a>
+        <a class="btn btn--white btn--lg" {BOOKING_ATTRS}>Book an Appointment</a>
         <a class="btn btn--glass btn--lg btn--no-arrow" href="{PHONE_TEL}">{ICONS["phone"]} Call {PHONE_DISPLAY}</a>
       </div>
     </div>
@@ -636,7 +636,7 @@ def home_v2():
         <span class="icon-tile">{ICONS["phone"]}</span>
         <h3>Get in Touch</h3>
         <p><a href="{PHONE_TEL}">{PHONE_DISPLAY}</a><br><a href="mailto:{EMAIL}">{EMAIL}</a></p>
-        <a class="btn btn--sm btn--navy" href="/patient-info/">Book Online</a>
+        <a class="btn btn--sm btn--navy" {BOOKING_ATTRS}>Book Online</a>
       </div>
     </div>
     <div class="reveal">

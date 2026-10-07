@@ -10,7 +10,7 @@ import re
 from datetime import date
 from pathlib import Path
 
-from common import PHONE_DISPLAY, PHONE_TEL, EMAIL, ADDRESS, ICONS, OUT, write_page
+from common import PHONE_DISPLAY, PHONE_TEL, EMAIL, ADDRESS, BOOKING_ATTRS, ICONS, OUT, write_page
 from glow import head_v2, header_v2, footer_v2, booking_section
 
 CONTENT = Path(__file__).parent / "blog-content"
@@ -426,7 +426,7 @@ def post_page(p, by_slug):
       <h2>Book an appointment in Footscray</h2>
       <p>If anything in this article sounds familiar, our team at 289 Barkly St, Footscray is here to help. Book online or call us and we will find a time that suits you.</p>
       <div class="btn-row">
-        <a class="btn btn--navy" href="/patient-info/">Book an Appointment</a>
+        <a class="btn btn--navy" {BOOKING_ATTRS}>Book an Appointment</a>
         <a class="btn btn--outline btn--no-arrow" href="{PHONE_TEL}">{ICONS["phone"]} Call {PHONE_DISPLAY}</a>
       </div>
     </div>

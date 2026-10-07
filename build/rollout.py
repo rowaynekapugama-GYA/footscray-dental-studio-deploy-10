@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 from common import (
     ICONS, PHONE_DISPLAY, PHONE_TEL, EMAIL, ADDRESS, MAPS_URL, HOURS,
-    form_hidden, form_error,
+    BOOKING_URL, BOOKING_ATTRS, link_attrs, form_hidden, form_error,
     GP_SUBS, COS_SUBS, RES_SUBS, parse_copy, get_section, md_inline,
     md_inline_label, render_faq, render_checklist, render_steps,
     render_cta_row, write_page, OUT,
@@ -595,7 +595,7 @@ def emergency_page():
   <p data-cms="pages.emergency-dentistry.banner">{md_inline(strong_line) if strong_line else f"If you're experiencing a dental emergency, please call us directly on {PHONE_DISPLAY}."}</p>
   <a class="btn btn--navy btn--no-arrow" href="{PHONE_TEL}" style="margin-left:auto">{ICONS["phone"]} Call Now</a>
 </div>
-<div class="btn-row"><a class="btn btn--glass" href="/patient-info/">Book an Emergency Appointment</a></div>'''
+<div class="btn-row"><a class="btn btn--glass" {BOOKING_ATTRS}>Book an Emergency Appointment</a></div>'''
 
     html = [head_v2(meta["title"], meta["desc"], url), header_v2()]
     html.append(inner_hero("emergency-dentistry", "Urgent care", meta["h1"],
@@ -881,7 +881,8 @@ def offers_page():
                 else:
                     from common import cta_href
                     label = payload[0][0]
-                    cta = (f'<a class="btn btn--navy" href="{cta_href(label) or "/patient-info/"}" style="margin-top:auto" '
+                    target = cta_href(label) or BOOKING_URL
+                    cta = (f'<a class="btn btn--navy" href="{target}"{link_attrs(target)} style="margin-top:auto" '
                            f'data-cms="cta_label">{md_inline_label(label)}</a>')
         # Every card shares one skeleton (note, price, body, bullets, button) so the admin
         # panel can add a card by cloning any existing one. Empty parts are removed at build.
@@ -893,7 +894,7 @@ def offers_page():
   <span class="offer-price{" offer-price--sm" if len(price) > 16 else ""}" data-cms="price" data-cms-hide-if-empty>{price}</span>
   <div class="offer-body" data-cms="body">{"".join(paras)}</div>
   <ul data-cms="bullets" data-cms-hide-if-empty>{"".join(bullets)}</ul>
-  {cta or '<a class="btn btn--navy" href="/patient-info/" style="margin-top:auto" data-cms="cta_label">Book Now</a>'}
+  {cta or '<a class="btn btn--navy" ' + BOOKING_ATTRS + ' style="margin-top:auto" data-cms="cta_label">Book Now</a>'}
 </article>''')
         idx += 1
 
@@ -927,7 +928,7 @@ def book_page():
     html = [head_v2(meta["title"], meta["desc"], url), header_v2()]
     html.append(inner_hero("patient-info", "Book an appointment", meta["h1"],
                            f'<p class="hero-sub">{md_inline(intro)}</p>',
-                           render_cta_row([("Book Online", "#book"), ("Call " + PHONE_DISPLAY, PHONE_TEL)],
+                           render_cta_row([("Book Online", BOOKING_URL), ("Call " + PHONE_DISPLAY, PHONE_TEL)],
                                           style_map=hero_cta_style, large=True),
                            [("Home", "/"), ("Book an Appointment", url)]))
 
@@ -1026,7 +1027,7 @@ def contact_page():
         <span class="icon-tile">{ICONS["phone"]}</span>
         <h3>Phone &amp; Email</h3>
         <p><a href="{PHONE_TEL}">{PHONE_DISPLAY}</a><br><a href="mailto:{EMAIL}">{EMAIL}</a></p>
-        <a class="btn btn--sm btn--navy" href="/patient-info/">Book Online</a>
+        <a class="btn btn--sm btn--navy" {BOOKING_ATTRS}>Book Online</a>
       </div>
     </div>
     <div class="reveal">
@@ -1160,7 +1161,7 @@ def error_404_page():
     <p style="max-width:32rem;margin-inline:auto">The page you're after may have moved or no longer exists — but our friendly team is still right here. Head back to the homepage, browse our services, or book an appointment below.</p>
     <div class="btn-row" style="justify-content:center">
       <a class="btn btn--navy btn--lg" href="/">Back to Home</a>
-      <a class="btn btn--gold btn--lg" href="/patient-info/">Book an Appointment</a>
+      <a class="btn btn--gold btn--lg" {BOOKING_ATTRS}>Book an Appointment</a>
       <a class="btn btn--outline" href="/services/">View Our Services</a>
     </div>
     <p class="small-note" style="margin-top:2rem">Need urgent help? Call us on <a href="{PHONE_TEL}">{PHONE_DISPLAY}</a>.</p>
