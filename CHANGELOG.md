@@ -102,3 +102,9 @@ This revision is a complete visual redesign of all 31 pages plus a real-imagery 
 - Content saved in the database gets the same change on the next build (cms/fixes.ts, safe to repeat), and the rich text converter keeps the new tab attributes when a section is edited in the dashboard.
 - Left as they were: phone and email links, "Contact Us" buttons, the Book an Appointment page's own enquiry form, and the Sitemap page's listing of that page.
 - test/richtext-roundtrip.ts now uses repository-relative paths.
+
+## 3.2.1 (20 October 2026): Google Ads tag
+
+- The client's Google Ads tag (gtag.js, AW-18516198136) is the first thing inside <head> on every public page, exactly as supplied (ADS_HEAD in build/glow.py; the blog pages take their head from the same source). It sits alongside the existing Google Tag Manager container GTM-MTVSMPG7.
+- The dashboard's page preview strips the Ads tag as it already did for GTM, so editing a page never fires ad hits.
+- No other change to design, copy, layout, images or dependencies. There is no Content Security Policy on the site, so nothing needed allowing.

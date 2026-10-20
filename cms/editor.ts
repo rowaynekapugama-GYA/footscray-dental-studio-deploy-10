@@ -108,7 +108,7 @@ export function renderPreview(p: string, content: any): string | null {
   // tell the editor what kind of field each marker is
   html = html.replace(/\sdata-cms="([^"]+)"/g, (m: string, k: string) => `${m} data-cms-type="${typeForKey(k)}"`)
   // no tracking from the dashboard
-  html = html.replace(/<!-- Google Tag Manager -->[\s\S]*?<!-- End Google Tag Manager -->/, '').replace(/<!-- Google Tag Manager \(noscript\) -->[\s\S]*?<!-- End Google Tag Manager \(noscript\) -->/, '')
+  html = html.replace(/<!-- Google tag \(gtag\.js\) -->[\s\S]*?<!-- End Google tag -->/, '').replace(/<!-- Google Tag Manager -->[\s\S]*?<!-- End Google Tag Manager -->/, '').replace(/<!-- Google Tag Manager \(noscript\) -->[\s\S]*?<!-- End Google Tag Manager \(noscript\) -->/, '')
   // relative asset paths (../assets) resolve as if the page were at its real address
   html = html.replace('<head>', `<head>\n<base href="${p}">`)
   html = html.replace('</body>', `<script>${BRIDGE}</script>\n</body>`)

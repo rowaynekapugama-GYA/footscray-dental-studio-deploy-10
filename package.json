@@ -1,6 +1,6 @@
 {
   "name": "footscray-dental-studio",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "private": true,
   "type": "module",
   "description": "Footscray Dental Studio website on the GYA Site Kit: Next.js + Payload dashboard",

@@ -86,11 +86,19 @@ GTM_HEAD = (f"<!-- Google Tag Manager -->\n<script>(function(w,d,s,l,i){{w[l]=w[
 GTM_BODY = (f'<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM_ID}" '
             f'height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->')
 
+# Google Ads tag (gtag.js). Requested by the client on 20 Oct 2026, placed first inside
+# <head> on every page exactly as supplied. Sits alongside the GTM container above.
+ADS_ID = "AW-18516198136"
+ADS_HEAD = (f'<!-- Google tag (gtag.js) -->\n<script async src="https://www.googletagmanager.com/gtag/js?id={ADS_ID}"></script>\n'
+            "<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n"
+            f"  gtag('js', new Date());\n\n  gtag('config', '{ADS_ID}');\n</script>\n<!-- End Google tag -->")
+
 def head_v2(title, desc, url):
     from common import SITE_NAME
     return f'''<!DOCTYPE html>
 <html lang="en-AU">
 <head>
+{ADS_HEAD}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
