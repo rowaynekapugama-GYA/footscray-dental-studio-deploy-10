@@ -544,6 +544,8 @@ def home_v2():
     # ---- WHY CHOOSE
     why = get_section(sections, "Why Choose Footscray Dental Studio")
     why_paras = [p for t, p in why["blocks"] if t == "p" and not p.startswith("**[")]
+    # why_paras[0] ends "equipped with:" and introduces the equipment list, which sits in the
+    # right-hand column (below the text on mobile), so it is printed second, next to the list.
     tech_items = next((p for t, p in why["blocks"] if t == "ul"), [])
     tech_cards = []
     tech_icons = ["camera", "xray", "layers", "tooth", "root", "sparkle"]
@@ -557,8 +559,8 @@ def home_v2():
     <div class="reveal">
       <span class="eyebrow">Why us</span>
       <h2 id="why-choose" data-cms="home.why_heading">{why["heading"]}</h2>
-      <div data-cms="home.why_text"><p>{md_inline(why_paras[0])}</p>
-      <p>{md_inline(why_paras[1])}</p></div>
+      <div data-cms="home.why_text"><p>{md_inline(why_paras[1])}</p>
+      <p>{md_inline(why_paras[0])}</p></div>
       <a class="rating-badge" href="" data-cms-attr="href:practice.review_url" data-cms-hide-if-empty aria-label="Read our Google reviews" target="_blank" rel="noopener">
         <span class="g">G</span>
         <span><span class="stars" aria-hidden="true">★★★★★</span><br><span class="label" data-cms="practice.review_label">Read our Google reviews</span></span>

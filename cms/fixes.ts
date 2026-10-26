@@ -9,6 +9,9 @@ import type { Payload } from 'payload'
  * Google Maps listing in place of the old Ezy Dental Group one.
  * 7 Oct 2026: every booking button inside dashboard-edited text opens the CareStack online
  * booking in a new tab (the generators do the same for the buttons they write).
+ * 26 Oct 2026: homepage "Why us" text, the two paragraphs swapped so the one ending
+ * "equipped with:" sits next to the equipment list. Only when both are present, unedited,
+ * in the old order.
  */
 export const BOOKING_URL = 'https://onlineappointment.carestack.au/?dn=asmiles&In=1#/home'
 export const BOOKING_ATTRS = `href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer"`
@@ -32,6 +35,8 @@ const NEW_HOURS = [
 const BOOKING_BTN = /<a class=(\\?")btn([^"\\]*)\1 href=\1(?:\/patient-info\/|(?:\.\.\/)+patient-info\/index\.html|#book)\1(?! target=)/g
 const replaceAll = (s: string) => REPLACE.reduce((acc, [a, b]) => acc.split(a).join(b), s)
   .replace(BOOKING_BTN, (_m, q, cls) => `<a class=${q}btn${cls}${q} href=${q}${BOOKING_URL}${q} target=${q}_blank${q} rel=${q}noopener noreferrer${q}`)
+const WHY_OLD_ORDER = /<p>(Our team brings more than 20 years[^<]*equipped with:)<\/p>(\s*)<p>(We take the time to listen[^<]*)<\/p>/
+const swapWhy = (html: string) => html.replace(WHY_OLD_ORDER, (_m, intro, gap, close) => `<p>${close}</p>${gap}<p>${intro}</p>`)
 const isOldHours = (rows: any) => Array.isArray(rows) && rows.length === OLD_HOURS.length
   && rows.every((r: any, i: number) => String(r?.days || '').trim() === OLD_HOURS[i][0] && String(r?.time || '').trim() === OLD_HOURS[i][1])
 
@@ -39,6 +44,7 @@ function fix(obj: any): { value: any; changed: boolean } {
   const before = JSON.stringify(obj)
   const value = JSON.parse(replaceAll(before))
   if (value && isOldHours(value.hours)) value.hours = NEW_HOURS.map(h => ({ ...h }))
+  if (value?.home && typeof value.home.why_text === 'string') value.home.why_text = swapWhy(value.home.why_text)
   return { value, changed: JSON.stringify(value) !== before }
 }
 
@@ -48,7 +54,7 @@ export async function applyContentFixes(payload: Payload, log: (m: string) => vo
     const r = fix(store.data)
     if (r.changed) {
       await payload.updateGlobal({ slug: 'site-content' as any, data: { data: r.value } as any, overrideAccess: true, depth: 0 })
-      log('content fixes: updated the saved website content (phone, hours, map link, booking buttons)')
+      log('content fixes: updated the saved website content (phone, hours, map link, booking buttons, Why us order)')
     }
   }
   const settings: any = await payload.findGlobal({ slug: 'site-settings' as any, depth: 0, overrideAccess: true })

@@ -108,3 +108,10 @@ This revision is a complete visual redesign of all 31 pages plus a real-imagery 
 - The client's Google Ads tag (gtag.js, AW-18516198136) is the first thing inside <head> on every public page, exactly as supplied (ADS_HEAD in build/glow.py; the blog pages take their head from the same source). It sits alongside the existing Google Tag Manager container GTM-MTVSMPG7.
 - The dashboard's page preview strips the Ads tag as it already did for GTM, so editing a page never fires ad hits.
 - No other change to design, copy, layout, images or dependencies. There is no Content Security Policy on the site, so nothing needed allowing.
+
+## 3.2.2 (26 October 2026): homepage "Why us" paragraph order
+
+- Client request: the two paragraphs in the homepage "Why us" section are swapped, so "Our team brings more than 20 years ... our studio is equipped with:" now sits directly above the equipment list (it sits next to the list on desktop and directly above it on mobile). Wording unchanged, em dash included.
+- Changed in the generator (build/glow.py prints the copy doc's second paragraph first), in content/site.json (home.why_text), and for the live database in cms/fixes.ts (swaps the two paragraphs on the next build, only if both are present and unedited in the old order; safe to repeat).
+- The copy doc (build/copy/01-home-page-copy.md) already had the right order (intro, list, closing line) and is unchanged. The text appears nowhere else on the site, including meta descriptions.
+- Both paragraphs sit inside one reveal block, so the scroll animation is unaffected.
