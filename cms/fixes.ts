@@ -12,10 +12,14 @@ import type { Payload } from 'payload'
  * 26 Oct 2026: homepage "Why us" text, the two paragraphs swapped so the one ending
  * "equipped with:" sits next to the equipment list. Only when both are present, unedited,
  * in the old order.
+ * 28 Oct 2026: updated CareStack booking link (the old "&In=1#/home" link becomes "&ln=1").
  */
-export const BOOKING_URL = 'https://onlineappointment.carestack.au/?dn=asmiles&In=1#/home'
+export const BOOKING_URL = 'https://onlineappointment.carestack.au/?dn=asmiles&ln=1'
 export const BOOKING_ATTRS = `href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer"`
+const OLD_BOOKING_URL = 'https://onlineappointment.carestack.au/?dn=asmiles&In=1#/home'
 const REPLACE: [string, string][] = [
+  [OLD_BOOKING_URL, BOOKING_URL],
+  [OLD_BOOKING_URL.replace('&', '&amp;'), BOOKING_URL.replace('&', '&amp;')],
   ['(03) 9000 0792', '(03) 7044 7722'],
   ['03 9000 0792', '03 7044 7722'],
   ['tel:+61390000792', 'tel:+61370447722'],
@@ -54,7 +58,7 @@ export async function applyContentFixes(payload: Payload, log: (m: string) => vo
     const r = fix(store.data)
     if (r.changed) {
       await payload.updateGlobal({ slug: 'site-content' as any, data: { data: r.value } as any, overrideAccess: true, depth: 0 })
-      log('content fixes: updated the saved website content (phone, hours, map link, booking buttons, Why us order)')
+      log('content fixes: updated the saved website content (phone, hours, map link, booking buttons and link, Why us order)')
     }
   }
   const settings: any = await payload.findGlobal({ slug: 'site-settings' as any, depth: 0, overrideAccess: true })

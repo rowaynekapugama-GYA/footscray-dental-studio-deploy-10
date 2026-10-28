@@ -115,3 +115,8 @@ This revision is a complete visual redesign of all 31 pages plus a real-imagery 
 - Changed in the generator (build/glow.py prints the copy doc's second paragraph first), in content/site.json (home.why_text), and for the live database in cms/fixes.ts (swaps the two paragraphs on the next build, only if both are present and unedited in the old order; safe to repeat).
 - The copy doc (build/copy/01-home-page-copy.md) already had the right order (intro, list, closing line) and is unchanged. The text appears nowhere else on the site, including meta descriptions.
 - Both paragraphs sit inside one reveal block, so the scroll animation is unaffected.
+
+## 3.2.3 (28 October 2026): updated CareStack booking link
+
+- Client request: every booking button now opens the updated CareStack link https://onlineappointment.carestack.au/?dn=asmiles&ln=1 (was https://onlineappointment.carestack.au/?dn=asmiles&In=1#/home). Same buttons as 3.2.0, still in a new tab; nothing else changed.
+- Changed in BOOKING_URL (build/common.py, cms/fixes.ts, build/blog.mjs), the 23 button rows in content/site.json, and the regenerated pages in site/. cms/fixes.ts also swaps the old link for the new one in content saved in the live database on the next build (safe to repeat).

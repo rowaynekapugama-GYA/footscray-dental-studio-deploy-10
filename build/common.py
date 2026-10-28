@@ -14,7 +14,7 @@ MAPS_URL = "https://www.google.com/maps/place/Footscray+Dental+Studio/@-37.79932
 SITE_NAME = "Footscray Dental Studio"
 # Online booking (CareStack). Every booking button on the site opens this in a new tab.
 # Also used by cms/fixes.ts and cms/richtext.ts for buttons inside dashboard-edited text.
-BOOKING_URL = "https://onlineappointment.carestack.au/?dn=asmiles&In=1#/home"
+BOOKING_URL = "https://onlineappointment.carestack.au/?dn=asmiles&ln=1"
 BOOKING_ATTRS = f'href="{BOOKING_URL}" target="_blank" rel="noopener noreferrer"'
 
 HOURS = [("Monday", "9:00am–5:00pm"), ("Tuesday", "9:00am–6:00pm"), ("Wednesday–Friday", "9:00am–5:00pm"),
